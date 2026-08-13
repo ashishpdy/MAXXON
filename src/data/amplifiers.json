@@ -1,0 +1,366 @@
+[
+  {
+    "sku": "CA-12",
+    "model": "CA-12",
+    "wattage": "2000 WATTS",
+    "image_front": "/assets/products/amplifiers/CA-12/front.jpg",
+    "image_back": "/assets/products/amplifiers/CA-12/back.jpg",
+    "specs": {
+      "power": "2Ω : 1000W + 1000W RMS | 4Ω : 800W + 800W RMS 8Ω : 600W + 600W RMS 4Ω : 2000W RMS | 8Ω : 1800W RMS",
+      "response": "20-20,000Hz",
+      "weight": "30Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": "4Ω : 800W + 800W RMS 8Ω : 600W + 600W RMS 4Ω : 2000W RMS"
+    }
+  },
+  {
+    "sku": "DJ-2K2M",
+    "model": "DJ-2K2M",
+    "wattage": "2000 WATTS",
+    "image_front": "/assets/products/amplifiers/DJ-2K2M/front.jpg",
+    "image_back": "/assets/products/amplifiers/DJ-2K2M/back.jpg",
+    "specs": {
+      "power": "2Ω : 1100W + 1100W RMS | 4Ω : 7500W + 7500W RMS 8Ω : 450W + 450W RMS",
+      "response": "20-20,000Hz",
+      "weight": "30Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": "4Ω : 7500W + 7500W RMS 8Ω : 450W + 450W RMS"
+    }
+  },
+  {
+    "sku": "DJX-4000",
+    "model": "DJX-4000",
+    "wattage": "4000 WATTS",
+    "image_front": "/assets/products/amplifiers/DJX-4000/front.jpg",
+    "image_back": "/assets/products/amplifiers/DJX-4000/back.jpg",
+    "specs": {
+      "power": "2Ω : 2000W + 2000W RMS | 4Ω : 1400W + 1400W RMS 8Ω : 800W + 800W RMS 4Ω : 5000W RMS | 8Ω : 2400W RMS",
+      "response": "20-20,000Hz",
+      "weight": "37Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": "4Ω : 1400W + 1400W RMS 8Ω : 800W + 800W RMS 4Ω : 5000W RMS"
+    }
+  },
+  {
+    "sku": "DJX-5000",
+    "model": "DJX-5000",
+    "wattage": "5000 WATTS",
+    "image_front": "/assets/products/amplifiers/DJX-5000/front.jpg",
+    "image_back": "/assets/products/amplifiers/DJX-5000/back.jpg",
+    "specs": {
+      "power": "2Ω : 2500W + 2500W RMS | 4Ω : 1700W + 1700W RMS 8Ω : 1000W + 1000W RMS 4Ω : 5000W RMS | 8Ω : 3500W RMS",
+      "response": "20-20,000Hz",
+      "weight": "40Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": "4Ω : 1700W + 1700W RMS 8Ω : 1000W + 1000W RMS 4Ω : 5000W RMS"
+    }
+  },
+  {
+    "sku": "MSSA-100EUR",
+    "model": "MSSA-100EUR",
+    "wattage": "100 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-100EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-100EUR/back.jpg",
+    "specs": {
+      "power": "130W Max, 100W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "9.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "5 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Aux 150mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MSSA-160 EUR",
+    "model": "MSSA-160 EUR",
+    "wattage": "160 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-160EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-160EUR/back.jpg",
+    "specs": {
+      "power": "220W Max, 160W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "12.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "5 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Line 1V/50kΩ"
+    }
+  },
+  {
+    "sku": "MSSA-200 EUR",
+    "model": "MSSA-200 EUR",
+    "wattage": "300 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-200EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-200EUR/back.jpg",
+    "specs": {
+      "power": "300W Max, 250W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "13.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "5 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Line 1V/50kΩ"
+    }
+  },
+  {
+    "sku": "MSSA-250 EUR",
+    "model": "MSSA-250 EUR",
+    "wattage": "250 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-250EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-250EUR/back.jpg",
+    "specs": {
+      "power": "300W Max, 250W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "15 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "6 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Line 1V/50kΩ"
+    }
+  },
+  {
+    "sku": "MSSA-300 EUR",
+    "model": "MSSA-300 EUR",
+    "wattage": "300 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-300EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-300EUR/back.jpg",
+    "specs": {
+      "power": "360W Max, 300W RMS at 10% THD 250W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "17.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "6 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Aux 200mV/470kΩ, 1 x Line 1V/50kΩ"
+    }
+  },
+  {
+    "sku": "MSSA-500EUR",
+    "model": "MSSA-500EUR",
+    "wattage": "500 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-500EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-500EUR/back.jpg",
+    "specs": {
+      "power": "600W Max, 500W RMS at 10% THD 700W at 5% THD Input Channels : 7 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Aux 200mV/470kΩ, 1 x Line 1V/50kΩ Echo : 60ms – 600ms Frequency Response : 50-15,000Hz ±3dB Signal to Noise Rat…",
+      "response": "50-15,000Hz ±3dB Signal to Noise Ratio : 60dB Tone Controls : Bass: ±10dB at 100Hz, Treble: ± 10dB at 10Khz Output : Preamp 200mV/600Ω, Line 1V/1kΩ Speaker Output : 4Ω, 8Ω, 70V & 100V Digital Player : MP3 Player with US…",
+      "weight": "22.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V Digital Player : MP3 Player with USB SD Card Reader, AUX, Bluetooth 4.0 Power Supply : AC:220-240V 50/60Hz DC: 36V (3x12V Card Battery) Power Consumption: AC: 1100VA DC: 8A Net Wight : 22.5 Kg",
+      "inputs": "7 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Aux 200mV/470kΩ, 1 x Line 1V/50kΩ Echo : 60ms – 600ms Frequency Response : 50-15,000Hz ±3dB Signal to Noise Ratio : 60dB Tone Controls : Bass: ±10dB at 100Hz, Treble: ± 10dB…"
+    }
+  },
+  {
+    "sku": "MSSA-800EUR",
+    "model": "MSSA-800EUR",
+    "wattage": "800 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSA-800EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSA-800EUR/back.jpg",
+    "specs": {
+      "power": "875W Max, 800W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "7 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ, 1 x Aux 200mV/470kΩ, 1 x Line 1V/50kΩ"
+    }
+  },
+  {
+    "sku": "MSSB-125EUR",
+    "model": "MSSB-125EUR",
+    "wattage": "125 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSB-125EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSB-125EUR/back.jpg",
+    "specs": {
+      "power": "165W Max, 125W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "10.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "5 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MSSB-30",
+    "model": "MSSB-30",
+    "wattage": "30 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSB-30/front.jpg",
+    "image_back": "",
+    "specs": {
+      "power": "35W Max, 25W RMS at 10% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "2 x Mic 0.8mV/4.7kΩ, 1 x Aux 50mV/250kΩ"
+    }
+  },
+  {
+    "sku": "MSSB-45FXR",
+    "model": "MSSB-45FXR",
+    "wattage": "45 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSB-45FXR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSB-45FXR/back.jpg",
+    "specs": {
+      "power": "65W Max, 45W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "5.0 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "3 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MSSB-65FXR",
+    "model": "MSSB-65FXR",
+    "wattage": "65 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSB-65FXR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSB-65FXR/back.jpg",
+    "specs": {
+      "power": "90W Max, 65W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "6.3 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "4 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MSSB-85FXR",
+    "model": "MSSB-85FXR",
+    "wattage": "85 WATTS",
+    "image_front": "/assets/products/amplifiers/MSSB-85FXR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MSSB-85FXR/back.jpg",
+    "specs": {
+      "power": "110W Max, 85W RMS at 10% THD 700W at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "7.5 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "4 x Mic 0.8mV/4.7kΩ, 1 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MTZA-10000 EUR",
+    "model": "MTZA-10000 EUR",
+    "wattage": "500 WATTS + 500 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-10000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-10000EUR/back.jpg",
+    "specs": {
+      "power": "750W + 750W Max, 500W + 500W RMS at 10% THD 450W + 450W RMS at 5% THD Input Channels : Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader, FM Radio, Bluetooth 4…",
+      "response": "50-15,000Hz ±3dB Signal to Noise Ratio : 60dB Tone Controls : Bass: ±10dB at 100Hz, Treble: ± 10dB at 10Khz Output : Preamp 200mV/600Ω, Line 1V/1kΩ Speaker Output : 4Ω, 8Ω, 70V & 100V for Each Zone Digital Player : MP3 …",
+      "weight": "",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone Digital Player : MP3 Player with USB SD Card Reader, AUX, Bluetooth 4.0 Power Supply : AC:220-240V 50/60Hz DC: 48V (4x12V Card Battery) Power Consumption: AC: 1100VA DC: 15A Dimensions: …",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader, FM Radio, Bluetooth 4.0 Output Regulation: ≤ 2dB, no load to full load at 1kHz Echo : 60ms – 600ms Frequency…"
+    }
+  },
+  {
+    "sku": "MTZA-1500 EUR",
+    "model": "MTZA-1500 EUR",
+    "wattage": "80 WATTS + 80 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-1500EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-1500EUR/back.jpg",
+    "specs": {
+      "power": "100W + 100W Max, 80W + 80W RMS at 10% THD 125W + 125W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "14.50kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader,"
+    }
+  },
+  {
+    "sku": "MTZA-2000 EUR",
+    "model": "MTZA-2000 EUR",
+    "wattage": "100 WATTS + 100 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-2000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-2000EUR/back.jpg",
+    "specs": {
+      "power": "150W + 150W Max, 100W + 100W RMS at 10% THD 90W + 90W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "16.50kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MTZA-3000 EUR",
+    "model": "MTZA-3000 EUR",
+    "wattage": "150 WATTS + 150 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-3000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-3000EUR/back.jpg",
+    "specs": {
+      "power": "180W + 180W Max, 150W + 150W RMS at 10% THD 180W + 180W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "17.50kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ"
+    }
+  },
+  {
+    "sku": "MTZA-4000 EUR",
+    "model": "MTZA-4000 EUR",
+    "wattage": "200 WATTS + 200 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-4000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-4000EUR/back.jpg",
+    "specs": {
+      "power": "300W + 300W Max, 200W + 200W RMS at 10% THD 180W + 180W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "21.7 kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader, FM Radio, Bluetooth 4.0"
+    }
+  },
+  {
+    "sku": "MTZA-5000 EUR",
+    "model": "MTZA-5000 EUR",
+    "wattage": "250 WATTS + 250 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-5000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-5000EUR/back.jpg",
+    "specs": {
+      "power": "375W + 375W Max, 250W + 250W RMS at 10% THD 200W + 200W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "23 Kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader, FM Radio, Bluetooth 4.0"
+    }
+  },
+  {
+    "sku": "MTZA-7000 EUR",
+    "model": "MTZA-7000 EUR",
+    "wattage": "350 WATTS + 350 WATTS",
+    "image_front": "/assets/products/amplifiers/MTZA-7000EUR/front.jpg",
+    "image_back": "/assets/products/amplifiers/MTZA-7000EUR/back.jpg",
+    "specs": {
+      "power": "500W + 500W Max, 350W + 350W RMS at 10% THD 300W + 300W RMS at 5% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "36 kg",
+      "impedance": "4Ω, 8Ω, 70V & 100V for Each Zone",
+      "inputs": "Mono 6 x Mic 0.6mV/4.7kΩ, 2 x Aux 100mV/470kΩ, Stereo L/R 200mV / 100kΩ, Line L/R 1V/50kΩ USB, SD Card Reader, FM Radio, Bluetooth 4.0"
+    }
+  },
+  {
+    "sku": "MX-1201",
+    "model": "MX-1201",
+    "wattage": "1200 WATTS",
+    "image_front": "/assets/products/amplifiers/MX-1201/front.jpg",
+    "image_back": "/assets/products/amplifiers/MX-1201/back.jpg",
+    "specs": {
+      "power": "1200 WATTS",
+      "response": "20-20,000Hz",
+      "weight": "24.5Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": ""
+    }
+  },
+  {
+    "sku": "MX-1201DP",
+    "model": "MX-1201DP",
+    "wattage": "1200 WATTS",
+    "image_front": "/assets/products/amplifiers/MX-1201DP/front.jpg",
+    "image_back": "/assets/products/amplifiers/MX-1201DP/back.jpg",
+    "specs": {
+      "power": "1200 WATTS",
+      "response": "20-20,000Hz",
+      "weight": "24.5Kg",
+      "impedance": "10k Unbalanced, 20k Balanced",
+      "inputs": "033 MICROPHONE MXM-510"
+    }
+  },
+  {
+    "sku": "UTR-30DP",
+    "model": "UTR-30DP",
+    "wattage": "30 WATTS",
+    "image_front": "/assets/products/amplifiers/UTR-30DP/front.jpg",
+    "image_back": "/assets/products/amplifiers/UTR-30DP/back.jpg",
+    "specs": {
+      "power": "35W Max, 25W RMS at 10% THD",
+      "response": "50-15,000Hz ±3dB",
+      "weight": "",
+      "impedance": "4Ω, 8Ω, 70V & 100V",
+      "inputs": "3 x Mic 0.8mV/4.7kΩ, 1 x Aux 50mV/250kΩ"
+    }
+  }
+]

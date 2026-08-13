@@ -1,0 +1,136 @@
+{
+  "MTZA-10000 EUR": {
+    "page": 4,
+    "front": "709x282",
+    "folder": "MTZA-10000EUR",
+    "back": "812x307"
+  },
+  "MTZA-7000 EUR": {
+    "page": 4,
+    "front": "730x330",
+    "folder": "MTZA-7000EUR"
+  },
+  "MTZA-4000 EUR": {
+    "page": 5,
+    "front": "1025x344",
+    "folder": "MTZA-4000EUR"
+  },
+  "MTZA-5000 EUR": {
+    "page": 5,
+    "front": "987x333",
+    "folder": "MTZA-5000EUR"
+  },
+  "MTZA-1500 EUR": {
+    "page": 6,
+    "front": "791x262",
+    "folder": "MTZA-1500EUR"
+  },
+  "MTZA-2000 EUR": {
+    "page": 6,
+    "front": "786x257",
+    "folder": "MTZA-2000EUR"
+  },
+  "MTZA-3000 EUR": {
+    "page": 6,
+    "front": "791x261",
+    "folder": "MTZA-3000EUR"
+  },
+  "MX-1201": {
+    "page": 8,
+    "front": "748x250",
+    "folder": "MX-1201",
+    "back": "556x197"
+  },
+  "CA-12": {
+    "page": 9,
+    "front": "746x203",
+    "folder": "CA-12",
+    "back": "740x263"
+  },
+  "DJ-2K2M": {
+    "page": 9,
+    "front": "551x183",
+    "folder": "DJ-2K2M",
+    "back": "740x257"
+  },
+  "DJX-4000": {
+    "page": 10,
+    "front": "748x288",
+    "folder": "DJX-4000",
+    "back": "565x228"
+  },
+  "DJX-5000": {
+    "page": 10,
+    "front": "727x240",
+    "folder": "DJX-5000",
+    "back": "740x240"
+  },
+  "MSSA-500EUR": {
+    "page": 12,
+    "front": "979x366",
+    "folder": "MSSA-500EUR"
+  },
+  "MSSA-800EUR": {
+    "page": 12,
+    "front": "1011x351",
+    "folder": "MSSA-800EUR"
+  },
+  "MSSA-250 EUR": {
+    "page": 13,
+    "front": "900x329",
+    "folder": "MSSA-250EUR",
+    "back": "575x224"
+  },
+  "MSSA-300 EUR": {
+    "page": 13,
+    "front": "892x316",
+    "folder": "MSSA-300EUR"
+  },
+  "MSSA-160 EUR": {
+    "page": 14,
+    "front": "898x290",
+    "folder": "MSSA-160EUR",
+    "back": "795x270"
+  },
+  "MSSA-200 EUR": {
+    "page": 14,
+    "front": "576x203",
+    "folder": "MSSA-200EUR"
+  },
+  "MSSB-125EUR": {
+    "page": 14,
+    "front": "907x289",
+    "folder": "MSSB-125EUR"
+  },
+  "MSSA-100EUR": {
+    "page": 15,
+    "front": "959x348",
+    "folder": "MSSA-100EUR",
+    "back": "542x182"
+  },
+  "MSSB-85FXR": {
+    "page": 15,
+    "front": "956x310",
+    "folder": "MSSB-85FXR"
+  },
+  "MSSB-30": {
+    "page": 16,
+    "front": "761x268",
+    "folder": "MSSB-30"
+  },
+  "MSSB-45FXR": {
+    "page": 16,
+    "front": "704x243",
+    "folder": "MSSB-45FXR"
+  },
+  "MSSB-65FXR": {
+    "page": 16,
+    "front": "515x267",
+    "folder": "MSSB-65FXR"
+  },
+  "UTR-30DP": {
+    "page": 16,
+    "front": "490x264",
+    "folder": "UTR-30DP"
+  }
+}
