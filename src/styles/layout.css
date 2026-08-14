@@ -207,6 +207,12 @@ a {
 
 .site-main {
   flex: 1;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.catalogue {
   width: min(1200px, 100%);
   margin: 0 auto;
   padding: 0 clamp(1rem, 3vw, 2rem) 3rem;
@@ -219,7 +225,9 @@ a {
 
 .category-banner {
   position: relative;
-  min-height: 14rem;
+  display: flex;
+  align-items: center;
+  min-height: clamp(14rem, 28vw, 22rem);
   margin-bottom: 1.25rem;
   padding: clamp(1.5rem, 4vw, 2.5rem);
   background:
@@ -230,7 +238,7 @@ a {
 }
 
 .category-banner.has-image {
-  background: linear-gradient(135deg, #243040 0%, #1a222b 45%, #10161d 100%);
+  background: #05070a;
 }
 
 .category-banner-photo {
@@ -247,7 +255,13 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(8, 10, 14, 0.58) 0%, rgba(8, 10, 14, 0.58) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 7, 10, 0.42) 0%,
+    rgba(5, 7, 10, 0.22) 38%,
+    rgba(5, 7, 10, 0.06) 68%,
+    rgba(5, 7, 10, 0.1) 100%
+  );
   pointer-events: none;
 }
 
@@ -267,8 +281,10 @@ a {
 .category-banner-content {
   position: relative;
   z-index: 2;
-  max-width: none;
-  text-align: center;
+  max-width: min(28rem, 54%);
+  margin-left: clamp(0.75rem, 6vw, 4rem);
+  margin-right: auto;
+  text-align: left;
 }
 
 .category-eyebrow {
@@ -291,9 +307,9 @@ a {
 }
 
 .category-subtitle {
-  margin: 0.75rem auto 0;
+  margin: 0.75rem 0 0;
   color: var(--muted);
-  max-width: 34rem;
+  max-width: 22rem;
   line-height: 1.45;
 }
 
@@ -425,6 +441,11 @@ html[lang="ar"] .footer-block h3 {
   .category-bar {
     grid-column: 1 / -1;
     width: 100%;
+  }
+
+  .category-banner-content {
+    max-width: 68%;
+    margin-left: 0.15rem;
   }
 
   .footer-grid {

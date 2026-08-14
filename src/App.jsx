@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Hero from "./components/Hero.jsx";
 import CategoryBanner from "./components/CategoryBanner.jsx";
 import FamilyBanner from "./components/FamilyBanner.jsx";
 import ProductCard from "./components/ProductCard.jsx";
@@ -109,7 +110,8 @@ export default function App() {
       </header>
 
       <main id="top" className="site-main">
-        <div id="catalogue">
+        <Hero />
+        <div id="catalogue" className="catalogue">
           <CategorySection
             id="amplifiers"
             title={t("banner.amplifiers.title")}
