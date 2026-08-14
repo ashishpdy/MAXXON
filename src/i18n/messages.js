@@ -78,6 +78,7 @@ export const MESSAGES = {
     "locale.ar": "Arabic",
     "a11y.skip": "Skip to catalogue",
     "a11y.specs": "{name} specifications",
+    "a11y.scrollUp": "Back to categories",
   },
   hi: {
     "nav.categories": "उत्पाद श्रेणियाँ",
@@ -151,6 +152,7 @@ export const MESSAGES = {
     "locale.ar": "अरबी",
     "a11y.skip": "कैटलॉग पर जाएँ",
     "a11y.specs": "{name} स्पेसिफिकेशन",
+    "a11y.scrollUp": "श्रेणियों पर वापस जाएँ",
   },
   fr: {
     "nav.categories": "Catégories de produits",
@@ -224,6 +226,7 @@ export const MESSAGES = {
     "locale.ar": "Arabe",
     "a11y.skip": "Aller au catalogue",
     "a11y.specs": "Caractéristiques {name}",
+    "a11y.scrollUp": "Retour aux catégories",
   },
   ar: {
     "nav.categories": "فئات المنتجات",
@@ -297,6 +300,7 @@ export const MESSAGES = {
     "locale.ar": "العربية",
     "a11y.skip": "تخطي إلى الكتالوج",
     "a11y.specs": "مواصفات {name}",
+    "a11y.scrollUp": "العودة إلى الفئات",
   },
 };
 

@@ -203,6 +203,48 @@ html[dir="rtl"] .product-card-back {
   letter-spacing: 0.03em;
 }
 
+@media (max-width: 640px) {
+  .product-card-overlays {
+    padding: 0.4rem;
+  }
+
+  .overlay-sku,
+  .overlay-wattage {
+    font-size: 0.72rem;
+    padding: 0.12rem 0.3rem;
+  }
+
+  .product-card-back {
+    padding: 0.5rem;
+  }
+
+  .product-card-back-header {
+    margin-bottom: 0.35rem;
+  }
+
+  .product-card-model {
+    font-size: 0.95rem;
+  }
+
+  .product-card-sku-back {
+    font-size: 0.65rem;
+  }
+
+  .card-specs {
+    font-size: 0.62rem;
+  }
+
+  .card-specs th,
+  .card-specs td {
+    padding: 0.18rem 0;
+  }
+
+  .product-card-hint {
+    padding-top: 0.35rem;
+    font-size: 0.58rem;
+  }
+}
+
 .category-tile {
   position: relative;
   aspect-ratio: 1 / 1;

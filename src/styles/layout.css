@@ -23,6 +23,7 @@
 html {
   scroll-behavior: smooth;
   min-height: 100%;
+  background-color: #05070a;
 }
 
 body {
@@ -31,17 +32,27 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
   background-color: #05070a;
+  isolation: isolate;
 }
 
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100lvh;
   z-index: -1;
   pointer-events: none;
-  background:
+  background-color: #05070a;
+  background-image:
     linear-gradient(rgba(8, 10, 14, 0.7), rgba(8, 10, 14, 0.7)),
-    url("/assets/page-bg.png") center / cover no-repeat;
+    url("/assets/page-bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: scroll;
 }
 
 img {
@@ -444,6 +455,74 @@ a {
   font-size: 0.85rem;
 }
 
+.scroll-up {
+  position: fixed;
+  top: 50%;
+  right: 0.75rem;
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: rgba(14, 17, 20, 0.72);
+  color: var(--accent);
+  cursor: pointer;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.scroll-up.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.scroll-up:hover,
+.scroll-up:focus-visible {
+  border-color: var(--accent);
+  background: rgba(14, 17, 20, 0.92);
+  outline: none;
+}
+
+.scroll-up-arrow {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.2rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(-135deg);
+  opacity: 0.9;
+}
+
+.scroll-up.is-visible .scroll-up-arrow {
+  animation: scroll-up-nudge 2.2s ease-in-out infinite;
+}
+
+@keyframes scroll-up-nudge {
+  0%,
+  100% {
+    transform: rotate(-135deg) translate(0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: rotate(-135deg) translate(0.16rem, 0.16rem);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-up.is-visible .scroll-up-arrow {
+    animation: none;
+    opacity: 0.9;
+  }
+}
+
 html[lang="hi"] {
   --font-body: "Noto Sans Devanagari", "IBM Plex Sans", "Segoe UI", sans-serif;
   --font-display: "Noto Sans Devanagari", "Barlow Condensed", "Arial Narrow", sans-serif;
@@ -477,6 +556,11 @@ html[lang="ar"] .footer-block h3 {
     width: 100%;
   }
 
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
   .category-index-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -492,5 +576,11 @@ html[lang="ar"] .footer-block h3 {
 
   .footer-badges {
     justify-self: end;
+  }
+
+  .scroll-up {
+    right: 0.45rem;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }

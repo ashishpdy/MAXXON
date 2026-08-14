@@ -5,6 +5,7 @@ import CategoryBanner from "./components/CategoryBanner.jsx";
 import FamilyBanner from "./components/FamilyBanner.jsx";
 import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
+import ScrollUp from "./components/ScrollUp.jsx";
 import LocaleSwitch from "./components/LocaleSwitch.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
@@ -119,6 +120,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <ScrollUp />
       <MaxxonChat />
     </div>
   );
