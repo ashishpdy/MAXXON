@@ -339,10 +339,6 @@ a {
   background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-deep) 100%);
 }
 
-.category-section > .family-section:first-of-type .family-banner {
-  margin-top: 0;
-}
-
 .family-banner h3 {
   margin: 0;
   font: inherit;
