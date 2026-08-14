@@ -230,6 +230,19 @@ a {
   padding: 0 clamp(1rem, 3vw, 2rem) 3rem;
 }
 
+.category-index {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 2rem clamp(1rem, 3vw, 2rem) 1.25rem;
+  scroll-margin-top: calc(var(--header-h) + 0.75rem);
+}
+
+.category-index-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .category-section {
   scroll-margin-top: calc(var(--header-h) + 0.75rem);
   padding-top: 1.25rem;
@@ -462,6 +475,10 @@ html[lang="ar"] .footer-block h3 {
   .category-bar {
     grid-column: 1 / -1;
     width: 100%;
+  }
+
+  .category-index-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .category-banner-content {

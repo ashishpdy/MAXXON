@@ -203,6 +203,152 @@ html[dir="rtl"] .product-card-back {
   letter-spacing: 0.03em;
 }
 
+.category-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.category-tile:not(:nth-child(4n + 1))::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-0.5rem - 1px);
+  top: 50%;
+  z-index: 5;
+  width: 2px;
+  height: 70%;
+  transform: translateY(-50%);
+  background: var(--brand-blue);
+  pointer-events: none;
+}
+
+.category-tile-flip {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.category-tile-flip:focus {
+  outline: none;
+}
+
+.category-tile-flip:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+.category-tile-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  border: 1px solid var(--line);
+  background: #05070a;
+}
+
+.category-tile.is-hover-flip:hover .category-tile-inner {
+  transform: rotateY(180deg);
+}
+
+.category-tile.is-flipped .category-tile-inner {
+  transform: rotateY(180deg);
+}
+
+html[dir="rtl"] .category-tile.is-hover-flip:hover .category-tile-inner,
+html[dir="rtl"] .category-tile.is-flipped .category-tile-inner {
+  transform: rotateY(-180deg);
+}
+
+.category-tile-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.category-tile-front {
+  transform: rotateY(0deg);
+}
+
+.category-tile-back {
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[dir="rtl"] .category-tile-back {
+  transform: rotateY(-180deg);
+}
+
+.category-tile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.category-tile-photo.is-front {
+  object-position: right center;
+}
+
+.category-tile-photo.is-back {
+  object-position: left center;
+}
+
+.category-tile-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 7, 10, 0.55) 0%,
+    rgba(5, 7, 10, 0.28) 55%,
+    rgba(5, 7, 10, 0.12) 100%
+  );
+  pointer-events: none;
+}
+
+.category-tile-name {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 1rem 1.15rem;
+  max-width: 90%;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  text-align: center;
+}
+
+html[lang="ar"] .category-tile-name {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .category-tile:not(:nth-child(4n + 1))::before {
+    content: none;
+  }
+
+  .category-tile:not(:nth-child(2n + 1))::before {
+    content: "";
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -232,6 +378,34 @@ html[dir="rtl"] .product-card-back {
 
   .product-card.is-hover-flip:hover .product-card-back,
   .product-card.is-flipped .product-card-back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .category-tile-inner {
+    transition: none;
+    transform: none !important;
+  }
+
+  .category-tile-face {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+
+  .category-tile-back {
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .category-tile.is-hover-flip:hover .category-tile-front,
+  .category-tile.is-flipped .category-tile-front {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .category-tile.is-hover-flip:hover .category-tile-back,
+  .category-tile.is-flipped .category-tile-back {
     opacity: 1;
     pointer-events: auto;
   }

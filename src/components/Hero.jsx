@@ -20,7 +20,7 @@ export default function Hero() {
         </h2>
         <p className="hero-subtitle">{t("hero.subtitle")}</p>
       </div>
-      <a className="hero-scroll" href="#catalogue">
+      <a className="hero-scroll" href="#categories">
         <span className="visually-hidden">{t("hero.scroll")}</span>
         <span className="hero-scroll-arrow" aria-hidden="true" />
       </a>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Hero from "./components/Hero.jsx";
+import CategoryIndex from "./components/CategoryIndex.jsx";
 import CategoryBanner from "./components/CategoryBanner.jsx";
 import FamilyBanner from "./components/FamilyBanner.jsx";
 import ProductCard from "./components/ProductCard.jsx";
@@ -77,7 +78,7 @@ export default function App() {
   return (
     <div className="app-shell">
       <JsonLd />
-      <a className="skip-link" href="#catalogue">
+      <a className="skip-link" href="#categories">
         {t("a11y.skip")}
       </a>
       <header className="site-header">
@@ -103,6 +104,7 @@ export default function App() {
 
       <main id="top" className="site-main">
         <Hero />
+        <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
           {CATEGORIES.map((category) => (
             <CategorySection
