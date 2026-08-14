@@ -46,6 +46,12 @@
       "weight",
       "inputs",
       "dimensions"
+    ],
+    "stands": [
+      "type",
+      "height",
+      "weight",
+      "dimensions"
     ]
   },
   "categories": [
@@ -102,6 +108,16 @@
       "banner": "/assets/banners/pa-systems.png",
       "overlayField": "wattage",
       "specKeys": "portable-pa",
+      "familyGroups": []
+    },
+    {
+      "id": "stands",
+      "label": "Stands",
+      "kind": "stand",
+      "schemaCategory": "Microphone stand",
+      "banner": "/assets/banners/stands.png",
+      "overlayField": "wattage",
+      "specKeys": "stands",
       "familyGroups": []
     }
   ]

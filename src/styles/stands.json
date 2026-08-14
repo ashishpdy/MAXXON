@@ -1,0 +1,210 @@
+{
+  "MIC": [
+    {
+      "sku": "3-LEG",
+      "slug": "3-leg",
+      "model": "3 LEG",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/3-LEG/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Microphone stand"
+      }
+    },
+    {
+      "sku": "BMS-101",
+      "slug": "bms-101",
+      "model": "BMS 101",
+      "wattage": "1700mm",
+      "image_front": "/assets/products/stands/BMS-101/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Boom Stand",
+        "height": "1000-1700 mm",
+        "weight": "2.16kg",
+        "dimensions": "Ø 650 mm"
+      }
+    },
+    {
+      "sku": "DGN",
+      "slug": "dgn",
+      "model": "DGN",
+      "wattage": "1500mm",
+      "image_front": "/assets/products/stands/DGN/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Floor Stand",
+        "height": "920 – 1500 mm",
+        "weight": "4.60 KG",
+        "dimensions": "Ø 230 mm"
+      }
+    },
+    {
+      "sku": "ECONOMY-MIC-STAND-BIG",
+      "slug": "economy-mic-stand-big",
+      "model": "ECONOMY MIC STAND BIG",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/ECONOMY-MIC-STAND-BIG/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Microphone stand"
+      }
+    },
+    {
+      "sku": "ECONOMY-MIC-STAND-SMALL",
+      "slug": "economy-mic-stand-small",
+      "model": "ECONOMY MIC STAND SMALL",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/ECONOMY-MIC-STAND-SMALL/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Microphone stand"
+      }
+    },
+    {
+      "sku": "NAMAZ-MIC-STAND",
+      "slug": "namaz-mic-stand",
+      "model": "NAMAZ MIC STAND",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/NAMAZ-MIC-STAND/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Microphone stand"
+      }
+    }
+  ],
+  "TABLE": [
+    {
+      "sku": "ATS-201",
+      "slug": "ats-201",
+      "model": "ATS 201",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/ATS-201/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Table stand"
+      }
+    },
+    {
+      "sku": "ATS-5",
+      "slug": "ats-5",
+      "model": "ATS 5",
+      "wattage": "130mm",
+      "image_front": "/assets/products/stands/ATS-5/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Table Stand",
+        "height": "130mm",
+        "weight": "0.76 KG",
+        "dimensions": "Ø 120mm"
+      }
+    },
+    {
+      "sku": "ATS-5-ADJUSTABLE",
+      "slug": "ats-5-adjustable",
+      "model": "ATS 5 ADJUSTABLE",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/ATS-5-ADJUSTABLE/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Table stand"
+      }
+    },
+    {
+      "sku": "DGT-HEAVY",
+      "slug": "dgt-heavy",
+      "model": "DGT HEAVY",
+      "wattage": "530mm",
+      "image_front": "/assets/products/stands/DGT-HEAVY/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Table/Floor Stand",
+        "height": "350-530 mm",
+        "weight": "2.20kg",
+        "dimensions": "Ø 150 mm"
+      }
+    },
+    {
+      "sku": "DGT-LIGHT",
+      "slug": "dgt-light",
+      "model": "DGT LIGHT",
+      "wattage": "530mm",
+      "image_front": "/assets/products/stands/DGT-LIGHT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Table/Floor Stand",
+        "height": "350-530 mm",
+        "weight": "2.20kg",
+        "dimensions": "Ø 150 mm"
+      }
+    }
+  ],
+  "FOLDING": [
+    {
+      "sku": "MFB",
+      "slug": "mfb",
+      "model": "MFB",
+      "wattage": "1575mm",
+      "image_front": "/assets/products/stands/MFB/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "FOLDING STAND BIG",
+        "height": "825-1575 mm",
+        "weight": "2.5 kg",
+        "dimensions": "Ø 558 mm"
+      }
+    },
+    {
+      "sku": "MFS",
+      "slug": "mfs",
+      "model": "MFS",
+      "wattage": "826mm",
+      "image_front": "/assets/products/stands/MFS/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "FOLDING STAND SMALL",
+        "height": "394-826 mm",
+        "weight": "1.8 kg",
+        "dimensions": "Ø 762 mm"
+      }
+    }
+  ],
+  "GOOSENECK": [
+    {
+      "sku": "GOOSE-NECK-MIC",
+      "slug": "goose-neck-mic",
+      "model": "GOOSE NECK MIC",
+      "wattage": "12\"",
+      "image_front": "/assets/products/stands/GOOSE-NECK-MIC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Gooseneck",
+        "dimensions": "12″/15″/18″"
+      }
+    }
+  ],
+  "SPEAKER STAND": [
+    {
+      "sku": "STA-150",
+      "slug": "sta-150",
+      "model": "STA 150",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/STA-150/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Speaker stand"
+      }
+    },
+    {
+      "sku": "STA-151",
+      "slug": "sta-151",
+      "model": "STA 151",
+      "wattage": "—",
+      "image_front": "/assets/products/stands/STA-151/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Speaker stand"
+      }
+    }
+  ]
+}
