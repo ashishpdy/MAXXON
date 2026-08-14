@@ -15,13 +15,39 @@ const CATEGORIES = [
   { id: "microphones", labelKey: "nav.microphones" },
 ];
 
+const AMPLIFIER_FAMILY_GROUPS = [
+  { id: "UTR-CA-DJ", families: ["UTR", "CA", "DJ"] },
+];
+
 function familyTitle(family, t) {
   const nameKey = `family.${family}`;
   const name = t(nameKey);
   return t("family.series", { name: name === nameKey ? family : name });
 }
 
-function CategorySection({ id, title, subtitle, image, catalog, flippedSku, onFlip, t }) {
+function groupCatalog(catalog, groups = []) {
+  const byMember = new Map();
+  for (const group of groups) {
+    for (const family of group.families) byMember.set(family, group);
+  }
+
+  const grouped = {};
+  const consumed = new Set();
+  for (const [family, items] of Object.entries(catalog)) {
+    if (consumed.has(family)) continue;
+    const group = byMember.get(family);
+    if (!group) {
+      grouped[family] = items;
+      continue;
+    }
+    grouped[group.id] = group.families.flatMap((name) => catalog[name] || []);
+    group.families.forEach((name) => consumed.add(name));
+  }
+  return grouped;
+}
+
+function CategorySection({ id, title, subtitle, image, catalog, familyGroups, flippedSku, onFlip, t }) {
+  const families = groupCatalog(catalog, familyGroups);
   return (
     <section id={id} className="category-section" aria-labelledby={`${id}-title`}>
       <CategoryBanner
@@ -31,7 +57,7 @@ function CategorySection({ id, title, subtitle, image, catalog, flippedSku, onFl
         image={image}
         eyebrow={t("banner.eyebrow")}
       />
-      {Object.entries(catalog).map(([family, items]) => (
+      {Object.entries(families).map(([family, items]) => (
         <section key={family} className="family-section" aria-label={familyTitle(family, t)}>
           <FamilyBanner title={familyTitle(family, t)} />
           <div className="product-grid">
@@ -118,6 +144,7 @@ export default function App() {
             subtitle={t("banner.amplifiers.subtitle")}
             image="/assets/banners/amplifiers.png"
             catalog={amplifiers}
+            familyGroups={AMPLIFIER_FAMILY_GROUPS}
             flippedSku={flippedSku}
             onFlip={handleCardFlip}
             t={t}
