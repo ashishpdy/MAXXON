@@ -194,13 +194,35 @@
 }
 
 .maxxon-chat-tags li {
+  margin: 0;
+  padding: 0;
+}
+
+.maxxon-chat-tag {
+  appearance: none;
+  display: inline-block;
+  margin: 0;
   padding: 0.15rem 0.45rem;
   border: 1px solid var(--line);
+  background: transparent;
   color: var(--accent);
   font-family: var(--font-display);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.maxxon-chat-tag:hover,
+.maxxon-chat-tag:focus-visible {
+  border-color: var(--accent);
+  background: rgba(226, 184, 87, 0.12);
+  outline: none;
+}
+
+.maxxon-chat-tag:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .maxxon-chat-composer {

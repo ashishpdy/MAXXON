@@ -21,7 +21,15 @@ function TypingDots() {
   );
 }
 
-function AssistantBubble({ reply }: { reply: AssistantReply }) {
+function AssistantBubble({
+  reply,
+  disabled,
+  onTag,
+}: {
+  reply: AssistantReply;
+  disabled?: boolean;
+  onTag: (tag: string) => void;
+}) {
   return (
     <div className="maxxon-chat-row is-assistant">
       <article className="maxxon-chat-bubble is-assistant">
@@ -38,7 +46,16 @@ function AssistantBubble({ reply }: { reply: AssistantReply }) {
         {reply.tags?.length ? (
           <ul className="maxxon-chat-tags">
             {reply.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
+              <li key={tag}>
+                <button
+                  type="button"
+                  className="maxxon-chat-tag"
+                  disabled={disabled}
+                  onClick={() => onTag(tag)}
+                >
+                  {tag}
+                </button>
+              </li>
             ))}
           </ul>
         ) : null}
@@ -76,17 +93,16 @@ export function MaxxonChat() {
     };
   }, []);
 
-  function send(event?: FormEvent) {
-    event?.preventDefault();
-    const text = draft.trim();
-    if (!text || typing) return;
+  function sendMessage(text: string) {
+    const value = text.trim();
+    if (!value || typing) return;
 
-    const userMessage: ChatMessage = { id: nextId(), role: "user", text };
+    const userMessage: ChatMessage = { id: nextId(), role: "user", text: value };
     setMessages((current) => [...current, userMessage]);
     setDraft("");
     setTyping(true);
 
-    const reply = matchAssistantReply(text, chatData);
+    const reply = matchAssistantReply(value, chatData);
     typingTimer.current = window.setTimeout(() => {
       setMessages((current) => [
         ...current,
@@ -95,6 +111,11 @@ export function MaxxonChat() {
       setTyping(false);
       typingTimer.current = null;
     }, TYPING_DELAY_MS);
+  }
+
+  function send(event?: FormEvent) {
+    event?.preventDefault();
+    sendMessage(draft);
   }
 
   return (
@@ -122,7 +143,12 @@ export function MaxxonChat() {
                   <p className="maxxon-chat-bubble is-user">{message.text}</p>
                 </div>
               ) : (
-                <AssistantBubble key={message.id} reply={message.reply} />
+                <AssistantBubble
+                  key={message.id}
+                  reply={message.reply}
+                  disabled={typing}
+                  onTag={sendMessage}
+                />
               )
             )}
             {typing ? <TypingDots /> : null}
