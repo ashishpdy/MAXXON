@@ -265,12 +265,15 @@ a {
 }
 
 .category-banner {
+  --banner-pad: clamp(1.5rem, 4vw, 2.5rem);
+  --banner-content-shift: clamp(0.75rem, 6vw, 4rem);
   position: relative;
   display: flex;
   align-items: center;
   min-height: clamp(14rem, 28vw, 22rem);
   margin-bottom: 0;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: var(--banner-pad);
+  container-type: inline-size;
   background:
     linear-gradient(120deg, rgba(10, 12, 14, 0.55), rgba(10, 12, 14, 0.2)),
     linear-gradient(135deg, #243040 0%, #1a222b 45%, #10161d 100%);
@@ -324,18 +327,18 @@ a {
   position: relative;
   z-index: 2;
   max-width: min(28rem, 54%);
-  margin-left: clamp(0.75rem, 6vw, 4rem);
+  margin-left: var(--banner-content-shift);
   margin-right: auto;
   text-align: left;
 }
 
-.category-eyebrow {
-  margin: 0 0 0.35rem;
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.category-banner-rule {
+  display: block;
+  width: 25%;
+  width: calc(0.25 * (100cqi + 2 * var(--banner-pad)));
+  height: 3px;
+  margin: 0 0 0.55rem calc(-1 * (var(--banner-pad) + var(--banner-content-shift)));
+  background: var(--accent);
 }
 
 .category-title {
@@ -458,7 +461,8 @@ a {
 
 .scroll-up {
   position: fixed;
-  top: 50%;
+  top: calc(50% - 1.375rem);
+  top: calc(50svh - 1.375rem);
   right: 0.75rem;
   z-index: 45;
   display: grid;
@@ -470,7 +474,6 @@ a {
   background: rgba(14, 17, 20, 0.72);
   color: var(--accent);
   cursor: pointer;
-  transform: translateY(-50%);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -535,7 +538,6 @@ html[lang="ar"] {
 }
 
 html[lang="ar"] .category-link,
-html[lang="ar"] .category-eyebrow,
 html[lang="ar"] .category-title,
 html[lang="ar"] .family-banner,
 html[lang="ar"] .footer-block h3 {
@@ -570,9 +572,12 @@ html[lang="ar"] .footer-block h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .category-banner {
+    --banner-content-shift: 0.15rem;
+  }
+
   .category-banner-content {
     max-width: 68%;
-    margin-left: 0.15rem;
   }
 
   .footer-grid {
@@ -580,12 +585,16 @@ html[lang="ar"] .footer-block h3 {
   }
 
   .footer-badges {
-    justify-self: end;
+    justify-self: center;
+    justify-content: center;
+    width: 100%;
   }
 
   .scroll-up {
     right: 0.45rem;
     width: 2.4rem;
     height: 2.4rem;
+    top: calc(50% - 1.2rem);
+    top: calc(50svh - 1.2rem);
   }
 }

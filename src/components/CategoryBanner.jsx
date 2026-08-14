@@ -1,4 +1,4 @@
-export default function CategoryBanner({ id, title, subtitle, image, eyebrow }) {
+export default function CategoryBanner({ id, title, subtitle, image }) {
   return (
     <header className={`category-banner${image ? " has-image" : ""}`}>
       {image ? (
@@ -13,7 +13,7 @@ export default function CategoryBanner({ id, title, subtitle, image, eyebrow }) 
         />
       ) : null}
       <div className="category-banner-content">
-        <p className="category-eyebrow">{eyebrow || "MAXX-ON"}</p>
+        <span className="category-banner-rule" aria-hidden="true" />
         <h2 id={id} className="category-title">
           {title}
         </h2>

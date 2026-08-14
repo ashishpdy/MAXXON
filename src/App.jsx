@@ -21,7 +21,6 @@ function CategorySection({ category, flippedSku, onFlip, t }) {
         title={t(category.titleKey)}
         subtitle={t(category.subtitleKey)}
         image={category.banner}
-        eyebrow={t("banner.eyebrow")}
       />
       {Object.entries(families).map(([family, items]) => (
         <section key={family} className="family-section" aria-label={familyTitle(family, t)}>
