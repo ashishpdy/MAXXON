@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yellow-pebble-06cc7ac10.azurestaticapps.net/sitemap.xml

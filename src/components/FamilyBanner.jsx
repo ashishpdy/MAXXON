@@ -1,3 +1,7 @@
 export default function FamilyBanner({ title }) {
-  return <div className="family-banner">{title}</div>;
+  return (
+    <header className="family-banner">
+      <h3>{title}</h3>
+    </header>
+  );
 }

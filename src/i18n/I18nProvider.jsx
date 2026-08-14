@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { detectLocale, localeMeta, translate } from "./messages.js";
 
 const I18nContext = createContext({
@@ -14,20 +14,25 @@ export function I18nProvider({ children }) {
     const meta = localeMeta(locale);
     document.documentElement.lang = locale;
     document.documentElement.dir = meta.dir;
+  }, [locale]);
+
+  const setLocale = useCallback((next) => {
     try {
-      localStorage.setItem("maxxon-locale", locale);
+      localStorage.setItem("maxxon-locale-chosen", "1");
+      localStorage.setItem("maxxon-locale", next);
     } catch {
       /* ignore */
     }
-  }, [locale]);
+    setLocaleState(next);
+  }, []);
 
   const value = useMemo(
     () => ({
       locale,
       t: (key, vars) => translate(locale, key, vars),
-      setLocale: setLocaleState,
+      setLocale,
     }),
-    [locale]
+    [locale, setLocale]
   );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;

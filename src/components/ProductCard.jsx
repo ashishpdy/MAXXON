@@ -13,7 +13,7 @@ const SPEC_KEYS = [
   "inputs",
 ];
 
-function SpecTable({ specs, t }) {
+function SpecTable({ specs, t, productName }) {
   const rows = SPEC_KEYS
     .map((key) => ({ key, label: t(`spec.${key}`), value: specs?.[key] }))
     .filter((row) => row.value);
@@ -24,6 +24,7 @@ function SpecTable({ specs, t }) {
 
   return (
     <table className="card-specs">
+      <caption className="visually-hidden">{t("a11y.specs", { name: productName })}</caption>
       <tbody>
         {rows.map((row) => (
           <tr key={row.key}>
@@ -88,6 +89,7 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
 
   return (
     <article
+      id={product.slug}
       className={`product-card${isFlipped ? " is-flipped" : ""}${hoverFlip ? " is-hover-flip" : " is-touch"}`}
       tabIndex={0}
       role="button"
@@ -104,6 +106,8 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
                 className="product-card-image"
                 src={imageSrc}
                 alt={productName}
+                width="640"
+                height="640"
                 loading="lazy"
               />
             ) : (
@@ -120,10 +124,10 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
 
         <div className="product-card-face product-card-back">
           <div className="product-card-back-header">
-            <h3 className="product-card-model">{product.model || product.sku || "Model"}</h3>
+            <h4 className="product-card-model">{product.model || product.sku || "Model"}</h4>
             <p className="product-card-sku-back">{product.sku}</p>
           </div>
-          <SpecTable specs={product.specs} t={t} />
+          <SpecTable specs={product.specs} t={t} productName={productName} />
           <p className="product-card-hint">
             {hoverFlip ? t("card.hintHover") : t("card.hintTap")}
           </p>

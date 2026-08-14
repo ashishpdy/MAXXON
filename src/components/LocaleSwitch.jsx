@@ -13,6 +13,8 @@ export default function LocaleSwitch() {
           className={`locale-btn${locale === item.id ? " is-active" : ""}`}
           onClick={() => setLocale(item.id)}
           lang={item.id}
+          aria-pressed={locale === item.id}
+          aria-label={t(`locale.${item.id}`)}
         >
           {item.label}
         </button>

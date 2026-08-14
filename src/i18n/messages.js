@@ -37,6 +37,12 @@ export const MESSAGES = {
     "footer.dubai": "Dubai",
     "footer.note": "Placeholder contacts from maxx-on.com — confirm before publish.",
     "locale.label": "Language",
+    "locale.en": "English",
+    "locale.hi": "Hindi",
+    "locale.fr": "French",
+    "locale.ar": "Arabic",
+    "a11y.skip": "Skip to catalogue",
+    "a11y.specs": "{name} specifications",
   },
   hi: {
     "nav.categories": "उत्पाद श्रेणियाँ",
@@ -69,6 +75,12 @@ export const MESSAGES = {
     "footer.dubai": "दुबई",
     "footer.note": "maxx-on.com से अस्थायी संपर्क — प्रकाशित करने से पहले पुष्टि करें।",
     "locale.label": "भाषा",
+    "locale.en": "अंग्रेज़ी",
+    "locale.hi": "हिन्दी",
+    "locale.fr": "फ़्रेंच",
+    "locale.ar": "अरबी",
+    "a11y.skip": "कैटलॉग पर जाएँ",
+    "a11y.specs": "{name} स्पेसिफिकेशन",
   },
   fr: {
     "nav.categories": "Catégories de produits",
@@ -101,6 +113,12 @@ export const MESSAGES = {
     "footer.dubai": "Dubaï",
     "footer.note": "Contacts provisoires depuis maxx-on.com — à confirmer avant publication.",
     "locale.label": "Langue",
+    "locale.en": "Anglais",
+    "locale.hi": "Hindi",
+    "locale.fr": "Français",
+    "locale.ar": "Arabe",
+    "a11y.skip": "Aller au catalogue",
+    "a11y.specs": "Caractéristiques {name}",
   },
   ar: {
     "nav.categories": "فئات المنتجات",
@@ -133,10 +151,15 @@ export const MESSAGES = {
     "footer.dubai": "دبي",
     "footer.note": "جهات اتصال مؤقتة من maxx-on.com — يُرجى التأكيد قبل النشر.",
     "locale.label": "اللغة",
+    "locale.en": "الإنجليزية",
+    "locale.hi": "الهندية",
+    "locale.fr": "الفرنسية",
+    "locale.ar": "العربية",
+    "a11y.skip": "تخطي إلى الكتالوج",
+    "a11y.specs": "مواصفات {name}",
   },
 };
 
-const TZ_HI = new Set(["Asia/Kolkata", "Asia/Calcutta"]);
 const TZ_AR = new Set([
   "Asia/Dubai",
   "Asia/Muscat",
@@ -172,8 +195,9 @@ const TZ_FR = new Set([
 
 export function detectLocale() {
   try {
+    const chosen = localStorage.getItem("maxxon-locale-chosen");
     const saved = localStorage.getItem("maxxon-locale");
-    if (saved && LOCALES.some((item) => item.id === saved)) return saved;
+    if (chosen && saved && LOCALES.some((item) => item.id === saved)) return saved;
   } catch {
     /* ignore */
   }
@@ -194,11 +218,9 @@ export function detectLocale() {
   } catch {
     tz = "";
   }
-  if (TZ_HI.has(tz)) return "hi";
   if (TZ_AR.has(tz)) return "ar";
   if (TZ_FR.has(tz)) return "fr";
 
-  if (langs.some((lang) => lang.endsWith("-in"))) return "hi";
   if (langs.some((lang) => /-(ae|sa|eg|qa|kw|bh|om|iq|jo|lb|sy)$/.test(lang))) return "ar";
   if (langs.some((lang) => /-(fr|be|sn|ci|ml|bf)$/.test(lang))) return "fr";
 
