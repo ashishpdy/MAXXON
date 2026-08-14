@@ -93,6 +93,16 @@
       "overlayField": "wattage",
       "specKeys": "horns",
       "familyGroups": []
+    },
+    {
+      "id": "pa-systems",
+      "label": "PA Systems",
+      "kind": "portable-pa",
+      "schemaCategory": "Portable PA system",
+      "banner": "/assets/banners/pa-systems.png",
+      "overlayField": "wattage",
+      "specKeys": "portable-pa",
+      "familyGroups": []
     }
   ]
 }

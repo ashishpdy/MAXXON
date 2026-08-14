@@ -1,0 +1,66 @@
+{
+  "MEGAPHONE": [
+    {
+      "sku": "MEGAPHONE-201",
+      "slug": "megaphone-201",
+      "model": "MEGAPHONE 201",
+      "wattage": "600m",
+      "image_front": "/assets/products/pa-systems/MEGAPHONE-201/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "9V DC/ 6V UM/ 1.Dry Cells",
+        "type": "Shoulder megaphone",
+        "range": "600 meters",
+        "inputs": "1 Builtin mike + 1 external mike",
+        "weight": "2 kg w/ocells",
+        "dimensions": "Bell: 205 x 330D mm"
+      }
+    },
+    {
+      "sku": "MEGAPHONE-301",
+      "slug": "megaphone-301",
+      "model": "MEGAPHONE 301",
+      "wattage": "3W",
+      "image_front": "/assets/products/pa-systems/MEGAPHONE-301/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "3W RMS /5-7W Max",
+        "type": "Shoulder megaphone",
+        "range": "600 meters",
+        "inputs": "1 Mike",
+        "weight": "2 kg w/ocells",
+        "dimensions": "Bell: 255 x 340D mm"
+      }
+    }
+  ],
+  "MOBILE": [
+    {
+      "sku": "PM-99",
+      "slug": "pm-99",
+      "model": "PM 99",
+      "wattage": "12V",
+      "image_front": "/assets/products/pa-systems/PM-99/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "UM-1 dry cells / 12V car battery",
+        "type": "Portable PA",
+        "range": "Long throw",
+        "inputs": "External speaker out"
+      }
+    },
+    {
+      "sku": "PM-99-REC",
+      "slug": "pm-99-rec",
+      "model": "PM 99 REC",
+      "wattage": "REC",
+      "image_front": "/assets/products/pa-systems/PM-99-REC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "UM-1 dry cells / 12V car battery",
+        "type": "Portable PA",
+        "range": "Long throw",
+        "inputs": "External speaker out"
+      }
+    }
+  ]
+}
