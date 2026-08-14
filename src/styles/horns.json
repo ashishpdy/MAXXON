@@ -1,0 +1,215 @@
+{
+  "TRUMPET": [
+    {
+      "sku": "MH-18",
+      "slug": "mh-18",
+      "model": "MH 18",
+      "wattage": "18\"",
+      "image_front": "/assets/products/horns/MH-18/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Aluminium trumpet",
+        "response": "190Hz",
+        "weight": "1.8kg / 1.5kg",
+        "material": "Aluminium",
+        "dimensions": "18\""
+      }
+    },
+    {
+      "sku": "MH-20",
+      "slug": "mh-20",
+      "model": "MH 20",
+      "wattage": "20\"",
+      "image_front": "/assets/products/horns/MH-20/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Aluminium trumpet",
+        "response": "175Hz",
+        "weight": "1.9kg / 1.6kg",
+        "material": "Aluminium",
+        "dimensions": "20\""
+      }
+    },
+    {
+      "sku": "MH-22",
+      "slug": "mh-22",
+      "model": "MH 22",
+      "wattage": "22\"",
+      "image_front": "/assets/products/horns/MH-22/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Aluminium trumpet",
+        "response": "160Hz",
+        "weight": "2.0kg / 1.7kg",
+        "material": "Aluminium",
+        "dimensions": "22\""
+      }
+    },
+    {
+      "sku": "MH-22C",
+      "slug": "mh-22c",
+      "model": "MH 22C",
+      "wattage": "22\"",
+      "image_front": "/assets/products/horns/MH-22C/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Aluminium trumpet",
+        "response": "160Hz",
+        "weight": "2.0kg / 1.7kg",
+        "material": "Aluminium",
+        "dimensions": "22\""
+      }
+    },
+    {
+      "sku": "MH-24",
+      "slug": "mh-24",
+      "model": "MH 24",
+      "wattage": "24\"",
+      "image_front": "/assets/products/horns/MH-24/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Aluminium trumpet",
+        "response": "160Hz",
+        "weight": "2.2kg / 1.820kg",
+        "material": "Aluminium",
+        "dimensions": "24\""
+      }
+    }
+  ],
+  "REFLEX": [
+    {
+      "sku": "BC-16",
+      "slug": "bc-16",
+      "model": "BC 16",
+      "wattage": "16\"",
+      "image_front": "/assets/products/horns/BC-16/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "PA reflex horn",
+        "response": "200Hz",
+        "weight": "2.00Kg",
+        "dimensions": "16″"
+      }
+    },
+    {
+      "sku": "WFA-21",
+      "slug": "wfa-21",
+      "model": "WFA 21",
+      "wattage": "21\"",
+      "image_front": "/assets/products/horns/WFA-21/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "PA reflex horn",
+        "response": "160Hz",
+        "weight": "3.00Kg",
+        "dimensions": "21″"
+      }
+    },
+    {
+      "sku": "WFB-18",
+      "slug": "wfb-18",
+      "model": "WFB 18",
+      "wattage": "18\"",
+      "image_front": "/assets/products/horns/WFB-18/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "PA reflex horn",
+        "response": "190Hz",
+        "weight": "2.20Kg",
+        "dimensions": "18″"
+      }
+    }
+  ],
+  "HORN SPEAKER": [
+    {
+      "sku": "SUH-15/15XT",
+      "slug": "suh-15-15xt",
+      "model": "SUH 15 / 15XT",
+      "wattage": "15W",
+      "image_front": "/assets/products/horns/SUH-15_15XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "15W RMS 23W Max.",
+        "type": "PA horn speaker",
+        "response": "275-7000Hz",
+        "spl": "118DB /15W/1M, 118dB/15W/1m",
+        "impedance": "8Ω/ 15/10/5/2.5W",
+        "weight": "1.78 Kg",
+        "material": "ABS",
+        "dimensions": "205 (L270)mm"
+      }
+    },
+    {
+      "sku": "SUH-25/25XT",
+      "slug": "suh-25-25xt",
+      "model": "SUH 25 / 25XT",
+      "wattage": "25W",
+      "image_front": "/assets/products/horns/SUH-25_25XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "25W RMS 38W Max.",
+        "type": "PA horn speaker",
+        "response": "250-10000Hz",
+        "spl": "108dB/1W/1m, 122dB/15W/1m",
+        "impedance": "8Ω/ 25/20/15/10/5W",
+        "weight": "2.34 Kg",
+        "material": "ABS",
+        "dimensions": "174 (L310)mm"
+      }
+    },
+    {
+      "sku": "SUH-40/40XT",
+      "slug": "suh-40-40xt",
+      "model": "SUH 40 / 40XT",
+      "wattage": "40W",
+      "image_front": "/assets/products/horns/SUH-40_40XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "40W RMS 60W Max.",
+        "type": "PA horn speaker",
+        "response": "240-10000Hz",
+        "spl": "108dB/1W/1m, 122dB/25W/1m",
+        "impedance": "16Ω/ 40/30/20/10/5W",
+        "weight": "2.39 Kg",
+        "material": "ABS",
+        "dimensions": "313 (L315)mm"
+      }
+    },
+    {
+      "sku": "UHC-15/15XT",
+      "slug": "uhc-15-15xt",
+      "model": "UHC 15 / 15XT",
+      "wattage": "15W",
+      "image_front": "/assets/products/horns/UHC-15_15XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "15W RMS 23W Max.",
+        "type": "PA horn speaker",
+        "response": "275-7000Hz",
+        "spl": "106dB/1W/1m, 118dB/15W/1m",
+        "impedance": "8Ω/ 15/10/5/2.5W",
+        "weight": "1.89 Kg",
+        "material": "ABS",
+        "dimensions": "253×152 (L293)mm"
+      }
+    },
+    {
+      "sku": "UHC-30/30XT",
+      "slug": "uhc-30-30xt",
+      "model": "UHC 30 / 30XT",
+      "wattage": "30W",
+      "image_front": "/assets/products/horns/UHC-30_30XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "30W RMS 45W Max.",
+        "type": "PA horn speaker",
+        "response": "180-7000Hz",
+        "spl": "112.5dB/1W/1m, 128.5dB/40W/1m",
+        "impedance": "8Ω/ 30/25/15/10/5W",
+        "weight": "3.90 Kg",
+        "material": "ABS",
+        "dimensions": "400×200 (L422)mm"
+      }
+    }
+  ]
+}

@@ -313,30 +313,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-30m</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-50m</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-808</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mpa-1515-bt</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mcm-300t</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -481,6 +457,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-30m</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-50m</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#cube-808</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mpa-1515-bt</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mbx-55xt</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -608,6 +608,90 @@
   </url>
   <url>
     <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mx-600-fr</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#horns</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mh-18</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mh-20</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mh-22</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mh-22c</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#mh-24</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#bc-16</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#wfa-21</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#wfb-18</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#suh-15-15xt</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#suh-25-25xt</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#suh-40-40xt</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#uhc-15-15xt</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellow-pebble-06cc7ac10.azurestaticapps.net/#uhc-30-30xt</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

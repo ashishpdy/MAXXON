@@ -83,6 +83,16 @@
       "overlayField": "wattage",
       "specKeys": "speakers",
       "familyGroups": []
+    },
+    {
+      "id": "horns",
+      "label": "Horns",
+      "kind": "horn",
+      "schemaCategory": "Horn loudspeaker",
+      "banner": "/assets/banners/horns.png",
+      "overlayField": "wattage",
+      "specKeys": "horns",
+      "familyGroups": []
     }
   ]
 }
