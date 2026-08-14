@@ -1,8 +1,12 @@
-export default function CategoryBanner({ id, title, subtitle }) {
+export default function CategoryBanner({ id, title, subtitle, image, eyebrow }) {
   return (
-    <div className="category-banner" role="banner">
+    <div
+      className={`category-banner${image ? " has-image" : ""}`}
+      role="banner"
+      style={image ? { "--banner-image": `url("${image}")` } : undefined}
+    >
       <div className="category-banner-content">
-        <p className="category-eyebrow">MAXX-ON catalogue</p>
+        <p className="category-eyebrow">{eyebrow || "MAXX-ON"}</p>
         <h2 id={id} className="category-title">
           {title}
         </h2>

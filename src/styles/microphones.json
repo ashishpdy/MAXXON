@@ -1,0 +1,285 @@
+{
+  "WIRELESS": [
+    {
+      "sku": "MX-168",
+      "slug": "mx-168",
+      "model": "MX 168",
+      "wattage": "SINGLE",
+      "image_front": "/assets/products/microphones/MX-168/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "UHF single"
+      }
+    },
+    {
+      "sku": "MX-902",
+      "slug": "mx-902",
+      "model": "MX 902",
+      "wattage": "SINGLE",
+      "image_front": "/assets/products/microphones/MX-902/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "UHF single"
+      }
+    },
+    {
+      "sku": "MXW-200",
+      "slug": "mxw-200",
+      "model": "MXW 200",
+      "wattage": "SINGLE",
+      "image_front": "/assets/products/microphones/MXW-200/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "210–270MHz",
+        "range": "50m",
+        "snr": "≥105dB",
+        "type": "PLL / FM"
+      }
+    },
+    {
+      "sku": "MXW-666",
+      "slug": "mxw-666",
+      "model": "MXW 666",
+      "wattage": "DOUBLE",
+      "image_front": "/assets/products/microphones/MXW-666/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "210–270MHz",
+        "range": "50m",
+        "snr": "≥105dB",
+        "type": "PLL / FM"
+      }
+    },
+    {
+      "sku": "MXX-168",
+      "slug": "mxx-168",
+      "model": "MXX 168",
+      "wattage": "DOUBLE",
+      "image_front": "/assets/products/microphones/MXX-168/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "UHF double"
+      }
+    },
+    {
+      "sku": "MXU-186",
+      "slug": "mxu-186",
+      "model": "MXU 186",
+      "wattage": "HAND + TIE",
+      "image_front": "/assets/products/microphones/MXU-186/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "Handheld + head/tie"
+      }
+    },
+    {
+      "sku": "MXUD-2",
+      "slug": "mxud-2",
+      "model": "MXUD 2",
+      "wattage": "DOUBLE",
+      "image_front": "/assets/products/microphones/MXUD-2/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "UHF premium double"
+      }
+    },
+    {
+      "sku": "MXU-1187",
+      "slug": "mxu-1187",
+      "model": "MXU 1187",
+      "wattage": "HAND + HEAD",
+      "image_front": "/assets/products/microphones/MXU-1187/front.jpg",
+      "image_back": "/assets/products/microphones/MXU-1187/back.jpg",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "Handheld + head mic"
+      }
+    },
+    {
+      "sku": "MXUD-2B",
+      "slug": "mxud-2b",
+      "model": "MXUD 2B",
+      "wattage": "ADJUSTABLE",
+      "image_front": "/assets/products/microphones/MXUD-2B/front.jpg",
+      "image_back": "/assets/products/microphones/MXUD-2B/back.jpg",
+      "specs": {
+        "response": "40Hz–16kHz",
+        "range": "80m–150m",
+        "snr": ">100dB",
+        "type": "Adjustable frequency"
+      }
+    }
+  ],
+  "WIRED": [
+    {
+      "sku": "MXM-510",
+      "slug": "mxm-510",
+      "model": "MXM 510",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-510/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-555",
+      "slug": "mxm-555",
+      "model": "MXM 555",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-555/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-666",
+      "slug": "mxm-666",
+      "model": "MXM 666",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-666/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-980",
+      "slug": "mxm-980",
+      "model": "MXM 980",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-980/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-990",
+      "slug": "mxm-990",
+      "model": "MXM 990",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-990/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXP-700",
+      "slug": "mxp-700",
+      "model": "MXP 700",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXP-700/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXC-033",
+      "slug": "mxc-033",
+      "model": "MXC 033",
+      "wattage": "CONFERENCE",
+      "image_front": "/assets/products/microphones/MXC-033/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Podium / lectern, 41cm",
+        "inputs": "XLR, 5m cable"
+      }
+    },
+    {
+      "sku": "MXM-320",
+      "slug": "mxm-320",
+      "model": "MXM 320",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-320/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-339",
+      "slug": "mxm-339",
+      "model": "MXM 339",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-339/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXM-340",
+      "slug": "mxm-340",
+      "model": "MXM 340",
+      "wattage": "DYNAMIC",
+      "image_front": "/assets/products/microphones/MXM-340/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Unidirectional dynamic"
+      }
+    },
+    {
+      "sku": "MXC-043",
+      "slug": "mxc-043",
+      "model": "MXC 043",
+      "wattage": "CONFERENCE",
+      "image_front": "/assets/products/microphones/MXC-043/front.jpg",
+      "image_back": "/assets/products/microphones/MXC-043/back.jpg",
+      "specs": {
+        "type": "Podium / lectern, 61cm",
+        "inputs": "XLR"
+      }
+    }
+  ],
+  "HEAD/TIE": [
+    {
+      "sku": "CTP-10DX",
+      "slug": "ctp-10dx",
+      "model": "CTP 10DX",
+      "wattage": "TIE-CLIP",
+      "image_front": "/assets/products/microphones/CTP-10DX/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "50 – 15,000Hz",
+        "sensitivity": "2.54mV/Pa",
+        "impedance": "600Ω",
+        "type": "Omni electret lavalier"
+      }
+    },
+    {
+      "sku": "MB-505",
+      "slug": "mb-505",
+      "model": "MB 505",
+      "wattage": "HEADBAND",
+      "image_front": "/assets/products/microphones/MB-505/front.jpg",
+      "image_back": "",
+      "specs": {
+        "response": "50 – 15,000Hz",
+        "sensitivity": "5.6mV/Pa",
+        "impedance": "1000Ω",
+        "type": "Condenser headband"
+      }
+    }
+  ]
+}
