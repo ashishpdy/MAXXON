@@ -1,0 +1,43 @@
+{
+  "welcome": {
+    "id": "welcome",
+    "text": "Welcome to MAXX-ON. Ask about amplifiers or microphones and I will pull a model from the catalogue.",
+    "image": "/assets/banners/amplifiers.png",
+    "tags": ["Amplifiers", "Microphones"]
+  },
+  "default": {
+    "id": "default",
+    "text": "I can show you amplifiers or microphones.",
+    "tags": ["amp", "mic"]
+  },
+  "replies": [
+    {
+      "id": "djx",
+      "keywords": ["djx", "djx-4000", "djx 4000", "djx-5000", "4000w", "5000w"],
+      "text": "DJX 4000 is a 4000W rack amplifier: 1400W + 1400W RMS @4Ω, bridged 2400W @8Ω. DJX 5000 steps up to 5000W for larger rooms.",
+      "image": "/assets/products/amplifiers/DJX-4000/front.jpg",
+      "tags": ["DJX", "4000W", "Rack"]
+    },
+    {
+      "id": "wireless",
+      "keywords": ["wireless", "uhf", "handheld", "mx-168", "mx 168"],
+      "text": "MX 168 is a UHF wireless handheld: 40Hz–16kHz, 80–150m range, S/N >100dB. See Wireless in the microphone catalogue.",
+      "image": "/assets/products/microphones/MX-168/front.jpg",
+      "tags": ["Wireless", "UHF", "MX 168"]
+    },
+    {
+      "id": "amplifiers",
+      "keywords": ["amplifier", "amplifiers", "amp", "amps", "power amp", "watt"],
+      "text": "MAXX-ON amplifiers cover install mixers through high-power racks — DJX, MSSA, MSSB, MTZA, and MX series.",
+      "image": "/assets/products/amplifiers/DJX-4000/front.jpg",
+      "tags": ["DJX", "MSSA", "MX"]
+    },
+    {
+      "id": "microphones",
+      "keywords": ["microphone", "microphones", "mic", "mics", "wired", "lavalier", "headset"],
+      "text": "MAXX-ON microphones include wireless handhelds, wired dynamics, and head/tie sets for worship, stage, and install.",
+      "image": "/assets/products/microphones/MX-168/front.jpg",
+      "tags": ["Wireless", "Wired", "Head/Tie"]
+    }
+  ]
+}

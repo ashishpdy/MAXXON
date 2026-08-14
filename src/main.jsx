@@ -5,6 +5,7 @@ import { I18nProvider } from "./i18n/I18nProvider.jsx";
 import "./styles/layout.css";
 import "./styles/hero.css";
 import "./styles/cards.css";
+import "./styles/chat.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

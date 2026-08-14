@@ -9,6 +9,7 @@ import amplifiers from "./styles/amplifiers.json";
 import microphones from "./styles/microphones.json";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
+import { MaxxonChat } from "./components/MaxxonChat";
 
 const CATEGORIES = [
   { id: "amplifiers", labelKey: "nav.amplifiers" },
@@ -163,6 +164,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <MaxxonChat />
     </div>
   );
 }
