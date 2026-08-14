@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 
-export default function ScrollUp() {
+export default function ScrollUp({ onScrollUp }) {
   const { t } = useI18n();
   const [visible, setVisible] = useState(false);
 
@@ -32,10 +32,7 @@ export default function ScrollUp() {
   }, []);
 
   function scrollToCategories() {
-    document.getElementById("categories")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    onScrollUp?.();
   }
 
   return (

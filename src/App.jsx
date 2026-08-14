@@ -65,10 +65,16 @@ export default function App() {
     return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
-  function scrollToCategory(id) {
+  function scrollBeneathHeader(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const headerH = document.querySelector(".site-header")?.getBoundingClientRect().height ?? 0;
+    const top = window.scrollY + el.getBoundingClientRect().top - headerH - 12;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }
+
+  function scrollToCategory(id) {
+    scrollBeneathHeader(id);
     setActiveCategory(id);
   }
 
@@ -120,7 +126,7 @@ export default function App() {
       </main>
 
       <Footer />
-      <ScrollUp />
+      <ScrollUp onScrollUp={() => scrollBeneathHeader("categories")} />
       <MaxxonChat />
     </div>
   );

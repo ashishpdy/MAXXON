@@ -1,6 +1,6 @@
 .product-card {
   position: relative;
-  scroll-margin-top: calc(var(--header-h) + 0.75rem);
+  scroll-margin-top: var(--sticky-offset);
   aspect-ratio: 1 / 1;
   perspective: 1200px;
   cursor: pointer;
