@@ -91,13 +91,16 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
     <article
       id={product.slug}
       className={`product-card${isFlipped ? " is-flipped" : ""}${hoverFlip ? " is-hover-flip" : " is-touch"}`}
-      tabIndex={0}
-      role="button"
-      aria-pressed={isFlipped}
-      aria-label={t("card.details", { name: productName })}
-      onClick={handleActivate}
-      onKeyDown={handleKeyDown}
     >
+      <button
+        type="button"
+        className="product-card-flip"
+        aria-pressed={isFlipped}
+        onClick={handleActivate}
+        onKeyDown={handleKeyDown}
+      >
+        <span className="visually-hidden">{t("card.details", { name: productName })}</span>
+      </button>
       <div className="product-card-inner">
         <div className="product-card-face product-card-front">
           <div className="product-card-media">

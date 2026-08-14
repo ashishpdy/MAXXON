@@ -1,12 +1,28 @@
 .product-card {
+  position: relative;
   scroll-margin-top: calc(var(--header-h) + 0.75rem);
   aspect-ratio: 1 / 1;
   perspective: 1200px;
   cursor: pointer;
+}
+
+.product-card-flip {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.product-card-flip:focus {
   outline: none;
 }
 
-.product-card:focus-visible {
+.product-card-flip:focus-visible {
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
