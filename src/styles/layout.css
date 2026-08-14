@@ -40,7 +40,7 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(8, 10, 14, 0.42) 0%, rgba(8, 10, 14, 0.55) 100%),
+    linear-gradient(rgba(8, 10, 14, 0.7), rgba(8, 10, 14, 0.7)),
     url("/assets/page-bg.png") center / cover no-repeat;
 }
 
