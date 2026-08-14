@@ -1,60 +1,4 @@
 {
-  "ACTIVE": [
-    {
-      "sku": "CUBE-30M",
-      "slug": "cube-30m",
-      "model": "CUBE 30M",
-      "wattage": "20W",
-      "image_front": "/assets/products/speakers/CUBE-30M/front.jpg",
-      "image_back": "",
-      "specs": {
-        "power": "20 Watts RMS",
-        "type": "Active PA",
-        "dimensions": "8″ 90 x 17mm Magnet"
-      }
-    },
-    {
-      "sku": "CUBE-50M",
-      "slug": "cube-50m",
-      "model": "CUBE 50M",
-      "wattage": "40W",
-      "image_front": "/assets/products/speakers/CUBE-50M/front.jpg",
-      "image_back": "",
-      "specs": {
-        "power": "40 Watts RMS",
-        "type": "Active PA",
-        "dimensions": "10″ 90 x 17mm Magnet"
-      }
-    },
-    {
-      "sku": "CUBE-808",
-      "slug": "cube-808",
-      "model": "CUBE 808",
-      "wattage": "50W",
-      "image_front": "/assets/products/speakers/CUBE-808/front.jpg",
-      "image_back": "",
-      "specs": {
-        "power": "50 Watts RMS",
-        "type": "Active PA",
-        "dimensions": "8″ x 2 90 x 17mm Magne"
-      }
-    },
-    {
-      "sku": "MPA-1515-BT",
-      "slug": "mpa-1515-bt",
-      "model": "MPA 1515 BT",
-      "wattage": "100W",
-      "image_front": "/assets/products/speakers/MPA-1515-BT/front.jpg",
-      "image_back": "",
-      "specs": {
-        "power": "100w RMS at 10%THD/150w Max.",
-        "type": "Active PA",
-        "response": "45-18,000hz",
-        "spl": "98db",
-        "impedance": "4Ω"
-      }
-    }
-  ],
   "COLUMN": [
     {
       "sku": "MCM-300T",
@@ -442,6 +386,62 @@
         "spl": "99db",
         "impedance": "4 Ohm",
         "dimensions": "2 X 18″ Speaker"
+      }
+    }
+  ],
+  "ACTIVE": [
+    {
+      "sku": "CUBE-30M",
+      "slug": "cube-30m",
+      "model": "CUBE 30M",
+      "wattage": "20W",
+      "image_front": "/assets/products/speakers/CUBE-30M/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "20 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "8″ 90 x 17mm Magnet"
+      }
+    },
+    {
+      "sku": "CUBE-50M",
+      "slug": "cube-50m",
+      "model": "CUBE 50M",
+      "wattage": "40W",
+      "image_front": "/assets/products/speakers/CUBE-50M/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "40 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "10″ 90 x 17mm Magnet"
+      }
+    },
+    {
+      "sku": "CUBE-808",
+      "slug": "cube-808",
+      "model": "CUBE 808",
+      "wattage": "50W",
+      "image_front": "/assets/products/speakers/CUBE-808/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "50 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "8″ x 2 90 x 17mm Magne"
+      }
+    },
+    {
+      "sku": "MPA-1515-BT",
+      "slug": "mpa-1515-bt",
+      "model": "MPA 1515 BT",
+      "wattage": "100W",
+      "image_front": "/assets/products/speakers/MPA-1515-BT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "100w RMS at 10%THD/150w Max.",
+        "type": "Active PA",
+        "response": "45-18,000hz",
+        "spl": "98db",
+        "impedance": "4Ω"
       }
     }
   ],

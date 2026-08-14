@@ -235,6 +235,10 @@ a {
   padding-top: 1.25rem;
 }
 
+.category-section + .category-section {
+  padding-top: 3rem;
+}
+
 .category-banner {
   position: relative;
   display: flex;
@@ -337,6 +341,10 @@ a {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-deep) 100%);
+}
+
+.category-section > .family-section:first-of-type .family-banner {
+  margin-top: 1.25rem;
 }
 
 .family-banner h3 {
