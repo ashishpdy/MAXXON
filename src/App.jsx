@@ -5,57 +5,20 @@ import FamilyBanner from "./components/FamilyBanner.jsx";
 import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
 import LocaleSwitch from "./components/LocaleSwitch.jsx";
-import amplifiers from "./styles/amplifiers.json";
-import microphones from "./styles/microphones.json";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
 import { MaxxonChat } from "./components/MaxxonChat";
+import { CATEGORIES, familyTitle, groupCatalog } from "./catalog/registry.js";
 
-const CATEGORIES = [
-  { id: "amplifiers", labelKey: "nav.amplifiers" },
-  { id: "microphones", labelKey: "nav.microphones" },
-];
-
-const AMPLIFIER_FAMILY_GROUPS = [
-  { id: "UTR-CA-DJ", families: ["UTR", "CA", "DJ"] },
-];
-
-function familyTitle(family, t) {
-  const nameKey = `family.${family}`;
-  const name = t(nameKey);
-  return t("family.series", { name: name === nameKey ? family : name });
-}
-
-function groupCatalog(catalog, groups = []) {
-  const byMember = new Map();
-  for (const group of groups) {
-    for (const family of group.families) byMember.set(family, group);
-  }
-
-  const grouped = {};
-  const consumed = new Set();
-  for (const [family, items] of Object.entries(catalog)) {
-    if (consumed.has(family)) continue;
-    const group = byMember.get(family);
-    if (!group) {
-      grouped[family] = items;
-      continue;
-    }
-    grouped[group.id] = group.families.flatMap((name) => catalog[name] || []);
-    group.families.forEach((name) => consumed.add(name));
-  }
-  return grouped;
-}
-
-function CategorySection({ id, title, subtitle, image, catalog, familyGroups, flippedSku, onFlip, t }) {
-  const families = groupCatalog(catalog, familyGroups);
+function CategorySection({ category, flippedSku, onFlip, t }) {
+  const families = groupCatalog(category.catalog, category.familyGroups);
   return (
-    <section id={id} className="category-section" aria-labelledby={`${id}-title`}>
+    <section id={category.id} className="category-section" aria-labelledby={`${category.id}-title`}>
       <CategoryBanner
-        id={`${id}-title`}
-        title={title}
-        subtitle={subtitle}
-        image={image}
+        id={`${category.id}-title`}
+        title={t(category.titleKey)}
+        subtitle={t(category.subtitleKey)}
+        image={category.banner}
         eyebrow={t("banner.eyebrow")}
       />
       {Object.entries(families).map(([family, items]) => (
@@ -66,6 +29,8 @@ function CategorySection({ id, title, subtitle, image, catalog, familyGroups, fl
               <ProductCard
                 key={product.slug}
                 product={product}
+                specKeys={category.specKeys}
+                overlayField={category.overlayField}
                 isFlipped={flippedSku === product.slug}
                 onFlip={() => onFlip(product.slug)}
               />
@@ -79,7 +44,7 @@ function CategorySection({ id, title, subtitle, image, catalog, familyGroups, fl
 
 export default function App() {
   const { t } = useI18n();
-  const [activeCategory, setActiveCategory] = useState("amplifiers");
+  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]?.id || "");
   const [flippedSku, setFlippedSku] = useState(null);
 
   useEffect(() => {
@@ -129,7 +94,7 @@ export default function App() {
               aria-current={activeCategory === cat.id ? "true" : undefined}
               onClick={() => scrollToCategory(cat.id)}
             >
-              {t(cat.labelKey)}
+              {t(cat.navKey)}
             </button>
           ))}
         </nav>
@@ -139,27 +104,15 @@ export default function App() {
       <main id="top" className="site-main">
         <Hero />
         <div id="catalogue" className="catalogue">
-          <CategorySection
-            id="amplifiers"
-            title={t("banner.amplifiers.title")}
-            subtitle={t("banner.amplifiers.subtitle")}
-            image="/assets/banners/amplifiers.png"
-            catalog={amplifiers}
-            familyGroups={AMPLIFIER_FAMILY_GROUPS}
-            flippedSku={flippedSku}
-            onFlip={handleCardFlip}
-            t={t}
-          />
-          <CategorySection
-            id="microphones"
-            title={t("banner.microphones.title")}
-            subtitle={t("banner.microphones.subtitle")}
-            image="/assets/banners/microphones.png"
-            catalog={microphones}
-            flippedSku={flippedSku}
-            onFlip={handleCardFlip}
-            t={t}
-          />
+          {CATEGORIES.map((category) => (
+            <CategorySection
+              key={category.id}
+              category={category}
+              flippedSku={flippedSku}
+              onFlip={handleCardFlip}
+              t={t}
+            />
+          ))}
         </div>
       </main>
 

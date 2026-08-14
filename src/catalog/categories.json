@@ -1,0 +1,88 @@
+{
+  "specKeys": {
+    "default": [
+      "power",
+      "type",
+      "response",
+      "range",
+      "snr",
+      "sensitivity",
+      "impedance",
+      "weight",
+      "inputs"
+    ],
+    "speakers": [
+      "power",
+      "type",
+      "response",
+      "spl",
+      "impedance",
+      "weight",
+      "material",
+      "dimensions"
+    ],
+    "horns": [
+      "power",
+      "type",
+      "response",
+      "spl",
+      "impedance",
+      "weight",
+      "material",
+      "dimensions"
+    ],
+    "portable-pa": [
+      "power",
+      "type",
+      "range",
+      "inputs",
+      "weight",
+      "dimensions"
+    ],
+    "accessories": [
+      "type",
+      "power",
+      "impedance",
+      "weight",
+      "inputs",
+      "dimensions"
+    ]
+  },
+  "categories": [
+    {
+      "id": "amplifiers",
+      "label": "Amplifiers",
+      "kind": "amplifier",
+      "schemaCategory": "Audio amplifier",
+      "banner": "/assets/banners/amplifiers.png",
+      "overlayField": "wattage",
+      "specKeys": "default",
+      "familyGroups": [
+        {
+          "id": "UTR-CA-DJ",
+          "families": ["UTR", "CA", "DJ"]
+        }
+      ]
+    },
+    {
+      "id": "microphones",
+      "label": "Microphones",
+      "kind": "microphone",
+      "schemaCategory": "Microphone",
+      "banner": "/assets/banners/microphones.png",
+      "overlayField": "wattage",
+      "specKeys": "default",
+      "familyGroups": []
+    },
+    {
+      "id": "speakers",
+      "label": "Speakers",
+      "kind": "speaker",
+      "schemaCategory": "Loudspeaker",
+      "banner": "/assets/banners/speakers.png",
+      "overlayField": "wattage",
+      "specKeys": "speakers",
+      "familyGroups": []
+    }
+  ]
+}

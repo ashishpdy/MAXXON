@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import { SPEC_KEY_SETS } from "../catalog/registry.js";
 
-const SPEC_KEYS = [
-  "power",
-  "type",
-  "response",
-  "range",
-  "snr",
-  "sensitivity",
-  "impedance",
-  "weight",
-  "inputs",
-];
-
-function SpecTable({ specs, t, productName }) {
-  const rows = SPEC_KEYS
+function SpecTable({ specs, specKeys, t, productName }) {
+  const keys = specKeys?.length ? specKeys : SPEC_KEY_SETS.default;
+  const rows = keys
     .map((key) => ({ key, label: t(`spec.${key}`), value: specs?.[key] }))
     .filter((row) => row.value);
 
@@ -47,12 +37,13 @@ function mouseCanHover() {
   );
 }
 
-export default function ProductCard({ product, isFlipped, onFlip }) {
+export default function ProductCard({ product, specKeys, overlayField = "wattage", isFlipped, onFlip }) {
   const { t } = useI18n();
   const [hoverFlip, setHoverFlip] = useState(mouseCanHover);
   const imageSrc = product.image_front || "";
   const hasImage = Boolean(imageSrc);
   const productName = product.model || product.sku || "Product";
+  const overlayValue = product[overlayField] || product.wattage || "—";
 
   useEffect(() => {
     const hoverMq = window.matchMedia("(any-hover: hover)");
@@ -121,7 +112,7 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
           </div>
           <div className="product-card-overlays">
             <span className="overlay-sku">{product.sku || "SKU"}</span>
-            <span className="overlay-wattage">{product.wattage || "—"}</span>
+            <span className="overlay-wattage">{overlayValue}</span>
           </div>
         </div>
 
@@ -130,7 +121,7 @@ export default function ProductCard({ product, isFlipped, onFlip }) {
             <h4 className="product-card-model">{product.model || product.sku || "Model"}</h4>
             <p className="product-card-sku-back">{product.sku}</p>
           </div>
-          <SpecTable specs={product.specs} t={t} productName={productName} />
+          <SpecTable specs={product.specs} specKeys={specKeys} t={t} productName={productName} />
           <p className="product-card-hint">
             {hoverFlip ? t("card.hintHover") : t("card.hintTap")}
           </p>

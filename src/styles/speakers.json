@@ -1,0 +1,806 @@
+{
+  "ACTIVE": [
+    {
+      "sku": "CUBE-30M",
+      "slug": "cube-30m",
+      "model": "CUBE 30M",
+      "wattage": "20W",
+      "image_front": "/assets/products/speakers/CUBE-30M/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "20 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "8″ 90 x 17mm Magnet"
+      }
+    },
+    {
+      "sku": "CUBE-50M",
+      "slug": "cube-50m",
+      "model": "CUBE 50M",
+      "wattage": "40W",
+      "image_front": "/assets/products/speakers/CUBE-50M/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "40 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "10″ 90 x 17mm Magnet"
+      }
+    },
+    {
+      "sku": "CUBE-808",
+      "slug": "cube-808",
+      "model": "CUBE 808",
+      "wattage": "50W",
+      "image_front": "/assets/products/speakers/CUBE-808/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "50 Watts RMS",
+        "type": "Active PA",
+        "dimensions": "8″ x 2 90 x 17mm Magne"
+      }
+    },
+    {
+      "sku": "MPA-1515-BT",
+      "slug": "mpa-1515-bt",
+      "model": "MPA 1515 BT",
+      "wattage": "100W",
+      "image_front": "/assets/products/speakers/MPA-1515-BT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "100w RMS at 10%THD/150w Max.",
+        "type": "Active PA",
+        "response": "45-18,000hz",
+        "spl": "98db",
+        "impedance": "4Ω"
+      }
+    }
+  ],
+  "COLUMN": [
+    {
+      "sku": "MCM-300T",
+      "slug": "mcm-300t",
+      "model": "MCM 300T",
+      "wattage": "15W",
+      "image_front": "/assets/products/speakers/MCM-300T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "15W RMS, 23W Max.",
+        "type": "Metal column",
+        "response": "150-15,000Hz",
+        "spl": "91.5dB/1W/1m",
+        "impedance": "100V",
+        "weight": "2.50kg",
+        "dimensions": "115 × 524 × 89"
+      }
+    },
+    {
+      "sku": "MCM-310T",
+      "slug": "mcm-310t",
+      "model": "MCM 310T",
+      "wattage": "10W",
+      "image_front": "/assets/products/speakers/MCM-310T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "10W RMS, 15W Max",
+        "type": "Metal column",
+        "response": "150-15,000Hz",
+        "spl": "90dB/1W/1m",
+        "impedance": "100V",
+        "weight": "1.90kg",
+        "dimensions": "115 × 389 × 89"
+      }
+    },
+    {
+      "sku": "MSC-10",
+      "slug": "msc-10",
+      "model": "MSC 10",
+      "wattage": "10W",
+      "image_front": "/assets/products/speakers/MSC-10/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "10W RMS 15W Max.",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "92dB/1W/1m",
+        "impedance": "8Ω",
+        "dimensions": "W165 x H455 x D145 mm"
+      }
+    },
+    {
+      "sku": "MSC-10T",
+      "slug": "msc-10t",
+      "model": "MSC 10T",
+      "wattage": "10W",
+      "image_front": "/assets/products/speakers/MSC-10T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "10WRMS,15WMax",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "95dB/1W/1m",
+        "impedance": "100V",
+        "dimensions": "W165 x H455 x D145 mm"
+      }
+    },
+    {
+      "sku": "MSC-20",
+      "slug": "msc-20",
+      "model": "MSC 20",
+      "wattage": "20W",
+      "image_front": "/assets/products/speakers/MSC-20/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "20W RMS 30W Max.",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "95dB/1W/1m",
+        "impedance": "100V",
+        "dimensions": "W165 x H680 x D145 mm"
+      }
+    },
+    {
+      "sku": "MSC-20T",
+      "slug": "msc-20t",
+      "model": "MSC 20T",
+      "wattage": "20W",
+      "image_front": "/assets/products/speakers/MSC-20T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "20W RMS 30W Max.",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "95dB/1W/1m",
+        "impedance": "8Ω",
+        "dimensions": "W165 x H680 x D145 mm"
+      }
+    },
+    {
+      "sku": "MSC-30",
+      "slug": "msc-30",
+      "model": "MSC 30",
+      "wattage": "30W",
+      "image_front": "/assets/products/speakers/MSC-30/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "30W RMS, 45W Max.",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "95dB/1W/1m",
+        "impedance": "16Ω",
+        "dimensions": "W165 x H885 x D145 mm"
+      }
+    },
+    {
+      "sku": "MSC-30T",
+      "slug": "msc-30t",
+      "model": "MSC 30T",
+      "wattage": "30W",
+      "image_front": "/assets/products/speakers/MSC-30T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "30WRMS,45WMax",
+        "type": "Metal column",
+        "response": "150-10,000Hz",
+        "spl": "95dB/1W/1m",
+        "impedance": "16Ω / 100V",
+        "dimensions": "165 x 885 x 145"
+      }
+    }
+  ],
+  "CABINET": [
+    {
+      "sku": "MPX-1010",
+      "slug": "mpx-1010",
+      "model": "MPX 1010",
+      "wattage": "450W",
+      "image_front": "/assets/products/speakers/MPX-1010/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "450w RMS/1000w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 15″ Speaker (Alum.)"
+      }
+    },
+    {
+      "sku": "MPX-1050",
+      "slug": "mpx-1050",
+      "model": "MPX 1050",
+      "wattage": "900W",
+      "image_front": "/assets/products/speakers/MPX-1050/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "900w RMS/1800w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "2 X 15″ Speaker (Alum.)"
+      }
+    },
+    {
+      "sku": "MPX-1210",
+      "slug": "mpx-1210",
+      "model": "MPX 1210",
+      "wattage": "600W",
+      "image_front": "/assets/products/speakers/MPX-1210/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "600w RMS/1300w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 15″ Speaker (Alum.)"
+      }
+    },
+    {
+      "sku": "MPX-1250",
+      "slug": "mpx-1250",
+      "model": "MPX 1250",
+      "wattage": "1300W",
+      "image_front": "/assets/products/speakers/MPX-1250/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "1300w RMS/2600w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "2 X 15″ Speaker (Alum.)"
+      }
+    },
+    {
+      "sku": "MPX-410",
+      "slug": "mpx-410",
+      "model": "MPX 410",
+      "wattage": "200W",
+      "image_front": "/assets/products/speakers/MPX-410/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "200w RMS/450w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "101db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MPX-450",
+      "slug": "mpx-450",
+      "model": "MPX 450",
+      "wattage": "1000W",
+      "image_front": "/assets/products/speakers/MPX-450/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "500 RMS/1000w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "101db",
+        "impedance": "8 Ohm",
+        "dimensions": "2 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MPX-710",
+      "slug": "mpx-710",
+      "model": "MPX 710",
+      "wattage": "300W",
+      "image_front": "/assets/products/speakers/MPX-710/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "300w RMS/750w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MPX-750",
+      "slug": "mpx-750",
+      "model": "MPX 750",
+      "wattage": "700W",
+      "image_front": "/assets/products/speakers/MPX-750/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "700w RMS/1400w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "2 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MPX-810",
+      "slug": "mpx-810",
+      "model": "MPX 810",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MPX-810/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400w RMS/900w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MPX-850",
+      "slug": "mpx-850",
+      "model": "MPX 850",
+      "wattage": "850W",
+      "image_front": "/assets/products/speakers/MPX-850/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "850w RMS/1800w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20000hz",
+        "spl": "103db",
+        "impedance": "8 Ohm",
+        "dimensions": "2 X 15″ Speaker"
+      }
+    },
+    {
+      "sku": "MRX-120",
+      "slug": "mrx-120",
+      "model": "MRX 120",
+      "wattage": "100W",
+      "image_front": "/assets/products/speakers/MRX-120/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "100w RMS/200w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20,000Hz",
+        "spl": "97db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 × 12” Speaker"
+      }
+    },
+    {
+      "sku": "MRX-200",
+      "slug": "mrx-200",
+      "model": "MRX 200",
+      "wattage": "500W",
+      "image_front": "/assets/products/speakers/MRX-200/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "500w RMS/750w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20,000Hz",
+        "spl": "97db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 × 12” Speaker"
+      }
+    },
+    {
+      "sku": "MRX-250",
+      "slug": "mrx-250",
+      "model": "MRX 250",
+      "wattage": "200W",
+      "image_front": "/assets/products/speakers/MRX-250/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "200w RMS/400w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20,000Hz",
+        "spl": "101dB",
+        "impedance": "8 Ohm",
+        "dimensions": "2 × 12” Speaker"
+      }
+    },
+    {
+      "sku": "MRX-440",
+      "slug": "mrx-440",
+      "model": "MRX 440",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MRX-440/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400w RMS/800w Prog",
+        "type": "Wooden cabinet",
+        "response": "50-20,000Hz",
+        "spl": "103dB",
+        "impedance": "8 Ohm",
+        "dimensions": "2 × 12” Speaker"
+      }
+    },
+    {
+      "sku": "MWX-1000",
+      "slug": "mwx-1000",
+      "model": "MWX 1000",
+      "wattage": "1000W",
+      "image_front": "/assets/products/speakers/MWX-1000/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "1000w RMS/2000w Prog",
+        "type": "Wooden cabinet",
+        "response": "36-20000hz",
+        "spl": "99db",
+        "impedance": "8 Ohm",
+        "dimensions": "1 X 18″ Speaker"
+      }
+    },
+    {
+      "sku": "MWX-2000",
+      "slug": "mwx-2000",
+      "model": "MWX 2000",
+      "wattage": "2000W",
+      "image_front": "/assets/products/speakers/MWX-2000/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "2000w RMS/4000w Prog",
+        "type": "Wooden cabinet",
+        "response": "36-20000hz",
+        "spl": "99db",
+        "impedance": "4 Ohm",
+        "dimensions": "2 X 18″ Speaker"
+      }
+    }
+  ],
+  "CEILING/WALL": [
+    {
+      "sku": "MBX-55XT",
+      "slug": "mbx-55xt",
+      "model": "MBX 55XT",
+      "wattage": "5W",
+      "image_front": "/assets/products/speakers/MBX-55XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "5W",
+        "type": "Ceiling / wall",
+        "response": "80-15000Hz",
+        "spl": "84dB",
+        "impedance": "2k/4k/8k4Ω",
+        "weight": "0.74 Kg",
+        "dimensions": "105 x H80m"
+      }
+    },
+    {
+      "sku": "MCS-612T",
+      "slug": "mcs-612t",
+      "model": "MCS 612T",
+      "wattage": "8W",
+      "image_front": "/assets/products/speakers/MCS-612T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "8W",
+        "type": "Ceiling / wall",
+        "response": "60-15000Hz",
+        "spl": "90dB",
+        "impedance": "1.25k/2.5k/5k4Ω",
+        "weight": "0.65 Kg",
+        "dimensions": "200 x H85m"
+      }
+    },
+    {
+      "sku": "MCS-608T",
+      "slug": "mcs-608t",
+      "model": "MCS 608T",
+      "wattage": "8W",
+      "image_front": "/assets/products/speakers/MCS-608T/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "8W",
+        "type": "Ceiling / wall",
+        "response": "60-15000Hz",
+        "spl": "90dB",
+        "impedance": "1.25k/2.5k/5k4Ω",
+        "weight": "0.65 Kg",
+        "dimensions": "200 x H85m"
+      }
+    }
+  ],
+  "PROFESSIONAL": [
+    {
+      "sku": "MSPK-12100",
+      "slug": "mspk-12100",
+      "model": "MSPK 12100",
+      "wattage": "100W",
+      "image_front": "/assets/products/speakers/MSPK-12100/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "100W RMS",
+        "type": "PA driver",
+        "response": "50Hz to 10KHz",
+        "spl": "99dB",
+        "impedance": "8Ω/16Ω",
+        "material": "Pressed Steel",
+        "dimensions": "305mm (12”)"
+      }
+    },
+    {
+      "sku": "MSPK-15300",
+      "slug": "mspk-15300",
+      "model": "MSPK 15300",
+      "wattage": "300W",
+      "image_front": "/assets/products/speakers/MSPK-15300/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "300W RMS",
+        "type": "PA driver",
+        "spl": "99dB",
+        "impedance": "8Ω",
+        "weight": "8.15kg",
+        "dimensions": "380mm (15”)"
+      }
+    },
+    {
+      "sku": "MSPK-15400",
+      "slug": "mspk-15400",
+      "model": "MSPK 15400",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MSPK-15400/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400W RMS",
+        "type": "PA driver",
+        "impedance": "8Ω",
+        "weight": "7.8kg",
+        "dimensions": "380mm (15”)"
+      }
+    },
+    {
+      "sku": "MSPK-181000",
+      "slug": "mspk-181000",
+      "model": "MSPK 181000",
+      "wattage": "1000W",
+      "image_front": "/assets/products/speakers/MSPK-181000/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "1000W RMS",
+        "type": "PA driver",
+        "impedance": "8Ω",
+        "weight": "19.20kg",
+        "dimensions": "457mm (18”)"
+      }
+    },
+    {
+      "sku": "MSPK-15500",
+      "slug": "mspk-15500",
+      "model": "MSPK 15500",
+      "wattage": "500W",
+      "image_front": "/assets/products/speakers/MSPK-15500/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "500W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "weight": "9.00kg",
+        "dimensions": "380mm (15”)"
+      }
+    },
+    {
+      "sku": "MSPL-12150",
+      "slug": "mspl-12150",
+      "model": "MSPL 12150",
+      "wattage": "150W",
+      "image_front": "/assets/products/speakers/MSPL-12150/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "150W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "weight": "4.60kg",
+        "dimensions": "305mm (12”)"
+      }
+    },
+    {
+      "sku": "MX-100-FR",
+      "slug": "mx-100-fr",
+      "model": "MX 100 FR",
+      "wattage": "100W",
+      "image_front": "/assets/products/speakers/MX-100-FR/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "100W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "305mm (12 Inch)"
+      }
+    },
+    {
+      "sku": "MX-153-BN",
+      "slug": "mx-153-bn",
+      "model": "MX 153 BN",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MX-153-BN/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "CCAW",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-153-PA",
+      "slug": "mx-153-pa",
+      "model": "MX 153 PA",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MX-153-PA/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "CCAW",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-153-RC",
+      "slug": "mx-153-rc",
+      "model": "MX 153 RC",
+      "wattage": "400W",
+      "image_front": "/assets/products/speakers/MX-153-RC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "400W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "CCAW",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-154-BN",
+      "slug": "mx-154-bn",
+      "model": "MX 154 BN",
+      "wattage": "600W",
+      "image_front": "/assets/products/speakers/MX-154-BN/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "600W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-154-PA",
+      "slug": "mx-154-pa",
+      "model": "MX 154 PA",
+      "wattage": "600W",
+      "image_front": "/assets/products/speakers/MX-154-PA/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "600W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-154-RC",
+      "slug": "mx-154-rc",
+      "model": "MX 154 RC",
+      "wattage": "600W",
+      "image_front": "/assets/products/speakers/MX-154-RC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "600W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "CCAW",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-184-RC",
+      "slug": "mx-184-rc",
+      "model": "MX 184 RC",
+      "wattage": "1000W",
+      "image_front": "/assets/products/speakers/MX-184-RC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "1000W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "18 Inch"
+      }
+    },
+    {
+      "sku": "MX-185-RC",
+      "slug": "mx-185-rc",
+      "model": "MX 185 RC",
+      "wattage": "1200W",
+      "image_front": "/assets/products/speakers/MX-185-RC/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "1200W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "18 Inch"
+      }
+    },
+    {
+      "sku": "MX-200-FR",
+      "slug": "mx-200-fr",
+      "model": "MX 200 FR",
+      "wattage": "200W",
+      "image_front": "/assets/products/speakers/MX-200-FR/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "200W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "305mm (12 Inch)"
+      }
+    },
+    {
+      "sku": "MX-400-FR",
+      "slug": "mx-400-fr",
+      "model": "MX 400 FR",
+      "wattage": "250W",
+      "image_front": "/assets/products/speakers/MX-400-FR/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "250W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-500-FR",
+      "slug": "mx-500-fr",
+      "model": "MX 500 FR",
+      "wattage": "300W",
+      "image_front": "/assets/products/speakers/MX-500-FR/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "300W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "Copper",
+        "dimensions": "385mm (15 Inch)"
+      }
+    },
+    {
+      "sku": "MX-600-FR",
+      "slug": "mx-600-fr",
+      "model": "MX 600 FR",
+      "wattage": "350W",
+      "image_front": "/assets/products/speakers/MX-600-FR/front.jpg",
+      "image_back": "",
+      "specs": {
+        "power": "350W RMS",
+        "type": "PA driver",
+        "spl": "97dB",
+        "impedance": "8Ω",
+        "material": "CCAW",
+        "dimensions": "385mm (15 Inch)"
+      }
+    }
+  ]
+}

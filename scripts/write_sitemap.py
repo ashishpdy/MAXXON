@@ -1,15 +1,25 @@
 import json
+from datetime import date
 from pathlib import Path
 
 origin = "https://yellow-pebble-06cc7ac10.azurestaticapps.net"
-today = "2026-08-14"
-urls = [("/", "1.0", "weekly"), ("/#amplifiers", "0.9", "weekly"), ("/#microphones", "0.9", "weekly")]
+today = date.today().isoformat()
 root = Path(__file__).resolve().parents[1]
-for name in ("amplifiers", "microphones"):
-    data = json.loads((root / "src" / "styles" / f"{name}.json").read_text(encoding="utf-8"))
+registry = json.loads((root / "src" / "catalog" / "categories.json").read_text(encoding="utf-8"))
+category_ids = [cat["id"] for cat in registry["categories"]]
+
+urls = [("/", "1.0", "weekly")]
+for cat_id in category_ids:
+    json_path = root / "src" / "styles" / f"{cat_id}.json"
+    if not json_path.exists():
+        continue
+    urls.append((f"/#{cat_id}", "0.9", "weekly"))
+    data = json.loads(json_path.read_text(encoding="utf-8"))
     for items in data.values():
         for product in items:
-            urls.append((f"/#{product['slug']}", "0.7", "monthly"))
+            slug = product.get("slug")
+            if slug:
+                urls.append((f"/#{slug}", "0.7", "monthly"))
 
 lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',

@@ -1,17 +1,12 @@
-import amplifiers from "../styles/amplifiers.json";
-import microphones from "../styles/microphones.json";
+import { CATEGORIES, flattenCatalog } from "../catalog/registry.js";
 import {
   ORG_NAME,
   SITE_DESCRIPTION,
   SITE_IMAGE,
   SITE_NAME,
   SITE_ORIGIN,
-  flattenCatalog,
   productSchema,
 } from "./site.js";
-
-const AMPLIFIERS = flattenCatalog(amplifiers, "amplifiers");
-const MICROPHONES = flattenCatalog(microphones, "microphones");
 
 function itemListSchema(id, name, products) {
   return {
@@ -27,6 +22,11 @@ function itemListSchema(id, name, products) {
     })),
   };
 }
+
+const CATEGORY_PRODUCTS = CATEGORIES.map((cat) => ({
+  cat,
+  products: flattenCatalog(cat.catalog, cat),
+}));
 
 const GRAPH = {
   "@context": "https://schema.org",
@@ -56,10 +56,10 @@ const GRAPH = {
         addressCountry: "IN",
       },
     },
-    ...AMPLIFIERS.map(productSchema),
-    ...MICROPHONES.map(productSchema),
-    itemListSchema("amplifiers-list", `${SITE_NAME} amplifiers`, AMPLIFIERS),
-    itemListSchema("microphones-list", `${SITE_NAME} microphones`, MICROPHONES),
+    ...CATEGORY_PRODUCTS.flatMap(({ products }) => products.map(productSchema)),
+    ...CATEGORY_PRODUCTS.map(({ cat, products }) =>
+      itemListSchema(`${cat.id}-list`, `${SITE_NAME} ${cat.label.toLowerCase()}`, products)
+    ),
   ],
 };
 
