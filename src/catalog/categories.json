@@ -57,6 +57,20 @@
       "height",
       "weight",
       "dimensions"
+    ],
+    "driver-units": [
+      "type",
+      "power",
+      "response",
+      "impedance",
+      "weight",
+      "material",
+      "dimensions"
+    ],
+    "diaphragms": [
+      "type",
+      "power",
+      "material"
     ]
   },
   "categories": [
@@ -113,6 +127,36 @@
       "banner": "/assets/banners/horns.png",
       "overlayField": "wattage",
       "specKeys": "horns",
+      "familyGroups": []
+    },
+    {
+      "id": "driver-units",
+      "label": "Driver Units",
+      "kind": "driver-unit",
+      "schemaCategory": "Horn driver",
+      "banner": "/assets/banners/driver-units.png",
+      "overlayField": "wattage",
+      "specKeys": "driver-units",
+      "familyGroups": []
+    },
+    {
+      "id": "diaphragms",
+      "label": "Diaphragms",
+      "kind": "diaphragm",
+      "schemaCategory": "Speaker diaphragm",
+      "banner": "/assets/banners/diaphragms.png",
+      "overlayField": "wattage",
+      "specKeys": "diaphragms",
+      "familyGroups": []
+    },
+    {
+      "id": "pendulum-speakers",
+      "label": "Pendulum Speakers",
+      "kind": "pendulum-speaker",
+      "schemaCategory": "Pendant loudspeaker",
+      "banner": "/assets/banners/pendulum-speakers.png",
+      "overlayField": "wattage",
+      "specKeys": "speakers",
       "familyGroups": []
     },
     {

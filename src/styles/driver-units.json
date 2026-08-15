@@ -1,0 +1,125 @@
+{
+  "MU": [
+    {
+      "sku": "MU-40",
+      "slug": "mu-40",
+      "model": "MU 40",
+      "wattage": "40W",
+      "image_front": "/assets/products/driver-units/MU-40/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Horn driver unit",
+        "power": "40W RMS / 60W max",
+        "response": "160-7000Hz",
+        "impedance": "16Ω",
+        "weight": "1.60 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "113×98 mm"
+      }
+    },
+    {
+      "sku": "MU-60",
+      "slug": "mu-60",
+      "model": "MU 60",
+      "wattage": "60W",
+      "image_front": "/assets/products/driver-units/MU-60/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Horn driver unit",
+        "power": "60W RMS / 90W max",
+        "response": "160-7000Hz",
+        "impedance": "16Ω",
+        "weight": "1.90 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "125×100 mm"
+      }
+    },
+    {
+      "sku": "MU-80",
+      "slug": "mu-80",
+      "model": "MU 80",
+      "wattage": "80W",
+      "image_front": "/assets/products/driver-units/MU-80/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Horn driver unit",
+        "power": "80W RMS / 105W max",
+        "response": "160-7000Hz",
+        "impedance": "16Ω",
+        "weight": "2.10 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "135×100 mm"
+      }
+    },
+    {
+      "sku": "MU-100",
+      "slug": "mu-100",
+      "model": "MU 100",
+      "wattage": "100W",
+      "image_front": "/assets/products/driver-units/MU-100/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Horn driver unit",
+        "power": "100W RMS / 120W max",
+        "response": "160-7000Hz",
+        "impedance": "16Ω",
+        "weight": "2.30 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "135×98 mm"
+      }
+    }
+  ],
+  "MU-XT": [
+    {
+      "sku": "MU-40XT",
+      "slug": "mu-40xt",
+      "model": "MU 40XT",
+      "wattage": "40W",
+      "image_front": "/assets/products/driver-units/MU-40XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "100V driver unit",
+        "power": "40W RMS / 60W max",
+        "response": "160-7000Hz",
+        "impedance": "100V 40/30/20/10/5W",
+        "weight": "2.20 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "150×137 mm"
+      }
+    },
+    {
+      "sku": "MU-55XT",
+      "slug": "mu-55xt",
+      "model": "MU 55XT",
+      "wattage": "55W",
+      "image_front": "/assets/products/driver-units/MU-55XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "100V driver unit",
+        "power": "55W RMS / 90W max",
+        "response": "160-7000Hz",
+        "impedance": "100V 50/40/30/20/10W",
+        "weight": "2.50 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "150×137 mm"
+      }
+    },
+    {
+      "sku": "MU-60XT-FG",
+      "slug": "mu-60xt-fg",
+      "model": "MU 60XT FG",
+      "wattage": "65W",
+      "image_front": "/assets/products/driver-units/MU-60XT-FG/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "100V driver unit",
+        "power": "65W RMS / 100W max",
+        "response": "160-7000Hz",
+        "impedance": "100V 65/55/40/25/10W",
+        "weight": "2.75 Kg",
+        "material": "Die Cast Aluminium",
+        "dimensions": "150×137 mm"
+      }
+    }
+  ]
+}

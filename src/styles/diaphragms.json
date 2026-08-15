@@ -1,0 +1,43 @@
+{
+  "DIAPHRAGM": [
+    {
+      "sku": "MU-40/60",
+      "slug": "mu-40-60",
+      "model": "MU 40/60",
+      "wattage": "40/60W",
+      "image_front": "/assets/products/diaphragms/MU-40_60/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Phenolic diaphragm",
+        "power": "Fits MU-40 / MU-60",
+        "material": "Reinforced phenolic, aluminium bobbin"
+      }
+    },
+    {
+      "sku": "MU-40XT/55XT",
+      "slug": "mu-40xt-55xt",
+      "model": "MU 40XT/55XT",
+      "wattage": "XT",
+      "image_front": "/assets/products/diaphragms/MU-40XT_55XT/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Phenolic diaphragm",
+        "power": "Fits MU-40XT / MU-55XT",
+        "material": "Reinforced phenolic, aluminium bobbin"
+      }
+    },
+    {
+      "sku": "SPECIAL-DIA",
+      "slug": "special-dia",
+      "model": "SPECIAL DIA",
+      "wattage": "SPECIAL",
+      "image_front": "/assets/products/diaphragms/SPECIAL-DIA/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Phenolic diaphragm",
+        "power": "Special replacement diaphragm",
+        "material": "Reinforced phenolic, aluminium bobbin"
+      }
+    }
+  ]
+}
