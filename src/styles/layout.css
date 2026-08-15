@@ -154,7 +154,7 @@ a {
 
 .category-bar {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   justify-content: center;
   align-items: stretch;
   gap: 0.15rem 0.2rem;
@@ -384,8 +384,16 @@ a {
   pointer-events: none;
 }
 
-.category-banner.has-image::after {
-  display: none;
+.category-banner.has-art-title .category-banner-content {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .category-banner-content {
@@ -622,15 +630,6 @@ html[lang="ar"] .footer-block h3 {
 
   .site-header {
     grid-template-columns: 1fr auto;
-    clip-path: none;
-    -webkit-clip-path: none;
-    pointer-events: auto;
-  }
-
-  .site-header.is-away {
-    clip-path: none;
-    -webkit-clip-path: none;
-    pointer-events: auto;
   }
 
   .header-category-bar {

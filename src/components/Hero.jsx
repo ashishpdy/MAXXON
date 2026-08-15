@@ -2,8 +2,15 @@ import { useEffect, useRef } from "react";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import CategoryBar from "./CategoryBar.jsx";
 import LocaleSwitch from "./LocaleSwitch.jsx";
+import NavToggle from "./NavToggle.jsx";
 
-export default function Hero({ activeCategory, onSelectCategory, onChromeVisibleChange }) {
+export default function Hero({
+  activeCategory,
+  onSelectCategory,
+  onChromeVisibleChange,
+  navOpen,
+  onToggleNav,
+}) {
   const { t } = useI18n();
   const chromeRef = useRef(null);
 
@@ -41,7 +48,15 @@ export default function Hero({ activeCategory, onSelectCategory, onChromeVisible
           />
           <h1 className="visually-hidden">MAXX-ON</h1>
         </a>
-        <LocaleSwitch />
+        <div className="header-tools">
+          <LocaleSwitch />
+          <NavToggle
+            open={navOpen}
+            onToggle={onToggleNav}
+            openLabel={t("a11y.menu")}
+            closeLabel={t("a11y.closeMenu")}
+          />
+        </div>
         <CategoryBar
           className="category-bar hero-category-bar"
           activeCategory={activeCategory}

@@ -1,6 +1,6 @@
-export default function CategoryBanner({ id, title, subtitle, image }) {
+export default function CategoryBanner({ id, title, subtitle, image, hideText }) {
   return (
-    <header className={`category-banner${image ? " has-image" : ""}`}>
+    <header className={`category-banner${image ? " has-image" : ""}${hideText ? " has-art-title" : ""}`}>
       {image ? (
         <img
           className="category-banner-photo"

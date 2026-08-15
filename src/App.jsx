@@ -8,6 +8,7 @@ import Footer from "./components/Footer.jsx";
 import ScrollUp from "./components/ScrollUp.jsx";
 import LocaleSwitch from "./components/LocaleSwitch.jsx";
 import CategoryBar from "./components/CategoryBar.jsx";
+import NavToggle from "./components/NavToggle.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
 import { MaxxonChat } from "./components/MaxxonChat";
@@ -22,6 +23,7 @@ function CategorySection({ category, flippedSku, onFlip, t }) {
         title={t(category.titleKey)}
         subtitle={t(category.subtitleKey)}
         image={category.banner}
+        hideText={category.hideText}
       />
       {Object.entries(families).map(([family, items]) => (
         <section key={family} className="family-section" aria-label={familyTitle(family, t)}>
@@ -172,18 +174,12 @@ export default function App() {
         />
         <div className="header-tools">
           <LocaleSwitch />
-          <button
-            type="button"
-            className={`nav-toggle${navOpen ? " is-open" : ""}`}
-            aria-expanded={navOpen}
-            aria-controls="mobile-nav"
-            aria-label={navOpen ? t("a11y.closeMenu") : t("a11y.menu")}
-            onClick={() => setNavOpen((open) => !open)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+          <NavToggle
+            open={navOpen}
+            onToggle={() => setNavOpen((open) => !open)}
+            openLabel={t("a11y.menu")}
+            closeLabel={t("a11y.closeMenu")}
+          />
         </div>
       </header>
       <div
@@ -203,6 +199,8 @@ export default function App() {
           activeCategory={activeCategory}
           onSelectCategory={scrollToCategory}
           onChromeVisibleChange={setHeroInView}
+          navOpen={navOpen}
+          onToggleNav={() => setNavOpen((open) => !open)}
         />
         <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
