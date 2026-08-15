@@ -11,8 +11,7 @@ function entry(term, definition, footnote, diagram) {
 }
 
 export const GLOSSERY_TITLE = "MAXX‑ON Glossery";
-export const GLOSSERY_SUBTITLE =
-  "A dictionary for audio engineers who know better, but the equipment keeps disappointing them anyway.";
+export const GLOSSERY_SUBTITLE = "A dictionary for audio engineers who have seen enough to know better.";
 
 export const GLOSSERY_SECTIONS = [
   {
@@ -20,27 +19,26 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "AC",
-        "Alternating Current.",
-        "Electrical energy that reverses direction at a fixed frequency, typically 50 or 60 Hz, depending on which colonial legacy you inherited. Essential for powering equipment, less effective at powering enthusiasm."
+        "Alternating Current. Electrical energy reversing direction at a fixed frequency, typically 50 or 60 Hz, depending on historical misfortune.",
+        "“AC is reliable, provided one does not rely on it.” — Institute of Electrical Engineers, 1949. Trivia: Early AC distribution systems were installed by individuals who had never seen electricity before, which explains much."
       ),
       entry(
         "Active",
-        "Describes equipment containing internal amplification or processing. Historically meaningful; now largely a marketing term indicating “this device warms itself.”"
+        "Equipment containing internal amplification or processing. Historically meaningful; now largely a euphemism for “warms itself.”",
+        "Trivia: The first active crossover was described as “promising, but temperamental,” much like its inventor."
       ),
       entry(
         "AFL",
-        "After‑Fade Listen.",
-        "A monitoring mode allowing one to hear precisely what the audience hears, assuming the audience is standing in the world’s least convenient location."
+        "After‑Fade Listen. Allows monitoring of a signal post‑fader, assuming one wishes to hear what the audience hears.",
+        "Trivia: AFL was introduced after engineers complained that PFL revealed too much truth."
       ),
+      entry("Amp", "Either a unit of electrical current or a device converting electricity into heat and occasional sound."),
       entry(
-        "Amp",
-        "Either a unit of electrical current or a device designed to convert electrical power into heat and occasional sound."
+        "Amplifier",
+        "A device increasing signal amplitude. Frequently blamed for failures occurring elsewhere.",
+        "“Amplifiers amplify everything, including mistakes.” — BBC Research Department, 1963"
       ),
-      entry("Amplifier", "A device that increases signal amplitude. Often blamed for failures caused elsewhere."),
-      entry(
-        "Auxiliary",
-        "A secondary output path used for monitors, effects, or routing signals one would prefer not to hear again."
-      ),
+      entry("Auxiliary", "Secondary output path used for monitors, effects, or routing signals one regrets."),
     ],
   },
   {
@@ -48,27 +46,26 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Backline",
-        "Musicians’ personal equipment, notable for its weight, fragility, and tendency to arrive in a state best described as “historic.”"
+        "Musicians’ personal equipment, notable for its weight, fragility, and emotional significance.",
+        "Trivia: The average backline item is older than the average musician using it."
       ),
       entry(
         "Balanced",
-        "A method of signal transmission using differential pairs to reject noise. Regrettably ineffective at rejecting poor performance."
+        "Differential signal transmission rejecting noise. Regrettably ineffective at rejecting poor performance.",
+        "“Balanced lines reject noise, though sadly not the performer.” — Anonymous FOH engineer, 1983. Trivia: Balanced lines were first used for telegraphy, which explains their fondness for bad news."
       ),
       entry(
         "Bandwidth",
-        "The range of frequencies a system can reproduce. Also a measure of an engineer’s remaining patience."
+        "Range of frequencies a system can reproduce. Also a measure of an engineer’s remaining patience."
       ),
-      entry("Bass", "Frequencies below approximately 200 Hz. Universally requested, rarely understood."),
+      entry("Bass", "Frequencies below ~200 Hz. Universally requested, rarely understood."),
       entry(
         "Beamwidth Plot",
-        "A graphical representation of a loudspeaker’s dispersion characteristics. Typically used to confirm that the loudspeaker is aimed incorrectly.",
-        null,
+        "Graphical representation of loudspeaker dispersion.",
+        "“The loudspeaker will illuminate the room in precisely the manner you did not intend.” — J. Eargood, Principles of Acoustic Misfortune (1954). Trivia: Early beamwidth plots were hand‑drawn, making inaccuracies artisanal.",
         "/diagrams/beamwidth.svg"
       ),
-      entry(
-        "Board",
-        "A colloquial term for a mixing console. Frequently blamed for issues caused by physics."
-      ),
+      entry("Board", "Colloquial term for mixing console. Frequently blamed for physics."),
     ],
   },
   {
@@ -76,26 +73,26 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Cardioid",
-        "A microphone polar pattern resembling a heart shape, though rarely associated with affection.",
+        "Microphone polar pattern resembling a heart, though rarely associated with affection.",
         null,
         "/diagrams/polar.svg"
       ),
       entry(
         "Compressor",
-        "A device that reduces dynamic range. Commonly employed to ensure all audio is equally unremarkable."
+        "Device reducing dynamic range.",
+        "“Compression is the art of making everything equally disappointing.” — Field Notes, Royal Albert Hall. Trivia: The first compressors were designed to protect telephone circuits from loud speech. They failed."
       ),
-      entry("Condenser", "A microphone requiring phantom power and a stable emotional environment."),
-      entry(
-        "Console",
-        "A device for combining, routing, and adjusting audio signals. Often touched by individuals who should not."
-      ),
+      entry("Condenser", "Microphone requiring phantom power and emotional stability."),
+      entry("Console", "Device for combining, routing, and adjusting audio signals. Often touched by individuals who should not."),
       entry(
         "Crest Factor",
-        "The ratio of peak to RMS signal levels. Useful for predicting imminent loudspeaker failure."
+        "Ratio of peak to RMS signal levels.",
+        "“A high crest factor indicates dynamic range. It also indicates imminent failure.” — BBC Research Department, 1961. Trivia: Crest factor was once described as “a polite warning from physics.”"
       ),
       entry(
         "Critical Distance",
-        "The point at which direct and reverberant sound are equal. Beyond this point, intelligibility becomes a theoretical concept."
+        "Point at which direct and reverberant sound are equal.",
+        "“Beyond this point, intelligibility becomes a theoretical concept.” — Acoustical Society of Great Britain"
       ),
     ],
   },
@@ -104,25 +101,17 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Damping Factor",
-        "A measure of an amplifier’s ability to control loudspeaker motion. Higher values are desirable, though rarely achieved in practice."
+        "Amplifier’s ability to control loudspeaker motion. Higher values desirable, rarely achieved."
       ),
-      entry("dB", "A logarithmic unit used to express ratios. Universally misunderstood."),
-      entry(
-        "DC",
-        "Direct Current.",
-        "Electrical energy flowing in a single direction, much like an engineer leaving a gig early."
-      ),
+      entry("dB", "Logarithmic unit expressing ratios. Universally misunderstood."),
+      entry("DC", "Direct Current. Electrical energy flowing in one direction, much like an engineer leaving a gig early."),
       entry(
         "DI",
-        "Direct Injection.",
-        "A device that converts high‑impedance signals into balanced, low‑impedance signals, thereby preserving mediocrity across longer distances."
+        "Direct Injection. Converts high‑impedance signals into balanced, low‑impedance signals, preserving mediocrity over distance."
       ),
-      entry(
-        "Desk",
-        "Another term for a mixing console. Often blamed for feedback, regardless of culpability."
-      ),
-      entry("Distortion", "Any deviation from linearity. Sometimes intentional, frequently regrettable."),
-      entry("Dry Hire", "The rental of equipment without personnel. A bold and optimistic choice."),
+      entry("Desk", "Another term for mixing console. Often blamed for feedback regardless of culpability."),
+      entry("Distortion", "Deviation from linearity. Sometimes intentional, frequently regrettable."),
+      entry("Dry Hire", "Rental of equipment without personnel. A bold and optimistic choice."),
     ],
   },
   {
@@ -130,23 +119,22 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Effects",
-        "Processes that alter audio signals by adding delayed or modified versions of the original. Primarily used to obscure errors."
+        "Processes altering audio signals by adding delayed or modified versions of the original."
       ),
       entry(
         "EMF",
-        "Electromotive Force.",
-        "The potential difference that drives current. Not to be confused with enthusiasm, which cannot be measured electrically."
+        "Electromotive Force. Potential difference driving current.",
+        "“EMF should not be confused with enthusiasm, which cannot be measured electrically.” — National Physical Laboratory"
       ),
       entry(
         "Enhancer",
-        "A device that adds harmonics to a signal. Often used to make poor audio more complex, though not better."
+        "Device adding harmonics to a signal. Often makes poor audio more complex, though not better."
       ),
       entry(
         "EQ",
-        "Equalisation.",
-        "The adjustment of frequency content to compensate for environmental, equipment, or existential deficiencies."
+        "Equalisation. Adjustment of frequency content to compensate for environmental, equipment, or existential deficiencies."
       ),
-      entry("Equaliser", "A device that allows one to move problems from one frequency band to another."),
+      entry("Equaliser", "Device allowing one to move problems from one frequency band to another."),
     ],
   },
   {
@@ -154,25 +142,22 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Fader",
-        "A linear control for adjusting signal level. Frequently operated by individuals who should not be allowed near electricity."
+        "Linear control adjusting signal level. Frequently operated by individuals who should not be near electricity."
       ),
       entry(
         "Feedback",
-        "A self‑exciting acoustic loop. The system’s way of announcing that something has gone wrong.",
-        null,
+        "Self‑exciting acoustic loop.",
+        "“Feedback is the system’s way of expressing disapproval.” — Sir Reginald Hissworthy, Acoustic Etiquette (1937). Trivia: The first documented feedback incident occurred in 1925 and was described as “a shriek of mechanical indignation.”",
         "/diagrams/feedback.svg"
       ),
-      entry(
-        "Firkin",
-        "An archaic unit of volume. Used here to denote excessive loudness, as in “firkin loud.”"
-      ),
+      entry("Firkin", "Archaic unit of volume. Used here to denote excessive loudness."),
       entry(
         "Foldback",
-        "A monitor system enabling performers to hear themselves, though they will insist they cannot."
+        "Monitor system enabling performers to hear themselves, though they will insist they cannot."
       ),
       entry(
         "Frequency Response",
-        "A graph showing how a device behaves across the audible spectrum. Typically reveals that it does not.",
+        "Graph showing how a device behaves across the audible spectrum. Typically reveals that it does not.",
         null,
         "/diagrams/freqresponse.svg"
       ),
@@ -183,188 +168,144 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Gain",
-        "The ratio of output to input signal amplitude. Also the control most likely to be adjusted incorrectly."
+        "Ratio of output to input signal amplitude.",
+        "Trivia: Gain knobs are adjusted incorrectly in 87% of live events."
       ),
-      entry("Ground Loop", "A hum caused by improper grounding. Often attributed to supernatural forces."),
+      entry("Ground Loop", "Hum caused by improper grounding. Often attributed to supernatural forces."),
     ],
   },
   {
     letter: "H",
     entries: [
-      entry(
-        "Hertz (Hz)",
-        "A unit of frequency equal to one cycle per second. Also a measure of how often one’s patience is tested."
-      ),
-      entry("HF", "High Frequency.", "Frequencies above 3 kHz, generally associated with discomfort."),
-      entry(
-        "High‑Pass Filter",
-        "A filter that attenuates low frequencies. Useful for removing rumble, mud, and emotional baggage.",
-        null,
-        "/diagrams/hpf.svg"
-      ),
-      entry(
-        "Hypercardioid",
-        "A microphone pattern narrower than cardioid. Excellent for rejecting everything except the intended source."
-      ),
+      entry("Hertz (Hz)", "Unit of frequency equal to one cycle per second."),
+      entry("HF", "High Frequency. Frequencies above 3 kHz, generally associated with discomfort."),
+      entry("High‑Pass Filter", "Filter attenuating low frequencies.", null, "/diagrams/hpf.svg"),
+      entry("Hypercardioid", "Microphone pattern narrower than cardioid."),
     ],
   },
   {
     letter: "I",
     entries: [
-      entry("Impedance", "Opposition to AC current. Also describes musicians’ resistance to instruction."),
-      entry("Intelligibility", "The degree to which speech can be understood. Rarely encountered in live environments."),
+      entry(
+        "Impedance",
+        "Opposition to AC current.",
+        "“Impedance is resistance with opinions.” — BBC Radiophonic Workshop. Trivia: Musicians exhibit similar impedance characteristics: high at rehearsal, low at soundcheck."
+      ),
+      entry(
+        "Intelligibility",
+        "Degree to which speech can be understood.",
+        "“Speech is only intelligible when the speaker wishes it to be.” — H. Farnsworth, On Public Address Failures (1968). Trivia: The STI was invented to quantify how little people understand each other."
+      ),
       entry(
         "Inverse Square Law",
-        "The principle that sound pressure decreases by 6 dB per doubling of distance. Except when children are involved."
+        "Sound pressure decreases by 6 dB per doubling of distance.",
+        "“Except when produced by children.” — British Standards Acoustic Committee, 1972"
       ),
       entry(
         "IP Rating",
-        "A measure of protection against dust and water. Useful for determining whether equipment will survive outdoor events (it will not)."
+        "Protection against dust and water. Useful for determining whether equipment will survive outdoor events (it will not)."
       ),
     ],
   },
   {
     letter: "J",
-    entries: [entry("Jack", "A connector that is invariably inserted into the wrong socket.")],
+    entries: [entry("Jack", "Connector invariably inserted into the wrong socket.")],
   },
   {
     letter: "K",
-    entries: [entry("Kilo‑", "A prefix meaning “thousand.” Also the number of excuses provided by performers.")],
+    entries: [entry("Kilo‑", "Prefix meaning “thousand.” Also the number of excuses provided by performers.")],
   },
   {
     letter: "L",
     entries: [
-      entry(
-        "Lavaliere",
-        "A small microphone worn on clothing. Designed to capture everything except the speaker’s voice."
-      ),
-      entry(
-        "LF",
-        "Low Frequency.",
-        "Frequencies below 200 Hz, responsible for structural damage and audience satisfaction."
-      ),
-      entry("Line‑Level", "A standard operating voltage for audio signals. Frequently ignored."),
-      entry(
-        "Logarithm",
-        "A mathematical function essential for audio calculations. Understood by engineers, tolerated by others."
-      ),
-      entry(
-        "Low‑Pass Filter",
-        "A filter that attenuates high frequencies. Often used to make audio sound “warm,” meaning “dull.”",
-        null,
-        "/diagrams/lpf.svg"
-      ),
+      entry("Lavaliere", "Small microphone worn on clothing. Captures everything except the speaker’s voice."),
+      entry("LF", "Low Frequency. Responsible for structural damage and audience satisfaction."),
+      entry("Line‑Level", "Standard operating voltage for audio signals."),
+      entry("Logarithm", "Mathematical function essential for audio calculations."),
+      entry("Low‑Pass Filter", "Filter attenuating high frequencies.", null, "/diagrams/lpf.svg"),
     ],
   },
   {
     letter: "M",
     entries: [
-      entry(
-        "Midrange",
-        "The central portion of the audible spectrum. Where most important content resides, and where most errors occur."
-      ),
-      entry("Mixer", "A device that combines audio signals. Commonly blamed for issues caused elsewhere."),
-      entry("Monitor", "A loudspeaker for performers. They will always request more."),
-      entry("Mute", "A button that resolves problems."),
+      entry("Midrange", "Central portion of the audible spectrum."),
+      entry("Mixer", "Device combining audio signals."),
+      entry("Monitor", "Loudspeaker for performers. They will always request more."),
+      entry("Mute", "Button that resolves problems."),
     ],
   },
   {
     letter: "N",
-    entries: [
-      entry(
-        "Normalised",
-        "A connector that changes state when a plug is inserted. Useful until it ceases to function."
-      ),
-    ],
+    entries: [entry("Normalised", "Connector changing state when a plug is inserted.")],
   },
   {
     letter: "O",
     entries: [
-      entry(
-        "Octave",
-        "A doubling or halving of frequency. Also the number of times instructions must be repeated."
-      ),
-      entry("Ohm", "A unit of electrical resistance. Also a measure of human stubbornness."),
-      entry("Omni", "An omnidirectional microphone pattern. Captures everything except what is needed."),
+      entry("Octave", "Doubling or halving of frequency."),
+      entry("Ohm", "Unit of electrical resistance."),
+      entry("Omni", "Omnidirectional microphone pattern."),
     ],
   },
   {
     letter: "P",
     entries: [
-      entry("Pan", "A control for stereo placement. Frequently misused."),
-      entry("Passive", "Equipment requiring no power. Also describes certain performers."),
-      entry("Peak", "The maximum instantaneous signal level. Often exceeded."),
-      entry(
-        "PFL",
-        "Pre‑Fade Listen.",
-        "A mode revealing the true nature of a signal, usually disappointing."
-      ),
+      entry("Pan", "Control for stereo placement."),
+      entry("Passive", "Equipment requiring no power."),
+      entry("Peak", "Maximum instantaneous signal level."),
+      entry("PFL", "Pre‑Fade Listen. Reveals the true nature of a signal, usually disappointing."),
       entry(
         "Phantom Power",
-        "48V DC supplied through an XLR cable. Used to power condenser microphones and destroy ribbon microphones."
+        "48V DC supplied through an XLR cable.",
+        "Trivia: The term “phantom” was chosen because the power is present even when nobody asked for it."
       ),
-      entry("Pink Noise", "Noise with equal energy per octave. Used for system tuning and venue evacuation."),
-      entry("PMPO", "Peak Music Power Output.", "A fictional measurement invented by marketing departments."),
       entry(
-        "Polar Plot",
-        "A graph showing microphone sensitivity. Useful for demonstrating incorrect microphone placement.",
-        null,
-        "/diagrams/polar.svg"
+        "Pink Noise",
+        "Noise with equal energy per octave.",
+        "“Pink noise is the sound of progress, provided one enjoys progress at 85 dB.” — National Physical Laboratory, 1959. Trivia: White noise was deemed “too enthusiastic.”"
       ),
-      entry("Post", "After a point in the signal path. Commonly misunderstood."),
-      entry("Pre", "Before a point in the signal path. Also misunderstood."),
+      entry("PMPO", "Peak Music Power Output. Fictional measurement invented by marketing departments."),
+      entry("Polar Plot", "Graph showing microphone sensitivity.", null, "/diagrams/polar.svg"),
+      entry("Post", "After a point in the signal path."),
+      entry("Pre", "Before a point in the signal path."),
     ],
   },
   {
     letter: "Q",
-    entries: [
-      entry(
-        "Q",
-        "A measure of filter bandwidth. Higher values indicate narrower filters and greater optimism.",
-        null,
-        "/diagrams/peaking.svg"
-      ),
-    ],
+    entries: [entry("Q", "Measure of filter bandwidth.", null, "/diagrams/peaking.svg")],
   },
   {
     letter: "R",
     entries: [
-      entry("Reverb", "Artificial reverberation. Used to conceal errors."),
+      entry("Reverb", "Artificial reverberation."),
       entry(
         "RMS",
         "Root Mean Square.",
-        "A mathematically valid measure of voltage, and a mathematically dubious measure of power."
+        "“RMS is mathematically elegant and practically inconvenient.” — Acoustical Society of Great Britain. Trivia: Manufacturers adopted RMS because it sounded scientific."
       ),
     ],
   },
   {
     letter: "S",
     entries: [
-      entry("Series", "Connecting components sequentially. Rarely advisable."),
+      entry("Series", "Connecting components sequentially."),
       entry(
         "Shelving EQ",
-        "A filter that boosts or cuts frequencies above or below a set point. Useful for pretending to improve audio.",
-        null,
+        "Filter boosting or cutting frequencies above or below a set point.",
+        "“A shelving filter is a polite way of saying ‘everything above this point is suspect.’” — Audio Engineering Quarterly, 1962",
         "/diagrams/shelving.svg"
       ),
-      entry("SPL", "Sound Pressure Level.", "Measured in decibels and complaints."),
-      entry(
-        "Supercardioid",
-        "A microphone pattern narrower than cardioid. Excellent for rejecting everything except the intended source."
-      ),
+      entry("SPL", "Sound Pressure Level."),
+      entry("Supercardioid", "Microphone pattern narrower than cardioid."),
     ],
   },
   {
     letter: "T",
     entries: [
-      entry(
-        "Transducer",
-        "A device that converts one form of energy into another. Typically the first component to fail."
-      ),
+      entry("Transducer", "Device converting one form of energy into another."),
       entry(
         "TRS",
         "Tip‑Ring‑Sleeve.",
-        "A connector that performs three functions, none of which are the one required."
+        "“TRS connectors perform three functions, none of which are the one required.” — British Telecom Engineering Notes"
       ),
     ],
   },
@@ -373,34 +314,34 @@ export const GLOSSERY_SECTIONS = [
     entries: [
       entry(
         "Unbalanced",
-        "A signal carried on a single conductor. Ideal for collecting noise, radio interference, and regret."
+        "Signal carried on a single conductor.",
+        "“Unbalanced lines are ideal for transmitting noise with occasional audio.” — G. H. Linton, Cable Regrets (1951). Trivia: The first unbalanced cable was made from lamp cord."
       ),
     ],
   },
   {
     letter: "V",
-    entries: [
-      entry("Volt", "A unit of electromotive force. Also the number of volts one should not apply to a microphone."),
-    ],
+    entries: [entry("Volt", "Unit of electromotive force.")],
   },
   {
     letter: "W",
-    entries: [entry("Watt", "A unit of power. Frequently exaggerated.")],
+    entries: [entry("Watt", "Unit of power. Frequently exaggerated.")],
   },
   {
     letter: "X",
-    entries: [entry("XLR", "A connector that solves problems until someone purchases a cheaper version.")],
+    entries: [entry("XLR", "Connector solving problems until someone purchases a cheaper version.")],
   },
   {
     letter: "Y",
-    entries: [entry("Y‑Cable", "A cable that splits signals. Useful until phase issues arise.")],
+    entries: [entry("Y‑Cable", "Cable splitting signals.")],
   },
   {
     letter: "Z",
     entries: [
       entry(
         "Z‑Axis",
-        "The vertical dimension in three‑dimensional space. Also the direction in which loudspeakers fall when improperly mounted."
+        "Vertical dimension in 3D space.",
+        "“The Z‑axis is the direction in which loudspeakers fall when improperly mounted.” — Health & Safety Bulletin, 1989. Trivia: Named after the engineer who discovered it by accident."
       ),
     ],
   },
