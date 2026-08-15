@@ -53,6 +53,7 @@ export default function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
+  const homeLockRef = useRef(false);
 
   useEffect(() => {
     let frame = 0;
@@ -69,12 +70,14 @@ export default function App() {
 
     function updateHeaderPresence() {
       const title = document.getElementById("hero-title");
-      const chrome = document.querySelector(".hero-chrome");
-      if (!title || !chrome) return;
+      if (!title) return;
+      if (homeLockRef.current) {
+        setHeroInView(false);
+        return;
+      }
       const titleTop = title.getBoundingClientRect().top;
-      const chromeTop = chrome.getBoundingClientRect().top;
       setHeroInView((away) => {
-        if (chromeTop >= -4) return true;
+        if (window.scrollY <= 2) return true;
         if (titleTop <= 8) return false;
         return away;
       });
@@ -124,9 +127,13 @@ export default function App() {
     updateActive();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.visualViewport?.addEventListener("scroll", onScroll);
+    window.visualViewport?.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.visualViewport?.removeEventListener("scroll", onScroll);
+      window.visualViewport?.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
@@ -184,7 +191,25 @@ export default function App() {
     event.preventDefault();
     spyLockRef.current = null;
     setNavOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    homeLockRef.current = true;
+    setHeroInView(false);
+    const root = document.documentElement;
+    const prevBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+
+    const started = performance.now();
+    function finishHome() {
+      if (window.scrollY > 1 && performance.now() - started < 800) {
+        requestAnimationFrame(finishHome);
+        return;
+      }
+      root.style.scrollBehavior = prevBehavior;
+      homeLockRef.current = false;
+      setHeroInView(true);
+    }
+
+    requestAnimationFrame(finishHome);
   }
 
   function handleCardFlip(sku) {
