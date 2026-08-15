@@ -14,6 +14,14 @@ export default function Hero() {
         fetchPriority="high"
       />
       <div className="hero-veil" aria-hidden="true" />
+      <img
+        className="hero-logo"
+        src="/assets/brand/maxx-on-logo.png"
+        alt=""
+        width="567"
+        height="287"
+        aria-hidden="true"
+      />
       <div className="hero-content">
         <h2 id="hero-title" className="hero-title">
           {t("hero.title")}
