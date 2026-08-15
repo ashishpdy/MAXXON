@@ -98,6 +98,8 @@ export const MESSAGES = {
     "a11y.skip": "Skip to catalogue",
     "a11y.specs": "{name} specifications",
     "a11y.scrollUp": "Back to categories",
+    "a11y.menu": "Open categories",
+    "a11y.closeMenu": "Close categories",
   },
   hi: {
     "nav.categories": "उत्पाद श्रेणियाँ",
@@ -191,6 +193,8 @@ export const MESSAGES = {
     "a11y.skip": "कैटलॉग पर जाएँ",
     "a11y.specs": "{name} स्पेसिफिकेशन",
     "a11y.scrollUp": "श्रेणियों पर वापस जाएँ",
+    "a11y.menu": "श्रेणियाँ खोलें",
+    "a11y.closeMenu": "श्रेणियाँ बंद करें",
   },
   fr: {
     "nav.categories": "Catégories de produits",
@@ -284,6 +288,8 @@ export const MESSAGES = {
     "a11y.skip": "Aller au catalogue",
     "a11y.specs": "Caractéristiques {name}",
     "a11y.scrollUp": "Retour aux catégories",
+    "a11y.menu": "Ouvrir les catégories",
+    "a11y.closeMenu": "Fermer les catégories",
   },
   ar: {
     "nav.categories": "فئات المنتجات",
@@ -377,6 +383,8 @@ export const MESSAGES = {
     "a11y.skip": "تخطي إلى الكتالوج",
     "a11y.specs": "مواصفات {name}",
     "a11y.scrollUp": "العودة إلى الفئات",
+    "a11y.menu": "فتح الفئات",
+    "a11y.closeMenu": "إغلاق الفئات",
   },
 };
 

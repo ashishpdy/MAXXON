@@ -189,25 +189,16 @@ html[lang="ar"] .hero-subtitle {
 }
 
 @media (max-width: 640px) {
-  .hero-chrome {
-    grid-template-columns: 1fr auto;
-    padding: 0.55rem 0.75rem 0.4rem;
-  }
-
-  .hero-chrome .locale-switch {
-    grid-column: 2;
-  }
-
+  .hero-chrome .brand,
+  .hero-chrome .locale-switch,
   .hero-category-bar {
-    width: 92%;
-    max-width: 92%;
+    display: none;
   }
 
-  .hero-category-bar .category-link {
-    min-height: 1.7rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.03em;
-    padding: 0.2rem 0.15rem;
+  .hero-chrome {
+    height: 0;
+    padding: 0;
+    pointer-events: none;
   }
 
   .hero-photo {

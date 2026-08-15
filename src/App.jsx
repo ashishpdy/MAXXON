@@ -48,28 +48,82 @@ export default function App() {
   const { t } = useI18n();
   const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]?.id || "");
   const [heroInView, setHeroInView] = useState(true);
+  const [navOpen, setNavOpen] = useState(false);
   const [flippedSku, setFlippedSku] = useState(null);
 
   useEffect(() => {
-    const observers = CATEGORIES.map((cat) => {
-      const section = document.getElementById(cat.id);
-      if (!section) return null;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveCategory(cat.id);
-        },
-        { rootMargin: "-30% 0px -55% 0px", threshold: 0.05 }
-      );
-      observer.observe(section);
-      return observer;
-    });
-    return () => observers.forEach((observer) => observer?.disconnect());
+    let frame = 0;
+
+    function headerMark() {
+      const header = document.querySelector(".site-header");
+      const away = header?.classList.contains("is-away");
+      if (header && !away) {
+        const bottom = header.getBoundingClientRect().bottom;
+        if (bottom > 8) return bottom + 8;
+      }
+      return 48;
+    }
+
+    function updateActive() {
+      frame = 0;
+      const mark = headerMark();
+      let current = CATEGORIES[0]?.id || "";
+      for (const cat of CATEGORIES) {
+        const section = document.querySelector(`section.category-section#${cat.id}`);
+        if (!section) continue;
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= mark && rect.bottom > mark) {
+          current = cat.id;
+          break;
+        }
+        if (rect.top <= mark) current = cat.id;
+      }
+      const doc = document.documentElement;
+      if (window.scrollY + window.innerHeight >= doc.scrollHeight - 8) {
+        current = CATEGORIES[CATEGORIES.length - 1]?.id || current;
+      }
+      setActiveCategory(current);
+    }
+
+    function onScroll() {
+      if (frame) return;
+      frame = requestAnimationFrame(updateActive);
+    }
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
+
+  useEffect(() => {
+    function onKey(event) {
+      if (event.key === "Escape") setNavOpen(false);
+    }
+    function onResize() {
+      if (window.innerWidth > 640) setNavOpen(false);
+    }
+    document.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    document.body.classList.toggle("nav-open", navOpen);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+      document.body.classList.remove("nav-open");
+    };
+  }, [navOpen]);
 
   function scrollOffset() {
     const header = document.querySelector(".site-header");
-    const live = header?.getBoundingClientRect().height ?? 0;
-    if (live > 8) return live + 12;
+    const away = header?.classList.contains("is-away");
+    if (header && !away) {
+      const live = header.getBoundingClientRect().height;
+      if (live > 8) return live + 12;
+    }
     const probe = document.createElement("div");
     probe.style.cssText = "position:absolute;visibility:hidden;height:var(--sticky-offset)";
     document.body.append(probe);
@@ -86,6 +140,7 @@ export default function App() {
   }
 
   function scrollToCategory(id) {
+    setNavOpen(false);
     scrollBeneathHeader(id);
     setActiveCategory(id);
   }
@@ -111,12 +166,37 @@ export default function App() {
           />
         </a>
         <CategoryBar
-          className="category-bar"
+          className="category-bar header-category-bar"
           activeCategory={activeCategory}
           onSelect={scrollToCategory}
         />
-        <LocaleSwitch />
+        <div className="header-tools">
+          <LocaleSwitch />
+          <button
+            type="button"
+            className={`nav-toggle${navOpen ? " is-open" : ""}`}
+            aria-expanded={navOpen}
+            aria-controls="mobile-nav"
+            aria-label={navOpen ? t("a11y.closeMenu") : t("a11y.menu")}
+            onClick={() => setNavOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </header>
+      <div
+        id="mobile-nav"
+        className={`nav-drawer${navOpen ? " is-open" : ""}`}
+        aria-hidden={!navOpen}
+      >
+        <CategoryBar
+          className="category-bar nav-drawer-bar"
+          activeCategory={activeCategory}
+          onSelect={scrollToCategory}
+        />
+      </div>
 
       <main id="top" className="site-main">
         <Hero
