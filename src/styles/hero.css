@@ -5,6 +5,7 @@
   display: grid;
   place-items: center;
   min-height: 100svh;
+  height: 100svh;
   overflow: hidden;
   background: #000;
   color: #b7c6d4;

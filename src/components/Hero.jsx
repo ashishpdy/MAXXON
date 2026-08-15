@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { useI18n } from "../i18n/I18nProvider.jsx";
 import CategoryBar from "./CategoryBar.jsx";
 import LocaleSwitch from "./LocaleSwitch.jsx";
@@ -7,24 +6,11 @@ import NavToggle from "./NavToggle.jsx";
 export default function Hero({
   activeCategory,
   onSelectCategory,
-  onChromeVisibleChange,
+  onGoHome,
   navOpen,
   onToggleNav,
 }) {
   const { t } = useI18n();
-  const chromeRef = useRef(null);
-
-  useEffect(() => {
-    const chrome = chromeRef.current;
-    if (!chrome) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => onChromeVisibleChange?.(entry.isIntersecting),
-      { threshold: 0 }
-    );
-    observer.observe(chrome);
-    return () => observer.disconnect();
-  }, [onChromeVisibleChange]);
 
   return (
     <section className="hero" aria-labelledby="hero-title">
@@ -37,8 +23,8 @@ export default function Hero({
         fetchPriority="high"
       />
       <div className="hero-veil" aria-hidden="true" />
-      <div className="hero-chrome" ref={chromeRef}>
-        <a className="brand" href="#top">
+      <div className="hero-chrome">
+        <a className="brand" href="#top" onClick={onGoHome}>
           <img
             className="brand-logo"
             src="/assets/brand/maxx-on-logo.png"

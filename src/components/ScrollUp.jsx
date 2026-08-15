@@ -44,7 +44,11 @@ export default function ScrollUp({ onScrollUp }) {
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
     >
-      <span className="scroll-up-arrow" aria-hidden="true" />
+      <span className="scroll-up-arrows" aria-hidden="true">
+        <span className="scroll-up-arrow" />
+        <span className="scroll-up-arrow" />
+        <span className="scroll-up-arrow" />
+      </span>
     </button>
   );
 }

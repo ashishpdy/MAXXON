@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Hero from "./components/Hero.jsx";
 import CategoryIndex from "./components/CategoryIndex.jsx";
 import CategoryBanner from "./components/CategoryBanner.jsx";
@@ -52,6 +52,7 @@ export default function App() {
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
   const [flippedSku, setFlippedSku] = useState(null);
+  const spyLockRef = useRef(null);
 
   useEffect(() => {
     let frame = 0;
@@ -66,8 +67,31 @@ export default function App() {
       return 48;
     }
 
+    function updateHeaderPresence() {
+      const title = document.getElementById("hero-title");
+      const chrome = document.querySelector(".hero-chrome");
+      if (!title || !chrome) return;
+      const titleTop = title.getBoundingClientRect().top;
+      const chromeTop = chrome.getBoundingClientRect().top;
+      setHeroInView((away) => {
+        if (chromeTop >= -4) return true;
+        if (titleTop <= 8) return false;
+        return away;
+      });
+    }
+
     function updateActive() {
-      frame = 0;
+      if (spyLockRef.current) {
+        const locked = spyLockRef.current;
+        const section = document.querySelector(`section.category-section#${locked}`);
+        if (section) {
+          const mark = headerMark();
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= mark + 32 && rect.bottom > mark) spyLockRef.current = null;
+        }
+        return;
+      }
+
       const mark = headerMark();
       let current = CATEGORIES[0]?.id || "";
       for (const cat of CATEGORIES) {
@@ -89,9 +113,14 @@ export default function App() {
 
     function onScroll() {
       if (frame) return;
-      frame = requestAnimationFrame(updateActive);
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        updateHeaderPresence();
+        updateActive();
+      });
     }
 
+    updateHeaderPresence();
     updateActive();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -142,9 +171,20 @@ export default function App() {
   }
 
   function scrollToCategory(id) {
+    spyLockRef.current = id;
     setNavOpen(false);
-    scrollBeneathHeader(id);
     setActiveCategory(id);
+    scrollBeneathHeader(id);
+    window.setTimeout(() => {
+      if (spyLockRef.current === id) spyLockRef.current = null;
+    }, 1400);
+  }
+
+  function goHome(event) {
+    event.preventDefault();
+    spyLockRef.current = null;
+    setNavOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleCardFlip(sku) {
@@ -158,7 +198,7 @@ export default function App() {
         {t("a11y.skip")}
       </a>
       <header className={`site-header${heroInView ? " is-away" : ""}`}>
-        <a className="brand" href="#top">
+        <a className="brand" href="#top" onClick={goHome}>
           <img
             className="brand-logo"
             src="/assets/brand/maxx-on-logo.png"
@@ -198,7 +238,7 @@ export default function App() {
         <Hero
           activeCategory={activeCategory}
           onSelectCategory={scrollToCategory}
-          onChromeVisibleChange={setHeroInView}
+          onGoHome={goHome}
           navOpen={navOpen}
           onToggleNav={() => setNavOpen((open) => !open)}
         />
