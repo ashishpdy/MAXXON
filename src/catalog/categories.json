@@ -47,6 +47,11 @@
       "inputs",
       "dimensions"
     ],
+    "mixers": [
+      "type",
+      "inputs",
+      "power"
+    ],
     "stands": [
       "type",
       "height",
@@ -88,6 +93,16 @@
       "banner": "/assets/banners/speakers.png",
       "overlayField": "wattage",
       "specKeys": "speakers",
+      "familyGroups": []
+    },
+    {
+      "id": "mixers",
+      "label": "Mixers",
+      "kind": "mixer",
+      "schemaCategory": "Audio mixer",
+      "banner": "/assets/banners/mixers.png",
+      "overlayField": "wattage",
+      "specKeys": "mixers",
       "familyGroups": []
     },
     {

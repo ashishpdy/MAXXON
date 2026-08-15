@@ -1,0 +1,153 @@
+{
+  "MJK": [
+    {
+      "sku": "MJK-16",
+      "slug": "mjk-16",
+      "model": "MJK 16",
+      "wattage": "16 CH",
+      "image_front": "/assets/products/mixers/MJK-16/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Console mixer",
+        "inputs": "16 mic + 2 stereo",
+        "power": "+48V phantom, USB/SD, Bluetooth, DSP FX"
+      }
+    },
+    {
+      "sku": "MJK-12",
+      "slug": "mjk-12",
+      "model": "MJK 12",
+      "wattage": "12 CH",
+      "image_front": "/assets/products/mixers/MJK-12/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Console mixer",
+        "inputs": "12 mic + 2 stereo",
+        "power": "+48V phantom, USB/SD, Bluetooth, DSP FX"
+      }
+    },
+    {
+      "sku": "MJK-8",
+      "slug": "mjk-8",
+      "model": "MJK 8",
+      "wattage": "8 CH",
+      "image_front": "/assets/products/mixers/MJK-8/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Console mixer",
+        "inputs": "8 mic + 2 stereo",
+        "power": "+48V phantom, USB/SD, Bluetooth, DSP FX"
+      }
+    }
+  ],
+  "MAJ": [
+    {
+      "sku": "MAJ-12",
+      "slug": "maj-12",
+      "model": "MAJ 12",
+      "wattage": "12 CH",
+      "image_front": "/assets/products/mixers/MAJ-12/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Console mixer",
+        "inputs": "12 mic + 2 stereo",
+        "power": "+48V phantom, USB, Bluetooth, 7-band EQ"
+      }
+    },
+    {
+      "sku": "MAJ-8",
+      "slug": "maj-8",
+      "model": "MAJ 8",
+      "wattage": "8 CH",
+      "image_front": "/assets/products/mixers/MAJ-8/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Console mixer",
+        "inputs": "8 mic + 2 stereo",
+        "power": "+48V phantom, USB, Bluetooth, 7-band EQ"
+      }
+    }
+  ],
+  "USB": [
+    {
+      "sku": "16-CHANNEL-MIXER",
+      "slug": "16-channel-mixer",
+      "model": "16 CHANNEL MIXER",
+      "wattage": "16 CH",
+      "image_front": "/assets/products/mixers/16-CHANNEL-MIXER/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Compact mixer",
+        "inputs": "16 channels",
+        "power": "MP3, digital FX, 48V phantom (4 ch)"
+      }
+    },
+    {
+      "sku": "12-CHANNEL-MIXER",
+      "slug": "12-channel-mixer",
+      "model": "12 CHANNEL MIXER",
+      "wattage": "12 CH",
+      "image_front": "/assets/products/mixers/12-CHANNEL-MIXER/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Compact mixer",
+        "inputs": "12 channels",
+        "power": "MP3, digital FX, 48V phantom (4 ch)"
+      }
+    },
+    {
+      "sku": "8-CHANNEL-MIXER",
+      "slug": "8-channel-mixer",
+      "model": "8 CHANNEL MIXER",
+      "wattage": "8 CH",
+      "image_front": "/assets/products/mixers/8-CHANNEL-MIXER/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Compact mixer",
+        "inputs": "8 channels",
+        "power": "MP3, digital FX, 48V phantom (4 ch)"
+      }
+    }
+  ],
+  "POWER": [
+    {
+      "sku": "MXP-012",
+      "slug": "mxp-012",
+      "model": "MXP 012",
+      "wattage": "2×500W",
+      "image_front": "/assets/products/mixers/MXP-012/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Power mixer",
+        "inputs": "12 mic",
+        "power": "500W × 2, 99 DSP FX, +48V phantom"
+      }
+    },
+    {
+      "sku": "MXP-08",
+      "slug": "mxp-08",
+      "model": "MXP 08",
+      "wattage": "2×400W",
+      "image_front": "/assets/products/mixers/MXP-08/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Power mixer",
+        "inputs": "8 mic",
+        "power": "400W × 2, 99 DSP FX, +48V phantom"
+      }
+    },
+    {
+      "sku": "MXP-06",
+      "slug": "mxp-06",
+      "model": "MXP 06",
+      "wattage": "2×300W",
+      "image_front": "/assets/products/mixers/MXP-06/front.jpg",
+      "image_back": "",
+      "specs": {
+        "type": "Power mixer",
+        "inputs": "6 mic",
+        "power": "300W × 2, 99 DSP FX, +48V phantom"
+      }
+    }
+  ]
+}
