@@ -48,13 +48,38 @@ const GRAPH = {
       logo: `${SITE_ORIGIN}/favicon.svg`,
       image: SITE_IMAGE,
       email: "maxx-on@hotmail.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "112, Pocket K, Sector 3, Bawana Industrial Area",
-        addressLocality: "Delhi",
-        postalCode: "110039",
-        addressCountry: "IN",
-      },
+      address: [
+        {
+          "@type": "PostalAddress",
+          streetAddress: "112, Pocket K, Sector 3, Bawana Industrial Area",
+          addressLocality: "Delhi",
+          postalCode: "110039",
+          addressCountry: "IN",
+        },
+        {
+          "@type": "PostalAddress",
+          streetAddress: "Deira, Naif, 17A Street, 3",
+          addressLocality: "Dubai",
+          addressCountry: "AE",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "maxx-on@hotmail.com",
+          areaServed: "IN",
+          availableLanguage: ["en", "hi"],
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "Dubai@maxx-on.com",
+          telephone: "+971-50-255-9568",
+          areaServed: "AE",
+          availableLanguage: ["en", "ar"],
+        },
+      ],
     },
     ...CATEGORY_PRODUCTS.flatMap(({ products }) => products.map(productSchema)),
     ...CATEGORY_PRODUCTS.map(({ cat, products }) =>

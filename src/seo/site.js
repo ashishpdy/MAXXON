@@ -1,4 +1,4 @@
-import { CATEGORIES, catalogLabels, flattenCatalog, joinEnglish } from "../catalog/registry.js";
+import { catalogLabels, flattenCatalog, joinEnglish } from "../catalog/registry.js";
 
 export const SITE_ORIGIN = "https://yellow-pebble-06cc7ac10.azurestaticapps.net";
 export const SITE_NAME = "MAXX-ON";
@@ -6,11 +6,8 @@ export const ORG_NAME = "PARI PRO ACOUSTICS INDUSTRIES (MAXX-ON)";
 
 const LABEL_LIST = catalogLabels();
 const LABEL_PHRASE = joinEnglish(LABEL_LIST.map((label) => label.toLowerCase()));
-const LABEL_TITLE = joinEnglish(LABEL_LIST);
 
-export const SITE_TITLE = LABEL_TITLE
-  ? `${SITE_NAME} | Professional ${LABEL_TITLE}`
-  : `${SITE_NAME} | Professional Audio`;
+export const SITE_TITLE = `${SITE_NAME} | Professional PA Equipment`;
 export const SITE_DESCRIPTION = LABEL_PHRASE
   ? `${SITE_NAME} professional audio catalogue: ${LABEL_PHRASE} for install, stage, and worship. Browse models, ratings, and specs from PARI PRO ACOUSTICS.`
   : `${SITE_NAME} professional audio catalogue from PARI PRO ACOUSTICS.`;
@@ -18,12 +15,15 @@ export const SITE_KEYWORDS = [
   SITE_NAME,
   ...LABEL_LIST.map((label) => label.toLowerCase()),
   "professional audio",
-  "PA",
+  "PA equipment",
+  "console mixer",
   "PARI PRO ACOUSTICS",
   "install audio",
   "stage audio",
+  "Delhi",
+  "Dubai",
 ].join(", ");
-export const SITE_IMAGE = `${SITE_ORIGIN}${CATEGORIES[0]?.banner || "/assets/banners/amplifiers.png"}`;
+export const SITE_IMAGE = `${SITE_ORIGIN}/assets/banners/hero.png`;
 
 export { flattenCatalog };
 
