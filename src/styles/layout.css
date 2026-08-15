@@ -118,8 +118,8 @@ a {
   backdrop-filter: blur(12px) saturate(0.85);
   clip-path: inset(0% 0% 0% 0%);
   -webkit-clip-path: inset(0% 0% 0% 0%);
-  transition: clip-path 0.85s cubic-bezier(0.22, 0.61, 0.36, 1),
-    -webkit-clip-path 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: clip-path 0.42s cubic-bezier(0.22, 0.61, 0.36, 1),
+    -webkit-clip-path 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .site-header::after {
@@ -597,7 +597,7 @@ a {
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--accent);
+  color: #8f732c;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -613,7 +613,7 @@ a {
 
 .scroll-up:hover,
 .scroll-up:focus-visible {
-  color: #f0d48a;
+  color: #b8923a;
   outline: none;
 }
 
@@ -698,6 +698,7 @@ html[lang="ar"] .footer-block h3 {
 
   .site-header {
     grid-template-columns: 1fr auto;
+    padding: 0.55rem 0.75rem;
   }
 
   .header-category-bar {

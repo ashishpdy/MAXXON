@@ -121,11 +121,11 @@ export function MaxxonChat() {
   return (
     <div className={`maxxon-chat-dock${open ? " is-open" : ""}`}>
       {open ? (
-        <section className="maxxon-chat" aria-label="MAXX-ON catalogue chat">
+        <section className="maxxon-chat" aria-label="MAXX-ON catalogue search">
           <header className="maxxon-chat-header">
             <div>
               <p className="maxxon-chat-kicker">MAXX-ON</p>
-              <h2 className="maxxon-chat-title">Catalogue chat</h2>
+              <h2 className="maxxon-chat-title">Catalogue search</h2>
             </div>
             <button
               type="button"
@@ -156,7 +156,7 @@ export function MaxxonChat() {
 
           <form className="maxxon-chat-composer" onSubmit={send}>
             <label className="visually-hidden" htmlFor={inputId}>
-              Message
+              Search
             </label>
             <input
               ref={inputRef}
@@ -181,7 +181,7 @@ export function MaxxonChat() {
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        {open ? "Close chat" : "Chat"}
+        {open ? "Close search" : "Search"}
       </button>
     </div>
   );

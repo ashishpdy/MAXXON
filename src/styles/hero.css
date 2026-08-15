@@ -193,8 +193,11 @@ html[lang="ar"] .hero-subtitle {
   .hero-chrome {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto;
+    align-content: start;
+    height: var(--header-h);
+    min-height: var(--header-h);
     z-index: 52;
-    padding: 0.55rem 0.75rem 0.4rem;
+    padding: 0.55rem 0.75rem;
   }
 
   .hero-category-bar {
