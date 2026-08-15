@@ -1,4 +1,4 @@
-import { GLOSSARY_SECTIONS, GLOSSARY_SUBTITLE, GLOSSARY_TITLE } from "./glossary-data.js";
+import { GLOSSERY_SECTIONS, GLOSSERY_SUBTITLE, GLOSSERY_TITLE } from "./glossery-data.js";
 
 function Entry({ term, icon, definition, footnote, diagram }) {
   return (
@@ -21,18 +21,18 @@ function Entry({ term, icon, definition, footnote, diagram }) {
   );
 }
 
-export default function Glossary() {
+export default function Glossery() {
   return (
     <div className="glossary-page">
       <article className="glossary">
         <header className="glossary-header">
-          <h1>{GLOSSARY_TITLE}</h1>
-          <p className="glossary-subtitle">{GLOSSARY_SUBTITLE}</p>
+          <h1>{GLOSSERY_TITLE}</h1>
+          <p className="glossary-subtitle">{GLOSSERY_SUBTITLE}</p>
         </header>
 
-        {GLOSSARY_SECTIONS.map((section) => (
-          <section key={section.letter} className="glossary-letter" aria-labelledby={`glossary-${section.letter}`}>
-            <h2 id={`glossary-${section.letter}`}>{section.letter}</h2>
+        {GLOSSERY_SECTIONS.map((section) => (
+          <section key={section.letter} className="glossary-letter" aria-labelledby={`glossery-${section.letter}`}>
+            <h2 id={`glossery-${section.letter}`}>{section.letter}</h2>
             {section.entries.map((item) => (
               <Entry key={item.term} {...item} />
             ))}

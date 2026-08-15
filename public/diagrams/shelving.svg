@@ -3,6 +3,6 @@
   <line x1="20" y1="140" x2="220" y2="140" stroke="#666" stroke-width="1"/>
   <line x1="20" y1="20" x2="20" y2="140" stroke="#666" stroke-width="1"/>
   <path d="M20 120 L120 80 L220 80" stroke="#4af" stroke-width="2" fill="none"/>
-  <text x="30" y="150" fill="#aaa" font-size="10">Frequency ’</text>
+  <text x="30" y="150" fill="#aaa" font-size="10">Frequency ?</text>
   <text x="5" y="20" fill="#aaa" font-size="10">Gain</text>
 </svg>

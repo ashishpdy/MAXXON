@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import Glossary from "./pages/Glossary.jsx";
+import Glossery from "./pages/glossery.jsx";
 import { I18nProvider } from "./i18n/I18nProvider.jsx";
 import "./styles/layout.css";
 import "./styles/hero.css";
@@ -12,7 +12,10 @@ import "./styles/glossary.css";
 function Root() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   if (path === "/glossary") {
-    return <Glossary />;
+    window.history.replaceState(null, "", "/glossery");
+  }
+  if (path === "/glossery" || path === "/glossary") {
+    return <Glossery />;
   }
   return (
     <I18nProvider>
