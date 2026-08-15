@@ -1,12 +1,13 @@
-import { CATEGORIES } from "../catalog/registry.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
+import { useCatalog } from "../catalog/CatalogProvider.jsx";
 
 export default function CategoryBar({ className, activeCategory, onSelect }) {
   const { t } = useI18n();
+  const { categories } = useCatalog();
 
   return (
     <nav className={className} aria-label={t("nav.categories")}>
-      {CATEGORIES.map((cat) => (
+      {categories.map((cat) => (
         <button
           key={cat.id}
           type="button"

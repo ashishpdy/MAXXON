@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import Glossery from "./pages/glossery.jsx";
 import { I18nProvider } from "./i18n/I18nProvider.jsx";
+import { CatalogProvider } from "./catalog/CatalogProvider.jsx";
 import "./styles/layout.css";
 import "./styles/hero.css";
 import "./styles/cards.css";
@@ -19,7 +20,9 @@ function Root() {
   }
   return (
     <I18nProvider>
-      <App />
+      <CatalogProvider>
+        <App />
+      </CatalogProvider>
     </I18nProvider>
   );
 }

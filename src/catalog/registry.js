@@ -5,31 +5,60 @@ const catalogs = import.meta.glob("../styles/*.json", {
   import: "default",
 });
 
-function resolveSpecKeys(ref) {
+function resolveSpecKeys(ref, specKeysMap = categoriesFile.specKeys) {
   if (Array.isArray(ref)) return ref;
-  return categoriesFile.specKeys[ref] || categoriesFile.specKeys.default;
+  return specKeysMap[ref] || specKeysMap.default;
 }
 
 export const SPEC_KEY_SETS = categoriesFile.specKeys;
 
-export const CATEGORIES = categoriesFile.categories
-  .map((cat) => {
-    const catalog = catalogs[`../styles/${cat.id}.json`] || {};
-    return {
-      ...cat,
-      catalog,
-      specKeys: resolveSpecKeys(cat.specKeys),
-      overlayField: cat.overlayField || "wattage",
-      familyGroups: cat.familyGroups || [],
-      navKey: `nav.${cat.id}`,
-      titleKey: `banner.${cat.id}.title`,
-      subtitleKey: `banner.${cat.id}.subtitle`,
-    };
-  })
-  .filter((cat) => Object.keys(cat.catalog).length > 0);
+export function decorateCategory(cat, specKeysMap = SPEC_KEY_SETS) {
+  return {
+    ...cat,
+    catalog: cat.catalog || {},
+    specKeys: resolveSpecKeys(cat.specKeys, specKeysMap),
+    overlayField: cat.overlayField || "wattage",
+    familyGroups: cat.familyGroups || [],
+    navKey: `nav.${cat.id}`,
+    titleKey: `banner.${cat.id}.title`,
+    subtitleKey: `banner.${cat.id}.subtitle`,
+  };
+}
 
-export function getCategory(id) {
-  return CATEGORIES.find((cat) => cat.id === id);
+export function loadLocalCatalogue() {
+  return categoriesFile.categories
+    .map((cat) => {
+      const catalog = catalogs[`../styles/${cat.id}.json`] || {};
+      return decorateCategory({ ...cat, catalog });
+    })
+    .filter((cat) => Object.keys(cat.catalog).length > 0);
+}
+
+export async function loadCatalogue() {
+  const url = import.meta.env.VITE_CATALOGUE_URL;
+  if (url) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`catalogue ${response.status}`);
+      const data = await response.json();
+      const specKeys = data.specKeys || SPEC_KEY_SETS;
+      const list = Array.isArray(data) ? data : data.categories || [];
+      const hydrated = list
+        .map((cat) => decorateCategory(cat, specKeys))
+        .filter((cat) => Object.keys(cat.catalog || {}).length > 0);
+      if (hydrated.length) return hydrated;
+    } catch {
+      /* fall back to bundled JSON */
+    }
+  }
+  return loadLocalCatalogue();
+}
+
+/** @deprecated use loadCatalogue / useCatalog — kept for modules that still import CATEGORIES at build time */
+export const CATEGORIES = loadLocalCatalogue();
+
+export function getCategory(id, categories = CATEGORIES) {
+  return categories.find((cat) => cat.id === id);
 }
 
 export function familyTitle(family, t) {
@@ -59,10 +88,10 @@ export function groupCatalog(catalog, groups = []) {
   return grouped;
 }
 
-export function flattenCatalog(catalog, category) {
+export function flattenCatalog(catalog, category, categories = CATEGORIES) {
   const products = [];
   const categoryId = typeof category === "string" ? category : category?.id;
-  const meta = typeof category === "string" ? getCategory(category) : category;
+  const meta = typeof category === "string" ? getCategory(category, categories) : category;
   for (const [family, items] of Object.entries(catalog || {})) {
     for (const product of items || []) {
       products.push({
@@ -79,8 +108,8 @@ export function flattenCatalog(catalog, category) {
   return products;
 }
 
-export function flattenAllProducts() {
-  return CATEGORIES.flatMap((cat) => flattenCatalog(cat.catalog, cat));
+export function flattenAllProducts(categories = CATEGORIES) {
+  return categories.flatMap((cat) => flattenCatalog(cat.catalog, cat, categories));
 }
 
 export function joinEnglish(items) {
@@ -90,6 +119,6 @@ export function joinEnglish(items) {
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
 }
 
-export function catalogLabels() {
-  return CATEGORIES.map((cat) => cat.label);
+export function catalogLabels(categories = CATEGORIES) {
+  return categories.map((cat) => cat.label);
 }

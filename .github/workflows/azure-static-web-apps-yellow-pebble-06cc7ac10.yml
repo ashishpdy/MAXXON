@@ -35,6 +35,9 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
+        env:
+          # Optional. Empty = keep bundling local JSON. Set after the catalogue Function is live.
+          VITE_CATALOGUE_URL: ${{ vars.VITE_CATALOGUE_URL }}
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_YELLOW_PEBBLE_06CC7AC10 }}
           action: "upload"

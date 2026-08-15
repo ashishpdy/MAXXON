@@ -23,3 +23,10 @@ _pdf_amp_extract/
 *.njsproj
 *.sln
 *.sw?
+
+.env
+api/local.settings.json
+__pycache__/
+.venv/
+.python_packages/
+*.pyc

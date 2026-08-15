@@ -12,7 +12,8 @@ import NavToggle from "./components/NavToggle.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
 import { MaxxonChat } from "./components/MaxxonChat";
-import { CATEGORIES, familyTitle, groupCatalog } from "./catalog/registry.js";
+import { useCatalog } from "./catalog/CatalogProvider.jsx";
+import { familyTitle, groupCatalog } from "./catalog/registry.js";
 
 function CategorySection({ category, flippedSku, onFlip, t }) {
   const families = groupCatalog(category.catalog, category.familyGroups);
@@ -48,12 +49,20 @@ function CategorySection({ category, flippedSku, onFlip, t }) {
 
 export default function App() {
   const { t } = useI18n();
-  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]?.id || "");
+  const { categories } = useCatalog();
+  const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
   const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
   const homeLockRef = useRef(false);
+
+  useEffect(() => {
+    setActiveCategory((current) => {
+      if (categories.some((cat) => cat.id === current)) return current;
+      return categories[0]?.id || "";
+    });
+  }, [categories]);
 
   useEffect(() => {
     let frame = 0;
@@ -96,8 +105,8 @@ export default function App() {
       }
 
       const mark = headerMark();
-      let current = CATEGORIES[0]?.id || "";
-      for (const cat of CATEGORIES) {
+      let current = categories[0]?.id || "";
+      for (const cat of categories) {
         const section = document.querySelector(`section.category-section#${cat.id}`);
         if (!section) continue;
         const rect = section.getBoundingClientRect();
@@ -109,7 +118,7 @@ export default function App() {
       }
       const doc = document.documentElement;
       if (window.scrollY + window.innerHeight >= doc.scrollHeight - 8) {
-        current = CATEGORIES[CATEGORIES.length - 1]?.id || current;
+        current = categories[categories.length - 1]?.id || current;
       }
       setActiveCategory(current);
     }
@@ -136,7 +145,7 @@ export default function App() {
       window.visualViewport?.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [categories]);
 
   useEffect(() => {
     function onKey(event) {
@@ -269,7 +278,7 @@ export default function App() {
         />
         <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
-          {CATEGORIES.map((category) => (
+          {categories.map((category) => (
             <CategorySection
               key={category.id}
               category={category}
