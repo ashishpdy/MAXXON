@@ -1,0 +1,14 @@
+<svg width="260" height="140" viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+  <rect width="260" height="140" fill="#111"/>
+  <rect x="20" y="40" width="80" height="40" fill="#222" stroke="#4af" stroke-width="2"/>
+  <text x="30" y="65" fill="#aaa" font-size="12">Mic</text>
+  <rect x="160" y="40" width="80" height="40" fill="#222" stroke="#4af" stroke-width="2"/>
+  <text x="170" y="65" fill="#aaa" font-size="12">Speaker</text>
+  <path d="M100 60 L160 60" stroke="#4af" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M160 80 Q120 120 60 80" stroke="#f44" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4af"/>
+    </marker>
+  </defs>
+</svg>

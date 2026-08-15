@@ -1,0 +1,123 @@
+.glossary-page {
+  min-height: 100vh;
+  padding: 3rem clamp(1.15rem, 4vw, 2.25rem) 4.5rem;
+}
+
+.glossary {
+  width: min(42rem, 100%);
+  margin: 0 auto;
+}
+
+.glossary-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.glossary h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+.glossary-subtitle {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  max-width: 36rem;
+  line-height: 1.45;
+}
+
+.glossary-letter {
+  margin-top: 3rem;
+}
+
+.glossary-letter h2 {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-blue-deep) 100%);
+}
+
+.glossary-entry {
+  padding: 1.25rem 0 0;
+}
+
+.glossary-entry h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  line-height: 1.15;
+}
+
+.glossary-icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.glossary-entry p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.glossary-entry aside {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.glossary-entry hr {
+  margin: 1.25rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.diagram-placeholder {
+  display: grid;
+  place-items: center;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  background: #111;
+}
+
+.diagram-placeholder img {
+  width: min(100%, 16.25rem);
+  height: auto;
+  max-width: none;
+}
+
+@media (max-width: 640px) {
+  .glossary-page {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .glossary-letter {
+    margin-top: 2rem;
+  }
+
+  .glossary-letter h2 {
+    padding: 0.6rem 1rem;
+  }
+}

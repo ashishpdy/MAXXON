@@ -1,0 +1,8 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="240" fill="#111"/>
+  <circle cx="120" cy="120" r="100" stroke="#333" stroke-width="1" fill="none"/>
+  <circle cx="120" cy="120" r="60" stroke="#333" stroke-width="1" fill="none"/>
+  <circle cx="120" cy="120" r="20" stroke="#333" stroke-width="1" fill="none"/>
+  <path d="M120 20 Q200 120 120 220 Q40 120 120 20" stroke="#4af" stroke-width="2" fill="none"/>
+  <text x="90" y="230" fill="#aaa" font-size="10">Polar Pattern</text>
+</svg>
