@@ -7,6 +7,7 @@ import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollUp from "./components/ScrollUp.jsx";
 import LocaleSwitch from "./components/LocaleSwitch.jsx";
+import CategoryBar from "./components/CategoryBar.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
 import { MaxxonChat } from "./components/MaxxonChat";
@@ -46,6 +47,7 @@ function CategorySection({ category, flippedSku, onFlip, t }) {
 export default function App() {
   const { t } = useI18n();
   const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]?.id || "");
+  const [heroInView, setHeroInView] = useState(true);
   const [flippedSku, setFlippedSku] = useState(null);
 
   useEffect(() => {
@@ -64,11 +66,22 @@ export default function App() {
     return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
+  function scrollOffset() {
+    const header = document.querySelector(".site-header");
+    const live = header?.getBoundingClientRect().height ?? 0;
+    if (live > 8) return live + 12;
+    const probe = document.createElement("div");
+    probe.style.cssText = "position:absolute;visibility:hidden;height:var(--sticky-offset)";
+    document.body.append(probe);
+    const reserved = probe.getBoundingClientRect().height;
+    probe.remove();
+    return reserved || 80;
+  }
+
   function scrollBeneathHeader(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    const headerH = document.querySelector(".site-header")?.getBoundingClientRect().height ?? 0;
-    const top = window.scrollY + el.getBoundingClientRect().top - headerH - 12;
+    const top = window.scrollY + el.getBoundingClientRect().top - scrollOffset();
     window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }
 
@@ -87,29 +100,30 @@ export default function App() {
       <a className="skip-link" href="#categories">
         {t("a11y.skip")}
       </a>
-      <header className="site-header">
+      <header className={`site-header${heroInView ? " is-away" : ""}`}>
         <a className="brand" href="#top">
-          <span className="brand-mark">MX</span>
-          <h1 className="brand-name">MAXX-ON</h1>
+          <img
+            className="brand-logo"
+            src="/assets/brand/maxx-on-logo.png"
+            alt="MAXX-ON"
+            width="639"
+            height="273"
+          />
         </a>
-        <nav className="category-bar" aria-label={t("nav.categories")}>
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              className={`category-link${activeCategory === cat.id ? " is-active" : ""}`}
-              aria-current={activeCategory === cat.id ? "true" : undefined}
-              onClick={() => scrollToCategory(cat.id)}
-            >
-              {t(cat.navKey)}
-            </button>
-          ))}
-        </nav>
+        <CategoryBar
+          className="category-bar"
+          activeCategory={activeCategory}
+          onSelect={scrollToCategory}
+        />
         <LocaleSwitch />
       </header>
 
       <main id="top" className="site-main">
-        <Hero />
+        <Hero
+          activeCategory={activeCategory}
+          onSelectCategory={scrollToCategory}
+          onChromeVisibleChange={setHeroInView}
+        />
         <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
           {CATEGORIES.map((category) => (

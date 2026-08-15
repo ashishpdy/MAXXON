@@ -8,7 +8,7 @@
   --accent: #e2b857;
   --brand-blue: #06b1e2;
   --brand-blue-deep: #0384a9;
-  --header-h: 4.25rem;
+  --header-h: 4.5rem;
   --sticky-offset: calc(var(--header-h) + 0.75rem);
   --radius: 0;
   --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
@@ -101,8 +101,10 @@ a {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   min-height: var(--header-h);
   display: grid;
@@ -115,33 +117,26 @@ a {
   backdrop-filter: blur(10px);
 }
 
+.site-header.is-away {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   text-decoration: none;
   color: var(--ink);
   justify-self: start;
 }
 
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.brand-name {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+.brand-logo {
+  width: auto;
+  height: calc(2.35rem * 1.25);
+  max-width: none;
+  filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--accent) 50%, transparent));
 }
 
 .category-bar {
@@ -547,7 +542,7 @@ html[lang="ar"] .footer-block h3 {
 
 @media (max-width: 640px) {
   :root {
-    --sticky-offset: 8.25rem;
+    --sticky-offset: 8.5rem;
   }
 
   .site-header {
