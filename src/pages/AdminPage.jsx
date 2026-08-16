@@ -208,16 +208,16 @@ export default function AdminPage() {
     setBusy(true);
     setStatus("");
     try {
-      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
-        method: "POST",
+      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}`, {
+        method: "PUT",
         body: JSON.stringify({
           slug: selected.slug,
           categoryId: selected.category,
-          action: "set",
           urls,
         }),
       });
-      setDraft((current) => (current ? { ...current, gallery: payload.urls || urls } : current));
+      const nextUrls = productImages(payload.product) || urls;
+      setDraft((current) => (current ? { ...current, gallery: nextUrls } : current));
       await reload();
       setStatus(message);
     } catch (err) {

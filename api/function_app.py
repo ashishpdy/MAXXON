@@ -34,11 +34,20 @@ CORS_HEADERS = {
 
 ALLOWED_IMAGE_TYPES = {
     "image/jpeg": ".jpg",
+    "image/jpg": ".jpg",
+    "image/pjpeg": ".jpg",
     "image/png": ".png",
     "image/webp": ".webp",
     "image/gif": ".gif",
 }
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
+EXT_TO_TYPE = {
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".webp": "image/webp",
+    ".gif": "image/gif",
+}
 
 
 def _client():
@@ -238,20 +247,41 @@ def _blob_container_name():
     return os.environ.get("BLOB_CONTAINER") or "products"
 
 
+def _file_ext(filename):
+    name = str(filename or "").strip().lower()
+    if "." not in name:
+        return ""
+    return f".{name.rsplit('.', 1)[-1]}"
+
+
+def _normalize_content_type(content_type, filename=""):
+    raw = str(content_type or "").strip().lower()
+    if ";" in raw:
+        raw = raw.split(";", 1)[0].strip()
+    if raw in {"image/jpg", "image/pjpeg"}:
+        return "image/jpeg"
+    if raw in {"image/jpeg", "image/png", "image/webp", "image/gif"}:
+        return raw
+    return EXT_TO_TYPE.get(_file_ext(filename), raw)
+
+
 def _safe_filename(name, content_type):
     base = re.sub(r"[^A-Za-z0-9._-]+", "-", str(name or "").strip()) or "image"
     base = base.strip(".-") or "image"
-    ext = ALLOWED_IMAGE_TYPES.get(content_type, "")
+    ext = { "image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp", "image/gif": ".gif" }.get(
+        content_type, _file_ext(base) or ".jpg"
+    )
     if "." in base:
         stem, current_ext = base.rsplit(".", 1)
-        if f".{current_ext.lower()}" in ALLOWED_IMAGE_TYPES.values():
+        if f".{current_ext.lower()}" in EXT_TO_TYPE:
             return f"{stem[:48]}-{uuid.uuid4().hex[:8]}.{current_ext.lower()}"
-    return f"{base[:48]}-{uuid.uuid4().hex[:8]}{ext or '.jpg'}"
+    return f"{base[:48]}-{uuid.uuid4().hex[:8]}{ext}"
 
 
 def upload_product_image(category_id, slug, filename, content_type, raw_bytes):
-    if content_type not in ALLOWED_IMAGE_TYPES:
-        raise ValueError("Only JPEG, PNG, WebP, or GIF images are allowed.")
+    content_type = _normalize_content_type(content_type, filename)
+    if content_type not in {"image/jpeg", "image/png", "image/webp", "image/gif"}:
+        raise ValueError(f"Only JPEG, PNG, WebP, or GIF images are allowed (got {content_type or 'unknown'}).")
     if not raw_bytes:
         raise ValueError("Empty image.")
     if len(raw_bytes) > MAX_IMAGE_BYTES:
@@ -344,11 +374,12 @@ def admin_product_images(req: func.HttpRequest) -> func.HttpResponse:
         return _json({"error": f"Product not found ({slug})."}, 404)
 
     if action == "upload":
-        content_type = str(body.get("contentType") or "").strip().lower() or "image/jpeg"
+        content_type = _normalize_content_type(body.get("contentType"), body.get("filename") or "image.jpg")
         filename = str(body.get("filename") or "image.jpg").strip()
         data = str(body.get("data") or "")
-        if "," in data and data.strip().startswith("data:"):
+        if "," in data and data.strip().lower().startswith("data:"):
             data = data.split(",", 1)[1]
+        data = "".join(data.split())
         try:
             raw = base64.b64decode(data, validate=False)
         except Exception:  # noqa: BLE001
