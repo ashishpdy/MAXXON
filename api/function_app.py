@@ -1,6 +1,7 @@
 import hmac
 import json
 import os
+from urllib.parse import unquote, urlparse
 
 import azure.functions as func
 from azure.cosmos import CosmosClient, exceptions
@@ -53,6 +54,56 @@ def _json(payload, status=200):
 
 def _public_product(doc):
     return {key: value for key, value in doc.items() if key not in META_FIELDS and not key.startswith("_")}
+
+
+def _clean_slug(value):
+    if isinstance(value, (list, tuple)):
+        value = value[0] if value else ""
+    text = unquote(str(value or "")).strip().strip("/")
+    return text
+
+
+def _requested_slug(req: func.HttpRequest, body):
+    body = body or {}
+    path = urlparse(req.url).path
+    path_slug = ""
+    marker = "/staff/product/"
+    if marker in path:
+        path_slug = path.split(marker, 1)[-1].split("/")[0]
+    candidates = [
+        body.get("slug"),
+        body.get("id"),
+        path_slug,
+        (req.route_params or {}).get("slug"),
+    ]
+    for raw in candidates:
+        slug = _clean_slug(raw)
+        if slug:
+            return slug
+    return ""
+
+
+def _find_product(slug, category_id):
+    container = _products()
+    if slug and category_id:
+        try:
+            return container.read_item(item=slug, partition_key=category_id)
+        except exceptions.CosmosResourceNotFoundError:
+            pass
+    rows = list(
+        container.query_items(
+            query="SELECT * FROM c WHERE c.id = @slug OR c.slug = @slug",
+            parameters=[{"name": "@slug", "value": slug}],
+            enable_cross_partition_query=True,
+        )
+    )
+    if category_id:
+        for row in rows:
+            if row.get("categoryId") == category_id:
+                return row
+    if len(rows) == 1:
+        return rows[0]
+    return rows[0] if rows else None
 
 
 def _authorized(req: func.HttpRequest) -> bool:
@@ -169,19 +220,18 @@ def admin_product(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(status_code=204, headers=CORS_HEADERS)
     if not _authorized(req):
         return _json({"error": "Unauthorized."}, 401)
-    slug = req.route_params.get("slug")
     try:
         body = req.get_json()
     except ValueError:
         return _json({"error": "Expected JSON."}, 400)
     body = body or {}
+    slug = _requested_slug(req, body)
     category_id = str(body.get("categoryId") or "").strip()
-    if not slug or not category_id:
-        return _json({"error": "slug and categoryId are required."}, 400)
-    try:
-        doc = _products().read_item(item=slug, partition_key=category_id)
-    except exceptions.CosmosResourceNotFoundError:
-        return _json({"error": "Product not found."}, 404)
+    if not slug:
+        return _json({"error": "slug is required."}, 400)
+    doc = _find_product(slug, category_id)
+    if not doc:
+        return _json({"error": f"Product not found ({slug})."}, 404)
     updated = apply_product_patch(doc, body)
     _products().replace_item(item=updated, body=updated)
     return _json({"ok": True, "product": _public_product(updated)})

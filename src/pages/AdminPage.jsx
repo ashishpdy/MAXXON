@@ -125,6 +125,7 @@ export default function AdminPage() {
           "X-Admin-Key": secret,
         },
         body: JSON.stringify({
+          slug: selected.slug,
           categoryId: selected.category,
           sku: draft.sku,
           model: draft.model,
