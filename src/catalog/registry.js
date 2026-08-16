@@ -35,7 +35,7 @@ export function loadLocalCatalogue() {
 }
 
 export async function loadCatalogue() {
-  const url = import.meta.env.VITE_CATALOGUE_URL;
+  const url = import.meta.env.DEV ? "/api/catalogue" : import.meta.env.VITE_CATALOGUE_URL;
   if (url) {
     try {
       const response = await fetch(url);
@@ -47,8 +47,8 @@ export async function loadCatalogue() {
         .map((cat) => decorateCategory(cat, specKeys))
         .filter((cat) => Object.keys(cat.catalog || {}).length > 0);
       if (hydrated.length) return hydrated;
-    } catch {
-      /* fall back to bundled JSON */
+    } catch (err) {
+      if (import.meta.env.DEV) console.warn("catalogue fetch failed, using bundled JSON", err);
     }
   }
   return loadLocalCatalogue();

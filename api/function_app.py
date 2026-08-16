@@ -63,9 +63,18 @@ def assemble_catalogue():
     return {"specKeys": spec_keys, "categories": categories}
 
 
-@app.route(route="catalogue", methods=["GET"])
+CORS_HEADERS = {
+    "Cache-Control": "no-store",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+}
+
+
+@app.route(route="catalogue", methods=["GET", "OPTIONS"])
 def catalogue(req: func.HttpRequest) -> func.HttpResponse:
-    del req
+    if req.method == "OPTIONS":
+        return func.HttpResponse(status_code=204, headers=CORS_HEADERS)
     try:
         payload = assemble_catalogue()
     except Exception as exc:  # noqa: BLE001 — return a clean 500 to the SWA
@@ -73,10 +82,11 @@ def catalogue(req: func.HttpRequest) -> func.HttpResponse:
             json.dumps({"error": str(exc)}),
             status_code=500,
             mimetype="application/json",
+            headers=CORS_HEADERS,
         )
     return func.HttpResponse(
         json.dumps(payload),
         status_code=200,
         mimetype="application/json",
-        headers={"Cache-Control": "no-store"},
+        headers=CORS_HEADERS,
     )

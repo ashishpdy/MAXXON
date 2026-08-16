@@ -6,5 +6,11 @@ export default defineConfig({
   server: {
     port: 5174,
     open: false,
+    proxy: {
+      "/api/catalogue": {
+        target: "https://maxxon-cehvcfazbjhhdwbb.eastus-01.azurewebsites.net",
+        changeOrigin: true,
+      },
+    },
   },
 });
