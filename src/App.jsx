@@ -6,16 +6,15 @@ import FamilyBanner from "./components/FamilyBanner.jsx";
 import ProductCard from "./components/ProductCard.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollUp from "./components/ScrollUp.jsx";
-import LocaleSwitch from "./components/LocaleSwitch.jsx";
-import CategoryBar from "./components/CategoryBar.jsx";
-import NavToggle from "./components/NavToggle.jsx";
+import SiteHeader from "./components/SiteHeader.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
 import { MaxxonChat } from "./components/MaxxonChat";
 import { useCatalog } from "./catalog/CatalogProvider.jsx";
-import { familyTitle, groupCatalog } from "./catalog/registry.js";
+import { familyTitle, flattenAllProducts, groupCatalog } from "./catalog/registry.js";
+import { navigate, productHref } from "./nav.js";
 
-function CategorySection({ category, flippedSku, onFlip, t }) {
+function CategorySection({ category, onOpen, t }) {
   const families = groupCatalog(category.catalog, category.familyGroups);
   return (
     <section id={category.id} className="category-section" aria-labelledby={`${category.id}-title`}>
@@ -36,8 +35,7 @@ function CategorySection({ category, flippedSku, onFlip, t }) {
                 product={product}
                 specKeys={category.specKeys}
                 overlayField={category.overlayField}
-                isFlipped={flippedSku === product.slug}
-                onFlip={() => onFlip(product.slug)}
+                onOpen={onOpen}
               />
             ))}
           </div>
@@ -53,7 +51,6 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
-  const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
   const homeLockRef = useRef(false);
 
@@ -186,6 +183,18 @@ export default function App() {
     window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }
 
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash || !categories.length) return;
+    const productHit = flattenAllProducts(categories).find((item) => item.slug === hash);
+    if (productHit) {
+      navigate(productHref(productHit.slug));
+      return;
+    }
+    const frame = requestAnimationFrame(() => scrollBeneathHeader(hash));
+    return () => cancelAnimationFrame(frame);
+  }, [categories]);
+
   function scrollToCategory(id) {
     spyLockRef.current = id;
     setNavOpen(false);
@@ -221,8 +230,8 @@ export default function App() {
     requestAnimationFrame(finishHome);
   }
 
-  function handleCardFlip(sku) {
-    setFlippedSku((current) => (current === sku ? null : sku));
+  function openProduct(slug) {
+    navigate(productHref(slug));
   }
 
   return (
@@ -231,42 +240,14 @@ export default function App() {
       <a className="skip-link" href="#categories">
         {t("a11y.skip")}
       </a>
-      <header className={`site-header${heroInView ? " is-away" : ""}`}>
-        <a className="brand" href="#top" onClick={goHome}>
-          <img
-            className="brand-logo"
-            src="/assets/brand/maxx-on-logo.png"
-            alt="MAXX-ON"
-            width="639"
-            height="273"
-          />
-        </a>
-        <CategoryBar
-          className="category-bar header-category-bar"
-          activeCategory={activeCategory}
-          onSelect={scrollToCategory}
-        />
-        <div className="header-tools">
-          <LocaleSwitch />
-          <NavToggle
-            open={navOpen}
-            onToggle={() => setNavOpen((open) => !open)}
-            openLabel={t("a11y.menu")}
-            closeLabel={t("a11y.closeMenu")}
-          />
-        </div>
-      </header>
-      <div
-        id="mobile-nav"
-        className={`nav-drawer${navOpen ? " is-open" : ""}`}
-        aria-hidden={!navOpen}
-      >
-        <CategoryBar
-          className="category-bar nav-drawer-bar"
-          activeCategory={activeCategory}
-          onSelect={scrollToCategory}
-        />
-      </div>
+      <SiteHeader
+        away={heroInView}
+        navOpen={navOpen}
+        onToggleNav={() => setNavOpen((open) => !open)}
+        activeCategory={activeCategory}
+        onSelect={scrollToCategory}
+        onBrandClick={goHome}
+      />
 
       <main id="top" className="site-main">
         <Hero
@@ -279,13 +260,7 @@ export default function App() {
         <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
           {categories.map((category) => (
-            <CategorySection
-              key={category.id}
-              category={category}
-              flippedSku={flippedSku}
-              onFlip={handleCardFlip}
-              t={t}
-            />
+            <CategorySection key={category.id} category={category} onOpen={openProduct} t={t} />
           ))}
         </div>
       </main>

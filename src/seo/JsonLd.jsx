@@ -18,8 +18,8 @@ function itemListSchema(id, name, products) {
     itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `${SITE_ORIGIN}/#${product.slug}`,
-      item: { "@id": `${SITE_ORIGIN}/#${product.slug}` },
+      url: `${SITE_ORIGIN}/p/${product.slug}`,
+      item: { "@id": `${SITE_ORIGIN}/p/${product.slug}` },
     })),
   };
 }

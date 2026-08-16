@@ -1,31 +1,6 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "../i18n/I18nProvider.jsx";
-import { SPEC_KEY_SETS } from "../catalog/registry.js";
-
-function SpecTable({ specs, specKeys, t, productName }) {
-  const keys = specKeys?.length ? specKeys : SPEC_KEY_SETS.default;
-  const rows = keys
-    .map((key) => ({ key, label: t(`spec.${key}`), value: specs?.[key] }))
-    .filter((row) => row.value);
-
-  if (!rows.length) {
-    return <p className="card-specs-empty">{t("card.specsEmpty")}</p>;
-  }
-
-  return (
-    <table className="card-specs">
-      <caption className="visually-hidden">{t("a11y.specs", { name: productName })}</caption>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.key}>
-            <th scope="row">{row.label}</th>
-            <td>{row.value}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
+import SpecTable from "./SpecTable.jsx";
 
 function mouseCanHover() {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
@@ -37,7 +12,7 @@ function mouseCanHover() {
   );
 }
 
-export default function ProductCard({ product, specKeys, overlayField = "wattage", isFlipped, onFlip }) {
+export default function ProductCard({ product, specKeys, overlayField = "wattage", onOpen }) {
   const { t } = useI18n();
   const [hoverFlip, setHoverFlip] = useState(mouseCanHover);
   const imageSrc = product.image_front || "";
@@ -66,27 +41,25 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
   }, []);
 
   function handleActivate(event) {
-    if (hoverFlip) return;
     event.preventDefault();
-    onFlip?.();
+    onOpen?.(product.slug);
   }
 
   function handleKeyDown(event) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      onFlip?.();
+      onOpen?.(product.slug);
     }
   }
 
   return (
     <article
       id={product.slug}
-      className={`product-card${isFlipped ? " is-flipped" : ""}${hoverFlip ? " is-hover-flip" : " is-touch"}`}
+      className={`product-card${hoverFlip ? " is-hover-flip" : ""}`}
     >
       <button
         type="button"
         className="product-card-flip"
-        aria-pressed={isFlipped}
         onClick={handleActivate}
         onKeyDown={handleKeyDown}
       >

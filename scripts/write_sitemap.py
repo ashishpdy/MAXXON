@@ -19,7 +19,7 @@ for cat_id in category_ids:
         for product in items:
             slug = product.get("slug")
             if slug:
-                urls.append((f"/#{slug}", "0.7", "monthly"))
+                urls.append((f"/p/{slug}", "0.7", "monthly"))
 
 lines = [
     '<?xml version="1.0" encoding="UTF-8"?>',

@@ -112,6 +112,24 @@ export function flattenAllProducts(categories = CATEGORIES) {
   return categories.flatMap((cat) => flattenCatalog(cat.catalog, cat, categories));
 }
 
+export function findProductBySlug(slug, categories = CATEGORIES) {
+  if (!slug) return null;
+  for (const category of categories) {
+    const product = flattenCatalog(category.catalog, category, categories).find((item) => item.slug === slug);
+    if (product) return { product, category };
+  }
+  return null;
+}
+
+export function productImages(product) {
+  if (!product) return [];
+  const extras = Array.isArray(product.images) ? product.images : [];
+  return [product.image_front, product.image_back, ...extras]
+    .map((src) => (typeof src === "string" ? src.trim() : ""))
+    .filter(Boolean)
+    .filter((src, index, list) => list.indexOf(src) === index);
+}
+
 export function joinEnglish(items) {
   if (!items.length) return "";
   if (items.length === 1) return items[0];

@@ -8,7 +8,9 @@ const CatalogContext = createContext({
 
 export function CatalogProvider({ children }) {
   const [categories, setCategories] = useState(() => loadLocalCatalogue());
-  const [loading, setLoading] = useState(Boolean(import.meta.env.VITE_CATALOGUE_URL));
+  const [loading, setLoading] = useState(
+    Boolean(import.meta.env.DEV || import.meta.env.VITE_CATALOGUE_URL)
+  );
 
   useEffect(() => {
     let cancelled = false;

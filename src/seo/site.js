@@ -35,6 +35,7 @@ export function absoluteUrl(path = "/") {
 }
 
 export function productDescription(product) {
+  if (product.description) return product.description;
   const name = product.model || product.sku || "Product";
   const kind = product.kind || product.category || "product";
   const highlight = product.wattage ? `, ${product.wattage}` : "";
@@ -63,13 +64,13 @@ export function productSchema(product) {
   }
   return {
     "@type": "Product",
-    "@id": absoluteUrl(`/#${product.slug}`),
+    "@id": absoluteUrl(`/p/${product.slug}`),
     name,
     sku: product.sku || product.slug,
     mpn: product.sku || product.slug,
     image,
     description: productDescription(product),
-    url: absoluteUrl(`/#${product.slug}`),
+    url: absoluteUrl(`/p/${product.slug}`),
     brand: { "@type": "Brand", name: SITE_NAME },
     manufacturer: { "@type": "Organization", name: ORG_NAME },
     category: product.schemaCategory || product.category || "Professional audio",
