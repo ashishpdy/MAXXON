@@ -98,16 +98,18 @@ export default function ProductPage({ slug }) {
           </div>
         ) : (
           <article className="product-layout">
-            <a
-              className="product-back"
-              href={`/#${category.id}`}
-              onClick={(event) => {
-                event.preventDefault();
-                goToCategory(category.id);
-              }}
-            >
-              {t("pdp.back", { category: t(category.navKey) })}
-            </a>
+            <p className="product-back-row">
+              <a
+                className="product-back"
+                href={`/#${category.id}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  goToCategory(category.id);
+                }}
+              >
+                {t("pdp.back", { category: t(category.navKey) })}
+              </a>
+            </p>
 
             <div className="product-gallery" aria-label={t("pdp.gallery")}>
               <div className="product-stage">
