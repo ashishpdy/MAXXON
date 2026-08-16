@@ -147,7 +147,7 @@ def catalogue(req: func.HttpRequest) -> func.HttpResponse:
     return _json(payload)
 
 
-@app.route(route="admin/session", methods=["POST", "OPTIONS"])
+@app.route(route="staff/session", methods=["POST", "OPTIONS"])
 def admin_session(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
         return func.HttpResponse(status_code=204, headers=CORS_HEADERS)
@@ -163,7 +163,7 @@ def admin_session(req: func.HttpRequest) -> func.HttpResponse:
     return _json({"ok": True})
 
 
-@app.route(route="admin/product/{slug}", methods=["PUT", "OPTIONS"])
+@app.route(route="staff/product/{slug}", methods=["PUT", "OPTIONS"])
 def admin_product(req: func.HttpRequest) -> func.HttpResponse:
     if req.method == "OPTIONS":
         return func.HttpResponse(status_code=204, headers=CORS_HEADERS)

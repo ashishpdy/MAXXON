@@ -86,7 +86,7 @@ export default function AdminPage() {
     setStatus("");
     setBusy(true);
     try {
-      const response = await fetch(apiUrl("/api/admin/session"), {
+      const response = await fetch(apiUrl("/api/staff/session"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -118,7 +118,7 @@ export default function AdminPage() {
     setStatus("");
     setBusy(true);
     try {
-      const response = await fetch(apiUrl(`/api/admin/product/${encodeURIComponent(selected.slug)}`), {
+      const response = await fetch(apiUrl(`/api/staff/product/${encodeURIComponent(selected.slug)}`), {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
