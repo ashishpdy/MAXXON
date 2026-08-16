@@ -6,6 +6,19 @@ import { navigate, productHref } from "../nav.js";
 
 const STORAGE_KEY = "maxxon-admin-key";
 
+function adminProductFromUrl() {
+  return new URLSearchParams(window.location.search).get("p") || "";
+}
+
+function setAdminProductUrl(slug) {
+  const url = new URL(window.location.href);
+  if (slug) url.searchParams.set("p", slug);
+  else url.searchParams.delete("p");
+  const next = `${url.pathname}${url.search}${url.hash}`;
+  if (`${window.location.pathname}${window.location.search}${window.location.hash}` === next) return;
+  window.history.replaceState(null, "", next);
+}
+
 function lines(value) {
   return Array.isArray(value) ? value.join("\n") : value || "";
 }
@@ -60,7 +73,7 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(Boolean(sessionStorage.getItem(STORAGE_KEY)));
   const [query, setQuery] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [selectedSlug, setSelectedSlug] = useState("");
+  const [selectedSlug, setSelectedSlug] = useState(() => adminProductFromUrl());
   const [draft, setDraft] = useState(null);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
@@ -75,6 +88,10 @@ export default function AdminPage() {
   useEffect(() => {
     document.title = "Admin | MAXX-ON";
   }, []);
+
+  useEffect(() => {
+    setAdminProductUrl(selectedSlug);
+  }, [selectedSlug]);
 
   useEffect(() => {
     const product = products.find((item) => item.slug === selectedSlug);
