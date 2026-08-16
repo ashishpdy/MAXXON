@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5174,
     open: false,
     proxy: {
-      "/api/catalogue": {
+      "/api": {
         target: "https://maxxon-cehvcfazbjhhdwbb.eastus-01.azurewebsites.net",
         changeOrigin: true,
       },

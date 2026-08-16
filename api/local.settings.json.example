@@ -5,7 +5,8 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "COSMOS_ENDPOINT": "https://YOUR-ACCOUNT.documents.azure.com:443/",
     "COSMOS_KEY": "",
-    "COSMOS_DATABASE": "maxxon"
+    "COSMOS_DATABASE": "maxxon",
+    "ADMIN_SECRET": ""
   },
   "Host": {
     "CORS": "http://localhost:5173",

@@ -14,7 +14,7 @@ import { useCatalog } from "./catalog/CatalogProvider.jsx";
 import { familyTitle, flattenAllProducts, groupCatalog } from "./catalog/registry.js";
 import { navigate, productHref } from "./nav.js";
 
-function CategorySection({ category, onOpen, t }) {
+function CategorySection({ category, onOpen, flippedSku, onFlip, t }) {
   const families = groupCatalog(category.catalog, category.familyGroups);
   return (
     <section id={category.id} className="category-section" aria-labelledby={`${category.id}-title`}>
@@ -35,6 +35,8 @@ function CategorySection({ category, onOpen, t }) {
                 product={product}
                 specKeys={category.specKeys}
                 overlayField={category.overlayField}
+                isFlipped={flippedSku === product.slug}
+                onFlip={() => onFlip(product.slug)}
                 onOpen={onOpen}
               />
             ))}
@@ -51,6 +53,7 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
+  const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
   const homeLockRef = useRef(false);
 
@@ -234,6 +237,10 @@ export default function App() {
     navigate(productHref(slug));
   }
 
+  function handleCardFlip(sku) {
+    setFlippedSku((current) => (current === sku ? null : sku));
+  }
+
   return (
     <div className="app-shell">
       <JsonLd />
@@ -260,7 +267,14 @@ export default function App() {
         <CategoryIndex onSelect={scrollToCategory} />
         <div id="catalogue" className="catalogue">
           {categories.map((category) => (
-            <CategorySection key={category.id} category={category} onOpen={openProduct} t={t} />
+            <CategorySection
+              key={category.id}
+              category={category}
+              onOpen={openProduct}
+              flippedSku={flippedSku}
+              onFlip={handleCardFlip}
+              t={t}
+            />
           ))}
         </div>
       </main>

@@ -12,7 +12,7 @@ function mouseCanHover() {
   );
 }
 
-export default function ProductCard({ product, specKeys, overlayField = "wattage", onOpen }) {
+export default function ProductCard({ product, specKeys, overlayField = "wattage", isFlipped, onFlip, onOpen }) {
   const { t } = useI18n();
   const [hoverFlip, setHoverFlip] = useState(mouseCanHover);
   const imageSrc = product.image_front || "";
@@ -42,28 +42,43 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
 
   function handleActivate(event) {
     event.preventDefault();
-    onOpen?.(product.slug);
+    if (hoverFlip) {
+      onOpen?.(product.slug);
+      return;
+    }
+    onFlip?.();
   }
 
   function handleKeyDown(event) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      onOpen?.(product.slug);
+      if (hoverFlip) onOpen?.(product.slug);
+      else onFlip?.();
     }
+  }
+
+  function handleDetails(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    onOpen?.(product.slug);
   }
 
   return (
     <article
       id={product.slug}
-      className={`product-card${hoverFlip ? " is-hover-flip" : ""}`}
+      className={`product-card${isFlipped ? " is-flipped" : ""}${hoverFlip ? " is-hover-flip" : " is-touch"}`}
     >
       <button
         type="button"
         className="product-card-flip"
+        aria-pressed={isFlipped}
         onClick={handleActivate}
         onKeyDown={handleKeyDown}
       >
         <span className="visually-hidden">{t("card.details", { name: productName })}</span>
+      </button>
+      <button type="button" className="product-card-open" onClick={handleDetails}>
+        {t("card.openPage")}
       </button>
       <div className="product-card-inner">
         <div className="product-card-face product-card-front">
