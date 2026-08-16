@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { apiUrl } from "../api.js";
 import { useCatalog } from "../catalog/CatalogProvider.jsx";
-import { flattenAllProducts } from "../catalog/registry.js";
+import { flattenAllProducts, productImages } from "../catalog/registry.js";
 import { navigate, productHref } from "../nav.js";
 
 const STORAGE_KEY = "maxxon-admin-key";
@@ -53,21 +53,42 @@ function draftFrom(product) {
     model: product.model || "",
     wattage: product.wattage || "",
     description: product.description || "",
-    image_front: product.image_front || "",
-    image_back: product.image_back || "",
     features: lines(product.features),
-    images: lines(product.images),
     sortIndex: product.sortIndex ?? "",
     family: product.family || "",
+    gallery: productImages(product),
     specRows: specsFromProduct(product).length
       ? specsFromProduct(product)
       : [{ key: "", value: "" }],
   };
 }
 
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result || "");
+      const data = result.includes(",") ? result.split(",", 1)[1] : result;
+      resolve(data);
+    };
+    reader.onerror = () => reject(reader.error || new Error("Could not read file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+function moveItem(list, index, direction) {
+  const next = index + direction;
+  if (next < 0 || next >= list.length) return list;
+  const copy = [...list];
+  const [item] = copy.splice(index, 1);
+  copy.splice(next, 0, item);
+  return copy;
+}
+
 export default function AdminPage() {
   const { categories, loading, reload } = useCatalog();
   const products = useMemo(() => flattenAllProducts(categories), [categories]);
+  const fileInputRef = useRef(null);
   const [secret, setSecret] = useState(() => sessionStorage.getItem(STORAGE_KEY) || "");
   const [password, setPassword] = useState("");
   const [authed, setAuthed] = useState(Boolean(sessionStorage.getItem(STORAGE_KEY)));
@@ -79,11 +100,19 @@ export default function AdminPage() {
   const [busy, setBusy] = useState(false);
 
   const selected = products.find((item) => item.slug === selectedSlug) || null;
-  const visible = products.filter((item) => {
-    if (categoryId && item.category !== categoryId) return false;
-    const hay = `${item.sku} ${item.model} ${item.slug}`.toLowerCase();
-    return hay.includes(query.trim().toLowerCase());
-  });
+  const canReorderList = Boolean(categoryId) && !query.trim();
+  const visible = useMemo(() => {
+    const filtered = products.filter((item) => {
+      if (categoryId && item.category !== categoryId) return false;
+      const hay = `${item.sku} ${item.model} ${item.slug}`.toLowerCase();
+      return hay.includes(query.trim().toLowerCase());
+    });
+    return filtered.slice().sort((a, b) => {
+      const familyCmp = String(a.family || "").localeCompare(String(b.family || ""));
+      if (familyCmp) return familyCmp;
+      return Number(a.sortIndex || 0) - Number(b.sortIndex || 0);
+    });
+  }, [products, categoryId, query]);
 
   useEffect(() => {
     document.title = "Admin | MAXX-ON";
@@ -97,6 +126,20 @@ export default function AdminPage() {
     const product = products.find((item) => item.slug === selectedSlug);
     if (product) setDraft(draftFrom(product));
   }, [selectedSlug, products]);
+
+  async function staffFetch(path, options = {}) {
+    const response = await fetch(apiUrl(path), {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Admin-Key": secret,
+        ...(options.headers || {}),
+      },
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.error || `Request failed (${response.status})`);
+    return payload;
+  }
 
   async function signIn(event) {
     event.preventDefault();
@@ -135,12 +178,8 @@ export default function AdminPage() {
     setStatus("");
     setBusy(true);
     try {
-      const response = await fetch(apiUrl(`/api/staff/product/${encodeURIComponent(selected.slug)}`), {
+      await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Admin-Key": secret,
-        },
         body: JSON.stringify({
           slug: selected.slug,
           categoryId: selected.category,
@@ -148,21 +187,118 @@ export default function AdminPage() {
           model: draft.model,
           wattage: draft.wattage,
           description: draft.description,
-          image_front: draft.image_front,
-          image_back: draft.image_back,
           features: fromLines(draft.features),
-          images: fromLines(draft.images),
+          urls: draft.gallery,
           specs: specsToObject(draft.specRows),
           family: draft.family,
           sortIndex: draft.sortIndex === "" ? undefined : Number(draft.sortIndex),
         }),
       });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload.error || `Save failed (${response.status})`);
       await reload();
       setStatus("Saved. Live site will show this on refresh.");
     } catch (err) {
       setStatus(err.message || "Save failed.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function persistGallery(urls, message) {
+    if (!selected) return;
+    setBusy(true);
+    setStatus("");
+    try {
+      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
+        method: "POST",
+        body: JSON.stringify({
+          slug: selected.slug,
+          categoryId: selected.category,
+          action: "set",
+          urls,
+        }),
+      });
+      setDraft((current) => (current ? { ...current, gallery: payload.urls || urls } : current));
+      await reload();
+      setStatus(message);
+    } catch (err) {
+      setStatus(err.message || "Image update failed.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function uploadImage(file) {
+    if (!selected || !file) return;
+    setBusy(true);
+    setStatus("");
+    try {
+      const data = await readFileAsBase64(file);
+      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
+        method: "POST",
+        body: JSON.stringify({
+          slug: selected.slug,
+          categoryId: selected.category,
+          action: "upload",
+          filename: file.name,
+          contentType: file.type || "image/jpeg",
+          data,
+        }),
+      });
+      setDraft((current) => (current ? { ...current, gallery: payload.urls || current.gallery } : current));
+      await reload();
+      setStatus("Image uploaded.");
+    } catch (err) {
+      setStatus(err.message || "Upload failed.");
+    } finally {
+      setBusy(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
+
+  function moveGallery(index, direction) {
+    if (!draft) return;
+    const urls = moveItem(draft.gallery, index, direction);
+    if (urls === draft.gallery) return;
+    setDraft({ ...draft, gallery: urls });
+    persistGallery(urls, "Image order saved.");
+  }
+
+  function removeGallery(index) {
+    if (!draft) return;
+    const urls = draft.gallery.filter((_, itemIndex) => itemIndex !== index);
+    setDraft({ ...draft, gallery: urls });
+    persistGallery(urls, "Image removed from product.");
+  }
+
+  async function moveProductInFamily(slug, direction) {
+    if (!canReorderList) return;
+    const product = products.find((item) => item.slug === slug);
+    if (!product) return;
+    const siblings = products
+      .filter((item) => item.category === product.category && item.family === product.family)
+      .slice()
+      .sort((a, b) => Number(a.sortIndex || 0) - Number(b.sortIndex || 0));
+    const index = siblings.findIndex((item) => item.slug === slug);
+    const nextIndex = index + direction;
+    if (index < 0 || nextIndex < 0 || nextIndex >= siblings.length) return;
+    const ordered = siblings.map((item) => item.slug);
+    const [moved] = ordered.splice(index, 1);
+    ordered.splice(nextIndex, 0, moved);
+    setBusy(true);
+    setStatus("");
+    try {
+      await staffFetch("/api/staff/reorder", {
+        method: "POST",
+        body: JSON.stringify({
+          categoryId: product.category,
+          family: product.family,
+          slugs: ordered,
+        }),
+      });
+      await reload();
+      setStatus(`Order updated in ${product.family}.`);
+    } catch (err) {
+      setStatus(err.message || "Reorder failed.");
     } finally {
       setBusy(false);
     }
@@ -230,18 +366,45 @@ export default function AdminPage() {
               </option>
             ))}
           </select>
+          {canReorderList ? (
+            <p className="admin-hint">Up / down reorders within a family.</p>
+          ) : (
+            <p className="admin-hint">Pick one category (clear search) to reorder.</p>
+          )}
           <ul>
             {loading && !products.length ? <li>Loading catalogue…</li> : null}
             {visible.map((item) => (
-              <li key={item.slug}>
+              <li key={item.slug} className="admin-list-row">
                 <button
                   type="button"
                   className={item.slug === selectedSlug ? "is-active" : ""}
                   onClick={() => setSelectedSlug(item.slug)}
                 >
                   <strong>{item.sku || item.slug}</strong>
-                  <span>{item.model}</span>
+                  <span>
+                    {item.family} · {item.model}
+                  </span>
                 </button>
+                {canReorderList ? (
+                  <div className="admin-list-move">
+                    <button
+                      type="button"
+                      aria-label={`Move ${item.sku} up`}
+                      disabled={busy}
+                      onClick={() => moveProductInFamily(item.slug, -1)}
+                    >
+                      ↑
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`Move ${item.sku} down`}
+                      disabled={busy}
+                      onClick={() => moveProductInFamily(item.slug, 1)}
+                    >
+                      ↓
+                    </button>
+                  </div>
+                ) : null}
               </li>
             ))}
           </ul>
@@ -249,7 +412,7 @@ export default function AdminPage() {
 
         <main className="admin-editor">
           {!draft || !selected ? (
-            <p className="admin-empty">Pick a product. This slice edits live Cosmos fields. Image upload comes later.</p>
+            <p className="admin-empty">Pick a product. Upload photos in the image strip; first image is the card.</p>
           ) : (
             <form onSubmit={save}>
               <div className="admin-editor-head">
@@ -309,28 +472,51 @@ export default function AdminPage() {
                   Add spec
                 </button>
               </fieldset>
-              <label>
-                Front image path
-                <input
-                  value={draft.image_front}
-                  onChange={(event) => setDraft({ ...draft, image_front: event.target.value })}
-                />
-              </label>
-              <label>
-                Back image path
-                <input
-                  value={draft.image_back}
-                  onChange={(event) => setDraft({ ...draft, image_back: event.target.value })}
-                />
-              </label>
-              <label>
-                Extra image paths (one per line)
-                <textarea
-                  rows={3}
-                  value={draft.images}
-                  onChange={(event) => setDraft({ ...draft, images: event.target.value })}
-                />
-              </label>
+
+              <fieldset className="admin-gallery">
+                <legend>Images</legend>
+                <p className="admin-hint">First image is the product card. Upload, then use ↑ ↓ to order. Changes save immediately.</p>
+                <div className="admin-gallery-strip">
+                  {draft.gallery.length ? (
+                    draft.gallery.map((src, index) => (
+                      <figure key={`${src}-${index}`} className="admin-gallery-item">
+                        <img src={src} alt="" width="160" height="160" />
+                        {index === 0 ? <figcaption>Card</figcaption> : <figcaption>{index + 1}</figcaption>}
+                        <div className="admin-gallery-actions">
+                          <button type="button" disabled={busy || index === 0} onClick={() => moveGallery(index, -1)}>
+                            ↑
+                          </button>
+                          <button
+                            type="button"
+                            disabled={busy || index === draft.gallery.length - 1}
+                            onClick={() => moveGallery(index, 1)}
+                          >
+                            ↓
+                          </button>
+                          <button type="button" disabled={busy} onClick={() => removeGallery(index)}>
+                            Remove
+                          </button>
+                        </div>
+                      </figure>
+                    ))
+                  ) : (
+                    <p className="admin-empty">No images yet.</p>
+                  )}
+                </div>
+                <div className="admin-gallery-upload">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    disabled={busy}
+                    onChange={(event) => {
+                      const file = event.target.files?.[0];
+                      if (file) uploadImage(file);
+                    }}
+                  />
+                </div>
+              </fieldset>
+
               <label>
                 Family key
                 <input value={draft.family} onChange={(event) => setDraft({ ...draft, family: event.target.value })} />
@@ -344,7 +530,7 @@ export default function AdminPage() {
                 />
               </label>
               <button type="submit" disabled={busy}>
-                {busy ? "Saving…" : "Save to Cosmos"}
+                {busy ? "Working…" : "Save to Cosmos"}
               </button>
               {status ? <p className="admin-status">{status}</p> : null}
             </form>

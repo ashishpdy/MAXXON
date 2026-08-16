@@ -6,10 +6,12 @@
     "COSMOS_ENDPOINT": "https://YOUR-ACCOUNT.documents.azure.com:443/",
     "COSMOS_KEY": "",
     "COSMOS_DATABASE": "maxxon",
-    "ADMIN_SECRET": ""
+    "ADMIN_SECRET": "",
+    "BLOB_CONNECTION_STRING": "",
+    "BLOB_CONTAINER": "products"
   },
   "Host": {
-    "CORS": "http://localhost:5173",
+    "CORS": "http://localhost:5173,http://localhost:5174",
     "CORSCredentials": false
   }
 }
