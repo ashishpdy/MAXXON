@@ -63,17 +63,19 @@ function draftFrom(product) {
   };
 }
 
-function readFileAsBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result || "");
-      const data = result.includes(",") ? result.split(",", 1)[1] : result;
-      resolve(data);
-    };
-    reader.onerror = () => reject(reader.error || new Error("Could not read file."));
-    reader.readAsDataURL(file);
+async function putBlob(uploadUrl, file, contentType) {
+  const response = await fetch(uploadUrl, {
+    method: "PUT",
+    headers: {
+      "Content-Type": contentType,
+      "x-ms-blob-type": "BlockBlob",
+    },
+    body: file,
   });
+  if (!response.ok) {
+    const detail = await response.text().catch(() => "");
+    throw new Error(detail || `Blob upload failed (${response.status})`);
+  }
 }
 
 function moveItem(list, index, direction) {
@@ -229,19 +231,32 @@ export default function AdminPage() {
 
   async function uploadImage(file) {
     if (!selected || !file) return;
+    if (file.size > 8 * 1024 * 1024) {
+      setStatus("Image must be 8MB or smaller.");
+      return;
+    }
     setBusy(true);
     setStatus("");
     try {
-      const data = await readFileAsBase64(file);
+      const contentType = file.type || "image/jpeg";
+      const ticket = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
+        method: "POST",
+        body: JSON.stringify({
+          slug: selected.slug,
+          categoryId: selected.category,
+          action: "ticket",
+          filename: file.name,
+          contentType,
+        }),
+      });
+      await putBlob(ticket.uploadUrl, file, ticket.contentType || contentType);
       const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
         method: "POST",
         body: JSON.stringify({
           slug: selected.slug,
           categoryId: selected.category,
-          action: "upload",
-          filename: file.name,
-          contentType: file.type || "image/jpeg",
-          data,
+          action: "attach",
+          url: ticket.url,
         }),
       });
       setDraft((current) => (current ? { ...current, gallery: payload.urls || current.gallery } : current));

@@ -4,11 +4,17 @@ import json
 import os
 import re
 import uuid
+from datetime import datetime, timedelta, timezone
 from urllib.parse import unquote, urlparse
 
 import azure.functions as func
 from azure.cosmos import CosmosClient, exceptions
-from azure.storage.blob import BlobServiceClient, ContentSettings
+from azure.storage.blob import (
+    BlobSasPermissions,
+    BlobServiceClient,
+    ContentSettings,
+    generate_blob_sas,
+)
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
@@ -268,14 +274,67 @@ def _normalize_content_type(content_type, filename=""):
 def _safe_filename(name, content_type):
     base = re.sub(r"[^A-Za-z0-9._-]+", "-", str(name or "").strip()) or "image"
     base = base.strip(".-") or "image"
-    ext = { "image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp", "image/gif": ".gif" }.get(
-        content_type, _file_ext(base) or ".jpg"
-    )
+    ext = {
+        "image/jpeg": ".jpg",
+        "image/png": ".png",
+        "image/webp": ".webp",
+        "image/gif": ".gif",
+    }.get(content_type, _file_ext(base) or ".jpg")
     if "." in base:
         stem, current_ext = base.rsplit(".", 1)
         if f".{current_ext.lower()}" in EXT_TO_TYPE:
             return f"{stem[:48]}-{uuid.uuid4().hex[:8]}.{current_ext.lower()}"
     return f"{base[:48]}-{uuid.uuid4().hex[:8]}{ext}"
+
+
+def _connection_parts():
+    connection = os.environ.get("BLOB_CONNECTION_STRING") or os.environ.get("AzureWebJobsStorage") or ""
+    parts = {}
+    for piece in connection.split(";"):
+        if "=" not in piece:
+            continue
+        key, value = piece.split("=", 1)
+        parts[key.strip()] = value.strip()
+    account = parts.get("AccountName") or ""
+    key = parts.get("AccountKey") or ""
+    if not account or not key:
+        raise RuntimeError("BLOB_CONNECTION_STRING is missing AccountName/AccountKey.")
+    return account, key
+
+
+def _ensure_products_container(container):
+    try:
+        container.get_container_properties()
+    except Exception:  # noqa: BLE001
+        container.create_container(public_access="blob")
+
+
+def create_upload_ticket(category_id, slug, filename, content_type):
+    content_type = _normalize_content_type(content_type, filename)
+    if content_type not in {"image/jpeg", "image/png", "image/webp", "image/gif"}:
+        raise ValueError(f"Only JPEG, PNG, WebP, or GIF images are allowed (got {content_type or 'unknown'}).")
+    account_name, account_key = _connection_parts()
+    container_name = _blob_container_name()
+    service = _blob_service()
+    container = service.get_container_client(container_name)
+    _ensure_products_container(container)
+    blob_name = f"{category_id}/{slug}/{_safe_filename(filename, content_type)}"
+    blob = container.get_blob_client(blob_name)
+    sas = generate_blob_sas(
+        account_name=account_name,
+        container_name=container_name,
+        blob_name=blob_name,
+        account_key=account_key,
+        permission=BlobSasPermissions(create=True, write=True),
+        expiry=datetime.now(timezone.utc) + timedelta(minutes=20),
+        content_type=content_type,
+    )
+    return {
+        "uploadUrl": f"{blob.url}?{sas}",
+        "url": blob.url,
+        "contentType": content_type,
+        "blobName": blob_name,
+    }
 
 
 def upload_product_image(category_id, slug, filename, content_type, raw_bytes):
@@ -289,10 +348,7 @@ def upload_product_image(category_id, slug, filename, content_type, raw_bytes):
     service = _blob_service()
     container_name = _blob_container_name()
     container = service.get_container_client(container_name)
-    try:
-        container.get_container_properties()
-    except Exception:  # noqa: BLE001
-        container.create_container(public_access="blob")
+    _ensure_products_container(container)
     blob_name = f"{category_id}/{slug}/{_safe_filename(filename, content_type)}"
     blob = container.get_blob_client(blob_name)
     blob.upload_blob(
@@ -301,6 +357,15 @@ def upload_product_image(category_id, slug, filename, content_type, raw_bytes):
         content_settings=ContentSettings(content_type=content_type),
     )
     return blob.url
+
+
+def _append_image_url(doc, url):
+    urls = product_image_list(doc)
+    text = str(url or "").strip()
+    if text and text not in urls:
+        urls.append(text)
+    apply_image_list(doc, urls)
+    return urls
 
 
 @app.route(route="catalogue", methods=["GET", "OPTIONS"])
@@ -366,12 +431,36 @@ def admin_product_images(req: func.HttpRequest) -> func.HttpResponse:
     body = body or {}
     slug = _requested_slug(req, body)
     category_id = str(body.get("categoryId") or "").strip()
-    action = str(body.get("action") or "set").strip().lower()
+    action = str(body.get("action") or "").strip().lower()
     if not slug:
         return _json({"error": "slug is required."}, 400)
+    if not action:
+        return _json({"error": "action is required (ticket, attach, upload, or set)."}, 400)
     doc = _find_product(slug, category_id)
     if not doc:
         return _json({"error": f"Product not found ({slug})."}, 404)
+
+    if action == "ticket":
+        try:
+            ticket = create_upload_ticket(
+                doc.get("categoryId") or category_id,
+                slug,
+                body.get("filename") or "image.jpg",
+                body.get("contentType") or "",
+            )
+        except ValueError as exc:
+            return _json({"error": str(exc)}, 400)
+        except Exception as exc:  # noqa: BLE001
+            return _json({"error": f"Could not create upload ticket: {exc}"}, 500)
+        return _json({"ok": True, **ticket})
+
+    if action == "attach":
+        url = str(body.get("url") or "").strip()
+        if not url:
+            return _json({"error": "url is required."}, 400)
+        urls = _append_image_url(doc, url)
+        _products().replace_item(item=doc, body=doc)
+        return _json({"ok": True, "url": url, "urls": urls, "product": _public_product(doc)})
 
     if action == "upload":
         content_type = _normalize_content_type(body.get("contentType"), body.get("filename") or "image.jpg")
@@ -390,18 +479,18 @@ def admin_product_images(req: func.HttpRequest) -> func.HttpResponse:
             return _json({"error": str(exc)}, 400)
         except Exception as exc:  # noqa: BLE001
             return _json({"error": f"Upload failed: {exc}"}, 500)
-        urls = product_image_list(doc)
-        urls.append(url)
-        apply_image_list(doc, urls)
+        urls = _append_image_url(doc, url)
         _products().replace_item(item=doc, body=doc)
-        return _json({"ok": True, "url": url, "urls": product_image_list(doc), "product": _public_product(doc)})
+        return _json({"ok": True, "url": url, "urls": urls, "product": _public_product(doc)})
 
     if action == "set":
+        if "urls" not in body or not isinstance(body.get("urls"), list):
+            return _json({"error": "urls array is required for set."}, 400)
         apply_image_list(doc, body.get("urls") or [])
         _products().replace_item(item=doc, body=doc)
         return _json({"ok": True, "urls": product_image_list(doc), "product": _public_product(doc)})
 
-    return _json({"error": "action must be upload or set."}, 400)
+    return _json({"error": "action must be ticket, attach, upload, or set."}, 400)
 
 
 @app.route(route="staff/reorder", methods=["POST", "OPTIONS"])
