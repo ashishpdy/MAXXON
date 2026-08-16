@@ -42,7 +42,7 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
 
   function handleActivate(event) {
     event.preventDefault();
-    if (hoverFlip) {
+    if (hoverFlip || isFlipped) {
       onOpen?.(product.slug);
       return;
     }
@@ -52,15 +52,8 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
   function handleKeyDown(event) {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      if (hoverFlip) onOpen?.(product.slug);
-      else onFlip?.();
+      onOpen?.(product.slug);
     }
-  }
-
-  function handleDetails(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    onOpen?.(product.slug);
   }
 
   return (
@@ -76,9 +69,6 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
         onKeyDown={handleKeyDown}
       >
         <span className="visually-hidden">{t("card.details", { name: productName })}</span>
-      </button>
-      <button type="button" className="product-card-open" onClick={handleDetails}>
-        {t("card.openPage")}
       </button>
       <div className="product-card-inner">
         <div className="product-card-face product-card-front">
@@ -110,9 +100,7 @@ export default function ProductCard({ product, specKeys, overlayField = "wattage
             <p className="product-card-sku-back">{product.sku}</p>
           </div>
           <SpecTable specs={product.specs} specKeys={specKeys} t={t} productName={productName} />
-          <p className="product-card-hint">
-            {hoverFlip ? t("card.hintHover") : t("card.hintTap")}
-          </p>
+          {hoverFlip ? <p className="product-card-hint">{t("card.hintHover")}</p> : null}
         </div>
       </div>
     </article>
