@@ -458,9 +458,20 @@ def admin_product_images(req: func.HttpRequest) -> func.HttpResponse:
         url = str(body.get("url") or "").strip()
         if not url:
             return _json({"error": "url is required."}, 400)
-        urls = _append_image_url(doc, url)
+        existing = body.get("existing")
+        if isinstance(existing, list):
+            urls = []
+            for item in existing:
+                text = str(item or "").strip()
+                if text and text not in urls:
+                    urls.append(text)
+            if url not in urls:
+                urls.append(url)
+            apply_image_list(doc, urls)
+        else:
+            urls = _append_image_url(doc, url)
         _products().replace_item(item=doc, body=doc)
-        return _json({"ok": True, "url": url, "urls": urls, "product": _public_product(doc)})
+        return _json({"ok": True, "url": url, "urls": product_image_list(doc), "product": _public_product(doc)})
 
     if action == "upload":
         content_type = _normalize_content_type(body.get("contentType"), body.get("filename") or "image.jpg")

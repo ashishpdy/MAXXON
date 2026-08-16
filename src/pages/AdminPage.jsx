@@ -230,7 +230,7 @@ export default function AdminPage() {
   }
 
   async function uploadImage(file) {
-    if (!selected || !file) return;
+    if (!selected || !draft || !file) return;
     if (file.size > 8 * 1024 * 1024) {
       setStatus("Image must be 8MB or smaller.");
       return;
@@ -239,6 +239,7 @@ export default function AdminPage() {
     setStatus("");
     try {
       const contentType = file.type || "image/jpeg";
+      const currentGallery = Array.isArray(draft.gallery) ? draft.gallery : [];
       const ticket = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
         method: "POST",
         body: JSON.stringify({
@@ -250,18 +251,21 @@ export default function AdminPage() {
         }),
       });
       await putBlob(ticket.uploadUrl, file, ticket.contentType || contentType);
-      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}/images`, {
-        method: "POST",
+      const urls = [...currentGallery, ticket.url].filter(
+        (src, index, list) => src && list.indexOf(src) === index
+      );
+      const payload = await staffFetch(`/api/staff/product/${encodeURIComponent(selected.slug)}`, {
+        method: "PUT",
         body: JSON.stringify({
           slug: selected.slug,
           categoryId: selected.category,
-          action: "attach",
-          url: ticket.url,
+          urls,
         }),
       });
-      setDraft((current) => (current ? { ...current, gallery: payload.urls || current.gallery } : current));
+      const nextUrls = productImages(payload.product) || urls;
+      setDraft((current) => (current ? { ...current, gallery: nextUrls } : current));
       await reload();
-      setStatus("Image uploaded.");
+      setStatus(`Image added (${nextUrls.length} total).`);
     } catch (err) {
       setStatus(err.message || "Upload failed.");
     } finally {
