@@ -792,6 +792,10 @@ html[lang="ar"] .footer-block h3 {
   }
 
   body.nav-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
     overflow: hidden;
   }
 

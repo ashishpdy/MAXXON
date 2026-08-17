@@ -49,21 +49,44 @@ export default function ProductPage({ slug }) {
     }
     document.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
-    document.body.classList.toggle("nav-open", navOpen);
+
+    if (navOpen) {
+      const y = window.scrollY;
+      document.body.dataset.scrollY = String(y);
+      document.body.style.top = `-${y}px`;
+      document.body.classList.add("nav-open");
+    } else if (document.body.classList.contains("nav-open")) {
+      const y = Number(document.body.dataset.scrollY || 0);
+      document.body.classList.remove("nav-open");
+      document.body.style.top = "";
+      delete document.body.dataset.scrollY;
+      window.scrollTo(0, y);
+    }
+
     return () => {
       document.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", onResize);
-      document.body.classList.remove("nav-open");
     };
   }, [navOpen, images.length]);
 
+  function unlockNavScroll() {
+    if (!document.body.classList.contains("nav-open")) return;
+    const y = Number(document.body.dataset.scrollY || 0);
+    document.body.classList.remove("nav-open");
+    document.body.style.top = "";
+    delete document.body.dataset.scrollY;
+    window.scrollTo(0, y);
+  }
+
   function goHome(event) {
     event.preventDefault();
+    unlockNavScroll();
     setNavOpen(false);
     navigate("/");
   }
 
   function goToCategory(id) {
+    unlockNavScroll();
     setNavOpen(false);
     navigate(`/#${id}`);
   }

@@ -73,18 +73,21 @@ function CategorySection({ category, onOpen, flippedSku, onFlip, t }) {
 export default function App() {
   const { t } = useI18n();
   const { categories, loading } = useCatalog();
-  const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
+  const [activeCategory, setActiveCategory] = useState("");
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
   const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
+  const spyLockTimerRef = useRef(0);
   const homeLockRef = useRef(false);
   const syncHashRef = useRef(false);
+  const navOpenRef = useRef(false);
 
   useEffect(() => {
     setActiveCategory((current) => {
+      if (!current) return current;
       if (categories.some((cat) => cat.id === current)) return current;
-      return categories[0]?.id || "";
+      return "";
     });
   }, [categories]);
 
@@ -124,8 +127,15 @@ export default function App() {
     }
 
     function updateActive() {
+      // Opening the drawer locks body scroll and can scramble section rects —
+      // freeze the highlighted menu item while the drawer is open.
+      if (navOpenRef.current) return;
+
       if (spyLockRef.current) {
         const locked = spyLockRef.current;
+        if (locked !== "categories" && locked !== "catalogue") {
+          setActiveCategory(locked);
+        }
         const section = document.querySelector(`section.category-section#${CSS.escape(locked)}`);
         if (section) {
           const mark = headerMark();
@@ -141,6 +151,7 @@ export default function App() {
       const inHero = window.scrollY <= 2 || heroTop > -8;
 
       if (inHero) {
+        setActiveCategory("");
         if (syncHashRef.current) setCategoryHash("");
         return;
       }
@@ -197,21 +208,38 @@ export default function App() {
     }
     document.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
-    document.body.classList.toggle("nav-open", navOpen);
+
+    navOpenRef.current = navOpen;
+    if (navOpen) {
+      const y = window.scrollY;
+      document.body.dataset.scrollY = String(y);
+      document.body.style.top = `-${y}px`;
+      document.body.classList.add("nav-open");
+    } else if (document.body.classList.contains("nav-open")) {
+      const y = Number(document.body.dataset.scrollY || 0);
+      document.body.classList.remove("nav-open");
+      document.body.style.top = "";
+      delete document.body.dataset.scrollY;
+      window.scrollTo(0, y);
+    }
+
     return () => {
       document.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", onResize);
-      document.body.classList.remove("nav-open");
+      if (document.body.classList.contains("nav-open")) {
+        const y = Number(document.body.dataset.scrollY || 0);
+        document.body.classList.remove("nav-open");
+        document.body.style.top = "";
+        delete document.body.dataset.scrollY;
+        window.scrollTo(0, y);
+      }
+      navOpenRef.current = false;
     };
   }, [navOpen]);
 
   function scrollOffset() {
-    const header = document.querySelector(".site-header");
-    const away = header?.classList.contains("is-away");
-    if (header && !away) {
-      const live = header.getBoundingClientRect().height;
-      if (live > 8) return live + 12;
-    }
+    // Always reserve sticky header space — category jumps leave the hero,
+    // so measuring while the header is "away" undershoots and confuses the spy.
     const probe = document.createElement("div");
     probe.style.cssText = "position:absolute;visibility:hidden;height:var(--sticky-offset)";
     document.body.append(probe);
@@ -220,11 +248,25 @@ export default function App() {
     return reserved || 80;
   }
 
+  function unlockNavScroll() {
+    if (!document.body.classList.contains("nav-open")) return;
+    const y = Number(document.body.dataset.scrollY || 0);
+    document.body.classList.remove("nav-open");
+    document.body.style.top = "";
+    delete document.body.dataset.scrollY;
+    navOpenRef.current = false;
+    window.scrollTo(0, y);
+  }
+
   function scrollBeneathHeader(id, behavior = "smooth") {
     const el = document.getElementById(id);
     if (!el) return;
     const top = window.scrollY + el.getBoundingClientRect().top - scrollOffset();
     window.scrollTo({ top: Math.max(0, top), behavior });
+  }
+
+  function clearSpyLock(hash) {
+    if (spyLockRef.current === hash) spyLockRef.current = null;
   }
 
   function goToHash(hash, behavior = "auto") {
@@ -241,9 +283,15 @@ export default function App() {
     if (hash !== "categories" && hash !== "catalogue") setActiveCategory(hash);
     setCategoryHash(hash === "categories" || hash === "catalogue" ? "" : hash);
     scrollBeneathHeader(hash, behavior);
-    window.setTimeout(() => {
-      if (spyLockRef.current === hash) spyLockRef.current = null;
-    }, behavior === "smooth" ? 1400 : 500);
+
+    window.clearTimeout(spyLockTimerRef.current);
+    const unlock = () => clearSpyLock(hash);
+    if (behavior === "smooth" && "onscrollend" in window) {
+      window.addEventListener("scrollend", unlock, { once: true });
+      spyLockTimerRef.current = window.setTimeout(unlock, 2000);
+    } else {
+      spyLockTimerRef.current = window.setTimeout(unlock, behavior === "smooth" ? 1400 : 500);
+    }
     return true;
   }
 
@@ -271,6 +319,7 @@ export default function App() {
   }, [categories, loading]);
 
   function scrollToCategory(id) {
+    unlockNavScroll();
     setNavOpen(false);
     goToHash(id, "smooth");
   }
@@ -278,9 +327,11 @@ export default function App() {
   function goHome(event) {
     event.preventDefault();
     spyLockRef.current = null;
+    unlockNavScroll();
     setNavOpen(false);
     homeLockRef.current = true;
     setHeroInView(false);
+    setActiveCategory("");
     setCategoryHash("");
     const root = document.documentElement;
     const prevBehavior = root.style.scrollBehavior;
