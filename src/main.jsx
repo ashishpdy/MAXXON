@@ -15,13 +15,6 @@ import "./styles/glossary.css";
 import "./styles/product.css";
 import "./styles/admin.css";
 
-if ("scrollRestoration" in history) {
-  history.scrollRestoration = "manual";
-}
-if (window.location.hash) {
-  window.scrollTo(0, 0);
-}
-
 function Root() {
   const [path, setPath] = useState(currentPathname);
 

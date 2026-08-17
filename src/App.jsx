@@ -14,6 +14,29 @@ import { useCatalog } from "./catalog/CatalogProvider.jsx";
 import { familyTitle, flattenAllProducts, groupCatalog } from "./catalog/registry.js";
 import { navigate, productHref } from "./nav.js";
 
+let stagedBootHash;
+let initialHashConsumed = false;
+
+function readBootHash() {
+  const staged = typeof window !== "undefined" ? window.__maxxonHash : "";
+  return String(staged || window.location.hash || "").replace(/^#/, "");
+}
+
+function consumeBootHash() {
+  if (stagedBootHash === undefined) {
+    stagedBootHash = readBootHash();
+    if (typeof window !== "undefined") window.__maxxonHash = "";
+  }
+  return stagedBootHash;
+}
+
+function setCategoryHash(id) {
+  const next = id ? `/#${id}` : "/";
+  const current = `${window.location.pathname.replace(/\/+$/, "") || "/"}${window.location.search}${window.location.hash}`;
+  if (current === next) return;
+  window.history.replaceState(null, "", next);
+}
+
 function CategorySection({ category, onOpen, flippedSku, onFlip, t }) {
   const families = groupCatalog(category.catalog, category.familyGroups);
   return (
@@ -56,6 +79,7 @@ export default function App() {
   const [flippedSku, setFlippedSku] = useState(null);
   const spyLockRef = useRef(null);
   const homeLockRef = useRef(false);
+  const syncHashRef = useRef(false);
 
   useEffect(() => {
     setActiveCategory((current) => {
@@ -93,9 +117,7 @@ export default function App() {
 
       setHeroInView((wasInHero) => {
         if (window.scrollY <= 2) return true;
-        // Hero top is entering the sticky band while scrolling up — clip sticky before brands overlap.
         if (heroTop > -headerBand) return true;
-        // Past the hero title — show the sticky header.
         if (titleTop <= 8) return false;
         return wasInHero;
       });
@@ -104,7 +126,7 @@ export default function App() {
     function updateActive() {
       if (spyLockRef.current) {
         const locked = spyLockRef.current;
-        const section = document.querySelector(`section.category-section#${locked}`);
+        const section = document.querySelector(`section.category-section#${CSS.escape(locked)}`);
         if (section) {
           const mark = headerMark();
           const rect = section.getBoundingClientRect();
@@ -114,9 +136,18 @@ export default function App() {
       }
 
       const mark = headerMark();
+      const hero = document.querySelector(".hero");
+      const heroTop = hero?.getBoundingClientRect().top ?? 0;
+      const inHero = window.scrollY <= 2 || heroTop > -8;
+
+      if (inHero) {
+        if (syncHashRef.current) setCategoryHash("");
+        return;
+      }
+
       let current = categories[0]?.id || "";
       for (const cat of categories) {
-        const section = document.querySelector(`section.category-section#${cat.id}`);
+        const section = document.querySelector(`section.category-section#${CSS.escape(cat.id)}`);
         if (!section) continue;
         const rect = section.getBoundingClientRect();
         if (rect.top <= mark && rect.bottom > mark) {
@@ -130,6 +161,7 @@ export default function App() {
         current = categories[categories.length - 1]?.id || current;
       }
       setActiveCategory(current);
+      if (syncHashRef.current && current) setCategoryHash(current);
     }
 
     function onScroll() {
@@ -195,33 +227,52 @@ export default function App() {
     window.scrollTo({ top: Math.max(0, top), behavior });
   }
 
-  useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
-    if (!hash || !categories.length || loading) return;
+  function goToHash(hash, behavior = "auto") {
+    if (!hash) return false;
     const productHit = flattenAllProducts(categories).find((item) => item.slug === hash);
     if (productHit) {
       navigate(productHref(productHit.slug));
-      return;
+      return true;
+    }
+    if (!categories.some((cat) => cat.id === hash) && hash !== "categories" && hash !== "catalogue") {
+      return false;
     }
     spyLockRef.current = hash;
-    setActiveCategory(hash);
+    if (hash !== "categories" && hash !== "catalogue") setActiveCategory(hash);
+    setCategoryHash(hash === "categories" || hash === "catalogue" ? "" : hash);
+    scrollBeneathHeader(hash, behavior);
+    window.setTimeout(() => {
+      if (spyLockRef.current === hash) spyLockRef.current = null;
+    }, behavior === "smooth" ? 1400 : 500);
+    return true;
+  }
+
+  useEffect(() => {
+    if (loading || !categories.length) return;
+
+    let cancelled = false;
+    const hash = initialHashConsumed
+      ? window.location.hash.replace(/^#/, "")
+      : consumeBootHash();
+
     const frame = requestAnimationFrame(() => {
-      scrollBeneathHeader(hash, "auto");
-      window.setTimeout(() => {
-        if (spyLockRef.current === hash) spyLockRef.current = null;
-      }, 400);
+      requestAnimationFrame(() => {
+        if (cancelled) return;
+        initialHashConsumed = true;
+        if (hash) goToHash(hash, "auto");
+        syncHashRef.current = true;
+      });
     });
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      syncHashRef.current = false;
+    };
   }, [categories, loading]);
 
   function scrollToCategory(id) {
-    spyLockRef.current = id;
     setNavOpen(false);
-    setActiveCategory(id);
-    scrollBeneathHeader(id);
-    window.setTimeout(() => {
-      if (spyLockRef.current === id) spyLockRef.current = null;
-    }, 1400);
+    goToHash(id, "smooth");
   }
 
   function goHome(event) {
@@ -230,6 +281,7 @@ export default function App() {
     setNavOpen(false);
     homeLockRef.current = true;
     setHeroInView(false);
+    setCategoryHash("");
     const root = document.documentElement;
     const prevBehavior = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
