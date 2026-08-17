@@ -16,6 +16,7 @@ import { navigate, productHref } from "./nav.js";
 
 let stagedBootHash;
 let initialHashConsumed = false;
+const RETURN_CATEGORY_KEY = "maxxon:returnCategory";
 
 function readBootHash() {
   const staged = typeof window !== "undefined" ? window.__maxxonHash : "";
@@ -28,6 +29,34 @@ function consumeBootHash() {
     if (typeof window !== "undefined") window.__maxxonHash = "";
   }
   return stagedBootHash;
+}
+
+function takeReturnCategory() {
+  try {
+    const id = sessionStorage.getItem(RETURN_CATEGORY_KEY) || "";
+    if (id) sessionStorage.removeItem(RETURN_CATEGORY_KEY);
+    return id;
+  } catch {
+    return "";
+  }
+}
+
+function rememberReturnCategory(id) {
+  if (!id) return;
+  try {
+    sessionStorage.setItem(RETURN_CATEGORY_KEY, id);
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
+
+function cssVarPx(name, fallback) {
+  const probe = document.createElement("div");
+  probe.style.cssText = `position:absolute;visibility:hidden;height:var(${name})`;
+  document.body.append(probe);
+  const value = probe.getBoundingClientRect().height;
+  probe.remove();
+  return value || fallback;
 }
 
 function setCategoryHash(id) {
@@ -107,6 +136,7 @@ export default function App() {
     function updateHeaderPresence() {
       const title = document.getElementById("hero-title");
       const hero = document.querySelector(".hero");
+      const chrome = document.querySelector(".hero-chrome");
       if (!title) return;
       if (homeLockRef.current) {
         setHeroInView(false);
@@ -115,12 +145,12 @@ export default function App() {
 
       const titleTop = title.getBoundingClientRect().top;
       const heroTop = hero?.getBoundingClientRect().top ?? 0;
-      const headerBand =
-        Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 94;
+      const chromeBottom = chrome?.getBoundingClientRect().bottom ?? heroTop;
 
       setHeroInView((wasInHero) => {
         if (window.scrollY <= 2) return true;
-        if (heroTop > -headerBand) return true;
+        // Keep sticky hidden while hero chrome still occupies the top of the viewport.
+        if (chromeBottom > 8) return true;
         if (titleTop <= 8) return false;
         return wasInHero;
       });
@@ -136,12 +166,8 @@ export default function App() {
         if (locked !== "categories" && locked !== "catalogue") {
           setActiveCategory(locked);
         }
-        const section = document.querySelector(`section.category-section#${CSS.escape(locked)}`);
-        if (section) {
-          const mark = headerMark();
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= mark + 32 && rect.bottom > mark) spyLockRef.current = null;
-        }
+        // Keep the intentional target selected until the lock timer ends —
+        // early unlock lets layout shift put the spy on the wrong category.
         return;
       }
 
@@ -240,12 +266,7 @@ export default function App() {
   function scrollOffset() {
     // Always reserve sticky header space — category jumps leave the hero,
     // so measuring while the header is "away" undershoots and confuses the spy.
-    const probe = document.createElement("div");
-    probe.style.cssText = "position:absolute;visibility:hidden;height:var(--sticky-offset)";
-    document.body.append(probe);
-    const reserved = probe.getBoundingClientRect().height;
-    probe.remove();
-    return reserved || 80;
+    return cssVarPx("--sticky-offset", 80);
   }
 
   function unlockNavScroll() {
@@ -260,9 +281,10 @@ export default function App() {
 
   function scrollBeneathHeader(id, behavior = "smooth") {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) return false;
     const top = window.scrollY + el.getBoundingClientRect().top - scrollOffset();
     window.scrollTo({ top: Math.max(0, top), behavior });
+    return true;
   }
 
   function clearSpyLock(hash) {
@@ -282,7 +304,15 @@ export default function App() {
     spyLockRef.current = hash;
     if (hash !== "categories" && hash !== "catalogue") setActiveCategory(hash);
     setCategoryHash(hash === "categories" || hash === "catalogue" ? "" : hash);
-    scrollBeneathHeader(hash, behavior);
+
+    const pin = (scrollBehavior) => scrollBeneathHeader(hash, scrollBehavior);
+    pin(behavior);
+    // Re-pin after layout settles (banner/images above can shift the target).
+    window.requestAnimationFrame(() => {
+      pin("auto");
+      window.setTimeout(() => pin("auto"), 120);
+      window.setTimeout(() => pin("auto"), 360);
+    });
 
     window.clearTimeout(spyLockTimerRef.current);
     const unlock = () => clearSpyLock(hash);
@@ -290,7 +320,7 @@ export default function App() {
       window.addEventListener("scrollend", unlock, { once: true });
       spyLockTimerRef.current = window.setTimeout(unlock, 2000);
     } else {
-      spyLockTimerRef.current = window.setTimeout(unlock, behavior === "smooth" ? 1400 : 500);
+      spyLockTimerRef.current = window.setTimeout(unlock, behavior === "smooth" ? 1400 : 900);
     }
     return true;
   }
@@ -299,9 +329,10 @@ export default function App() {
     if (loading || !categories.length) return;
 
     let cancelled = false;
-    const hash = initialHashConsumed
-      ? window.location.hash.replace(/^#/, "")
-      : consumeBootHash();
+    const pending = takeReturnCategory();
+    const hash =
+      pending ||
+      (initialHashConsumed ? window.location.hash.replace(/^#/, "") : consumeBootHash());
 
     const frame = requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -333,6 +364,11 @@ export default function App() {
     setHeroInView(false);
     setActiveCategory("");
     setCategoryHash("");
+    try {
+      sessionStorage.removeItem(RETURN_CATEGORY_KEY);
+    } catch {
+      /* ignore */
+    }
     const root = document.documentElement;
     const prevBehavior = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
@@ -353,6 +389,12 @@ export default function App() {
   }
 
   function openProduct(slug) {
+    const fromHash = window.location.hash.replace(/^#/, "");
+    const category =
+      (activeCategory && categories.some((cat) => cat.id === activeCategory) && activeCategory) ||
+      (categories.some((cat) => cat.id === fromHash) && fromHash) ||
+      "";
+    rememberReturnCategory(category);
     navigate(productHref(slug));
   }
 

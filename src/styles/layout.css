@@ -116,10 +116,9 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 28%, rgba(0, 0, 0, 0.28) 100%),
     rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(12px) saturate(0.85);
-  clip-path: inset(0% 0% 0% 0%);
-  -webkit-clip-path: inset(0% 0% 0% 0%);
-  transition: clip-path 0.42s cubic-bezier(0.22, 0.61, 0.36, 1),
-    -webkit-clip-path 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.16s ease, visibility 0.16s ease;
 }
 
 .site-header::after {
@@ -134,8 +133,15 @@ a {
 }
 
 .site-header.is-away {
-  clip-path: inset(0% 50% 0% 50%);
-  -webkit-clip-path: inset(0% 50% 0% 50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Never show sticky bar and hero chrome at the same time. */
+.app-shell:has(.site-header:not(.is-away)) .hero-chrome {
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 

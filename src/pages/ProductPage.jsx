@@ -88,6 +88,11 @@ export default function ProductPage({ slug }) {
   function goToCategory(id) {
     unlockNavScroll();
     setNavOpen(false);
+    try {
+      sessionStorage.setItem("maxxon:returnCategory", id);
+    } catch {
+      /* ignore */
+    }
     navigate(`/#${id}`);
   }
 
