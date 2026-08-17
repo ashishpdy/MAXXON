@@ -49,7 +49,7 @@ function CategorySection({ category, onOpen, flippedSku, onFlip, t }) {
 
 export default function App() {
   const { t } = useI18n();
-  const { categories } = useCatalog();
+  const { categories, loading } = useCatalog();
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id || "");
   const [heroInView, setHeroInView] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
@@ -79,16 +79,25 @@ export default function App() {
 
     function updateHeaderPresence() {
       const title = document.getElementById("hero-title");
+      const hero = document.querySelector(".hero");
       if (!title) return;
       if (homeLockRef.current) {
         setHeroInView(false);
         return;
       }
+
       const titleTop = title.getBoundingClientRect().top;
-      setHeroInView((away) => {
+      const heroTop = hero?.getBoundingClientRect().top ?? 0;
+      const headerBand =
+        Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 94;
+
+      setHeroInView((wasInHero) => {
         if (window.scrollY <= 2) return true;
+        // Hero top is entering the sticky band while scrolling up — clip sticky before brands overlap.
+        if (heroTop > -headerBand) return true;
+        // Past the hero title — show the sticky header.
         if (titleTop <= 8) return false;
-        return away;
+        return wasInHero;
       });
     }
 
@@ -179,24 +188,31 @@ export default function App() {
     return reserved || 80;
   }
 
-  function scrollBeneathHeader(id) {
+  function scrollBeneathHeader(id, behavior = "smooth") {
     const el = document.getElementById(id);
     if (!el) return;
     const top = window.scrollY + el.getBoundingClientRect().top - scrollOffset();
-    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    window.scrollTo({ top: Math.max(0, top), behavior });
   }
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
-    if (!hash || !categories.length) return;
+    if (!hash || !categories.length || loading) return;
     const productHit = flattenAllProducts(categories).find((item) => item.slug === hash);
     if (productHit) {
       navigate(productHref(productHit.slug));
       return;
     }
-    const frame = requestAnimationFrame(() => scrollBeneathHeader(hash));
+    spyLockRef.current = hash;
+    setActiveCategory(hash);
+    const frame = requestAnimationFrame(() => {
+      scrollBeneathHeader(hash, "auto");
+      window.setTimeout(() => {
+        if (spyLockRef.current === hash) spyLockRef.current = null;
+      }, 400);
+    });
     return () => cancelAnimationFrame(frame);
-  }, [categories]);
+  }, [categories, loading]);
 
   function scrollToCategory(id) {
     spyLockRef.current = id;
