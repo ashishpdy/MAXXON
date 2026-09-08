@@ -8,7 +8,11 @@
     "COSMOS_DATABASE": "maxxon",
     "ADMIN_SECRET": "",
     "BLOB_CONNECTION_STRING": "",
-    "BLOB_CONTAINER": "products"
+    "BLOB_CONTAINER": "products",
+    "AZURE_OPENAI_ENDPOINT": "https://YOUR-OPENAI.openai.azure.com/",
+    "AZURE_OPENAI_KEY": "",
+    "AZURE_OPENAI_CHAT_MODEL": "gpt-4.1-mini",
+    "AZURE_OPENAI_CHAT_API_VERSION": "2024-08-01-preview"
   },
   "Host": {
     "CORS": "http://localhost:5173,http://localhost:5174",

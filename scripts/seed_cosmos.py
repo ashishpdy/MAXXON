@@ -50,7 +50,7 @@ def main():
     categories_file = json.loads(CATEGORIES_PATH.read_text(encoding="utf-8"))
     client = CosmosClient(endpoint, credential=key)
     database = client.create_database_if_not_exists(id=database_name)
-    products = database.create_container_if_not_exists(id="products", partition_key=PartitionKey(path="/categoryId"))
+    products = database.create_container_if_not_exists(id="products", partition_key=PartitionKey(path="/productId"))
     meta = database.create_container_if_not_exists(id="meta", partition_key=PartitionKey(path="/id"))
 
     nav = {
@@ -74,6 +74,7 @@ def main():
                 doc = {
                     **product,
                     "id": slug,
+                    "productId": slug,
                     "categoryId": cat["id"],
                     "family": family,
                     "sortIndex": index,

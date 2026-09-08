@@ -1,9 +1,24 @@
+export type CatalogueHit = {
+  slug: string;
+  sku: string;
+  model: string;
+  categoryId: string;
+  categoryLabel: string;
+  family: string;
+  image?: string;
+  wattage?: string;
+  href: string;
+  score: number;
+  snippet?: string;
+};
+
 export type AssistantReply = {
   id: string;
   text: string;
   image?: string;
   tags?: string[];
   keywords?: string[];
+  products?: CatalogueHit[];
 };
 
 export type ChatData = {

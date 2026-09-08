@@ -30,3 +30,5 @@ __pycache__/
 .venv/
 .python_packages/
 *.pyc
+
+api-deploy.zip

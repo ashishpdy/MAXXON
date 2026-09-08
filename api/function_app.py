@@ -26,6 +26,7 @@ META_FIELDS = frozenset(
         "_attachments",
         "_ts",
         "categoryId",
+        "productId",
         "family",
         "id",
     }
@@ -114,14 +115,15 @@ def _requested_slug(req: func.HttpRequest, body):
 
 def _find_product(slug, category_id):
     container = _products()
-    if slug and category_id:
+    # Container partition key is /productId (same value as id/slug).
+    if slug:
         try:
-            return container.read_item(item=slug, partition_key=category_id)
+            return container.read_item(item=slug, partition_key=slug)
         except exceptions.CosmosResourceNotFoundError:
             pass
     rows = list(
         container.query_items(
-            query="SELECT * FROM c WHERE c.id = @slug OR c.slug = @slug",
+            query="SELECT * FROM c WHERE c.id = @slug OR c.slug = @slug OR c.productId = @slug",
             parameters=[{"name": "@slug", "value": slug}],
             enable_cross_partition_query=True,
         )
@@ -374,6 +376,40 @@ def catalogue(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(status_code=204, headers=CORS_HEADERS)
     try:
         payload = assemble_catalogue()
+    except Exception as exc:  # noqa: BLE001
+        return _json({"error": str(exc)}, 500)
+    return _json(payload)
+
+
+@app.route(route="chat", methods=["POST", "OPTIONS"])
+def chat(req: func.HttpRequest) -> func.HttpResponse:
+    if req.method == "OPTIONS":
+        return func.HttpResponse(status_code=204, headers=CORS_HEADERS)
+    try:
+        body = req.get_json()
+    except ValueError:
+        body = {}
+    body = body or {}
+    message = str(body.get("message") or "").strip()
+    messages = body.get("messages") if isinstance(body.get("messages"), list) else None
+    try:
+        top_k = int(body.get("top_k") or 6)
+    except (TypeError, ValueError):
+        top_k = 6
+    if not message and not messages:
+        return _json({"error": "message is required."}, 400)
+    try:
+        from chat_service import run_chat
+
+        docs = list(
+            _products().query_items(
+                query="SELECT * FROM c",
+                enable_cross_partition_query=True,
+            )
+        )
+        payload = run_chat(docs=docs, message=message, messages=messages, top_k=top_k)
+    except ValueError as exc:
+        return _json({"error": str(exc)}, 400)
     except Exception as exc:  # noqa: BLE001
         return _json({"error": str(exc)}, 500)
     return _json(payload)
