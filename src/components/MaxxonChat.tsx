@@ -224,22 +224,24 @@ export function MaxxonChat() {
           </header>
 
           <div className="maxxon-chat-thread" ref={threadRef} role="log" aria-live="polite">
-            {messages.map((message) =>
-              message.role === "user" ? (
-                <div key={message.id} className="maxxon-chat-row is-user">
-                  <p className="maxxon-chat-bubble is-user">{message.text}</p>
-                </div>
-              ) : (
-                <AssistantBubble
-                  key={message.id}
-                  reply={message.reply}
-                  disabled={typing}
-                  onTag={(tag) => void sendMessage(tag)}
-                  onOpenProduct={openProduct}
-                />
-              )
-            )}
-            {typing ? <TypingDots /> : null}
+            <div className="maxxon-chat-thread-inner">
+              {messages.map((message) =>
+                message.role === "user" ? (
+                  <div key={message.id} className="maxxon-chat-row is-user">
+                    <p className="maxxon-chat-bubble is-user">{message.text}</p>
+                  </div>
+                ) : (
+                  <AssistantBubble
+                    key={message.id}
+                    reply={message.reply}
+                    disabled={typing}
+                    onTag={(tag) => void sendMessage(tag)}
+                    onOpenProduct={openProduct}
+                  />
+                )
+              )}
+              {typing ? <TypingDots /> : null}
+            </div>
           </div>
 
           <form className="maxxon-chat-composer" onSubmit={send}>
