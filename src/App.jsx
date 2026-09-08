@@ -9,7 +9,6 @@ import ScrollUp from "./components/ScrollUp.jsx";
 import SiteHeader from "./components/SiteHeader.jsx";
 import { useI18n } from "./i18n/I18nProvider.jsx";
 import JsonLd from "./seo/JsonLd.jsx";
-import { MaxxonChat } from "./components/MaxxonChat";
 import { useCatalog } from "./catalog/CatalogProvider.jsx";
 import { familyTitle, flattenAllProducts, groupCatalog } from "./catalog/registry.js";
 import { navigate, productHref } from "./nav.js";
@@ -442,7 +441,6 @@ export default function App() {
 
       <Footer />
       <ScrollUp onScrollUp={() => scrollBeneathHeader("categories")} />
-      <MaxxonChat />
     </div>
   );
 }

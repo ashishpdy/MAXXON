@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import Glossery from "./pages/glossery.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import { MaxxonChat } from "./components/MaxxonChat";
 import { I18nProvider } from "./i18n/I18nProvider.jsx";
 import { CatalogProvider } from "./catalog/CatalogProvider.jsx";
 import { currentPathname, productSlugFromPath } from "./nav.js";
@@ -34,11 +35,13 @@ function Root() {
   }
 
   const slug = productSlugFromPath(path);
+  const showChat = path !== "/admin";
 
   return (
     <I18nProvider>
       <CatalogProvider>
         {path === "/admin" ? <AdminPage /> : slug ? <ProductPage slug={slug} /> : <App />}
+        {showChat ? <MaxxonChat /> : null}
       </CatalogProvider>
     </I18nProvider>
   );

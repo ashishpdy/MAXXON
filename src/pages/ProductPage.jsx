@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader.jsx";
 import SpecTable from "../components/SpecTable.jsx";
 import Footer from "../components/Footer.jsx";
-import { MaxxonChat } from "../components/MaxxonChat";
 import { useCatalog } from "../catalog/CatalogProvider.jsx";
 import { familyTitle, findProductBySlug, productImages } from "../catalog/registry.js";
 import { useI18n } from "../i18n/I18nProvider.jsx";
@@ -205,7 +204,6 @@ export default function ProductPage({ slug }) {
       </main>
 
       <Footer />
-      <MaxxonChat />
     </div>
   );
 }

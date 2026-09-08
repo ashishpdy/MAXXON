@@ -3,6 +3,13 @@ import { useCatalog } from "../catalog/CatalogProvider.jsx";
 import { navigate, productHref } from "../nav.js";
 import { askCatalogueChat } from "../chat/askChat";
 import { buildWelcomeReply } from "../chat/searchCatalogue";
+import {
+  CHAT_API_HISTORY,
+  CHAT_WINDOW_SIZE,
+  loadChatSession,
+  saveChatSession,
+  trimChatMessages,
+} from "../chat/session";
 import type { AssistantReply, CatalogueHit, ChatMessage } from "../chat/types";
 
 function nextId() {
@@ -114,21 +121,40 @@ export function MaxxonChat() {
   const { categories, loading } = useCatalog();
   const threadRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [open, setOpen] = useState(false);
+  const restored = useRef(loadChatSession());
+  const welcomeSeeded = useRef(Boolean(restored.current?.messages.some((m) => m.id === "welcome")));
+  const [open, setOpen] = useState(() => Boolean(restored.current?.open));
   const [draft, setDraft] = useState("");
   const [typing, setTyping] = useState(false);
   const welcome = useMemo(() => buildWelcomeReply(categories), [categories]);
-  const [messages, setMessages] = useState<ChatMessage[]>(() => [
-    { id: "welcome", role: "assistant", reply: buildWelcomeReply([]) },
-  ]);
-  const welcomeSeeded = useRef(false);
+  const [messages, setMessages] = useState<ChatMessage[]>(
+    () =>
+      restored.current?.messages || [
+        { id: "welcome", role: "assistant", reply: buildWelcomeReply([]) },
+      ]
+  );
 
   useEffect(() => {
     if (welcomeSeeded.current) return;
     if (loading) return;
     welcomeSeeded.current = true;
-    setMessages([{ id: "welcome", role: "assistant", reply: welcome }]);
+    setMessages((current) => {
+      if (current.some((entry) => entry.id === "welcome" && entry.reply.text && current.length > 1)) {
+        return current;
+      }
+      if (current.length === 1 && current[0]?.id === "welcome") {
+        return [{ id: "welcome", role: "assistant", reply: welcome }];
+      }
+      if (!current.some((entry) => entry.id === "welcome")) {
+        return trimChatMessages([{ id: "welcome", role: "assistant", reply: welcome }, ...current]);
+      }
+      return current;
+    });
   }, [loading, welcome]);
+
+  useEffect(() => {
+    saveChatSession({ messages, open });
+  }, [messages, open]);
 
   useEffect(() => {
     const node = threadRef.current;
@@ -142,6 +168,7 @@ export function MaxxonChat() {
   }, [open]);
 
   function openProduct(hit: CatalogueHit) {
+    // Minimize only — keep the session thread for return/reopen.
     setOpen(false);
     navigate(hit.href || productHref(hit.slug));
   }
@@ -156,9 +183,11 @@ export function MaxxonChat() {
         if (entry.role === "user") return [{ role: "user" as const, content: entry.text }];
         return [{ role: "assistant" as const, content: entry.reply.text }];
       })
-      .slice(-6);
+      .slice(-CHAT_API_HISTORY);
 
-    setMessages((current) => [...current, { id: nextId(), role: "user", text: value }]);
+    setMessages((current) =>
+      trimChatMessages([...current, { id: nextId(), role: "user", text: value }], CHAT_WINDOW_SIZE)
+    );
     setDraft("");
     setTyping(true);
 
@@ -169,7 +198,9 @@ export function MaxxonChat() {
       loading,
     });
 
-    setMessages((current) => [...current, { id: nextId(), role: "assistant", reply }]);
+    setMessages((current) =>
+      trimChatMessages([...current, { id: nextId(), role: "assistant", reply }], CHAT_WINDOW_SIZE)
+    );
     setTyping(false);
   }
 
@@ -188,7 +219,7 @@ export function MaxxonChat() {
               <h2 className="maxxon-chat-title">Catalogue chat</h2>
             </div>
             <button type="button" className="maxxon-chat-close" onClick={() => setOpen(false)}>
-              Close
+              Minimize
             </button>
           </header>
 
@@ -238,7 +269,7 @@ export function MaxxonChat() {
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        {open ? "Close chat" : "Chat"}
+        {open ? "Minimize" : "Chat"}
       </button>
     </div>
   );
